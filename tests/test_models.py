@@ -36,3 +36,13 @@ def test_metadata_is_snapshotted_and_read_only() -> None:
     assert document.metadata["owner"] == "docs-team"
     with pytest.raises(TypeError):
         document.metadata["owner"] = "mutated"  # type: ignore[index]
+
+
+def test_document_rejects_content_hash_that_does_not_match_text() -> None:
+    with pytest.raises(ValueError, match="must match document text"):
+        Document(
+            document_id="doc-1",
+            source_uri="memory://doc-1",
+            text="payload",
+            content_sha256="0" * 64,
+        )

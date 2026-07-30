@@ -44,7 +44,11 @@ Implemented from scratch in the current reconstruction:
 - `DocumentSource` ingestion contract;
 - plain-text file ingestion with explicit source provenance;
 - unit coverage for model invariants and text-source behavior;
-- reproducible Python project configuration.
+- reproducible Python project configuration;
+- immutable `Chunk` model with exact source spans, chunk hashing, document-version lineage, and metadata propagation;
+- deterministic `ChunkingStrategy` boundary and configurable fixed-character chunking baseline;
+- `IngestionPipeline` composition from source loading through ordered chunk production;
+- regression coverage for chunk boundaries, overlap, identity, provenance, Unicode offsets, and end-to-end ingestion.
 
 ## NEW
 
@@ -52,13 +56,16 @@ Design choices introduced during this rebuild, without claiming they existed his
 
 - explicit separation between logical source identity and content version;
 - immutable metadata snapshots on documents to reduce accidental mutation across pipeline stages;
-- a deliberately framework-free ingestion boundary so retrieval libraries can be evaluated later rather than baked into the domain model.
+- a deliberately framework-free ingestion boundary so retrieval libraries can be evaluated later rather than baked into the domain model;
+- deterministic chunk IDs that preserve identity for an unchanged source span/configuration even when unrelated document content changes;
+- explicit chunk strategy IDs so artifacts remain attributable to the transformation configuration that produced them;
+- exact character-span provenance as the first citation primitive, with richer modality-specific locators deferred until corresponding source types exist.
 
 ## UNCERTAIN / UNKNOWN
 
 Not reconstructed or historically verified yet:
 
-- original chunking rules and overlap;
+- original historical chunking rules and overlap (the current fixed-character strategy is reconstructed/new work);
 - embedding models and vector-store configuration;
 - lexical retrieval implementation;
 - fusion and reranking parameters;

@@ -1,5 +1,5 @@
 """AtlasRAG core package."""
 
-from atlasrag.models import Document
+from atlasrag.models import Chunk, Document
 
-__all__ = ["Document"]
+__all__ = ["Chunk", "Document"]

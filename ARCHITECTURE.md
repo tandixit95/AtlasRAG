@@ -1,8 +1,8 @@
 # AtlasRAG Architecture
 
-## Day 1 baseline
+## Current baseline
 
-AtlasRAG begins with a narrow ingestion boundary:
+AtlasRAG currently stops at the ingestion/chunk boundary:
 
 ```text
 external source
@@ -15,58 +15,109 @@ DocumentSource.load()
   - document_id: logical source identity
   - source_uri: provenance anchor
   - text: exact ingested payload
-  - content_sha256: content version fingerprint
+  - content_sha256: source-version fingerprint
   - metadata: immutable source metadata
+     |
+     v
+ChunkingStrategy.chunk()
+     |
+     v
+   Chunk
+  - chunk_id: deterministic artifact identity
+  - document_id + document_content_sha256: source/version lineage
+  - start_char / end_char: exact half-open source span
+  - content_sha256: chunk payload fingerprint
+  - strategy_id: chunking implementation/config identity
+  - metadata: immutable propagated source metadata
 ```
 
-There is no chunking, embedding, retrieval, reranking, generation, or authorization layer in the current implementation.
+`IngestionPipeline` composes source loading and chunking while returning both the original `Document` objects and the ordered `Chunk` artifacts.
+
+There is still no embedding, index, lexical retrieval, fusion, reranking, generation, or authorization layer.
 
 ## Decisions
 
 ### Keep the domain model independent of RAG frameworks
 
-The first layer uses only the Python standard library. LangChain, LlamaIndex, vector databases, and model SDKs are intentionally absent.
+The ingestion layer uses only the Python standard library. LangChain, LlamaIndex, vector databases, tokenizer SDKs, and model clients are intentionally absent.
 
-**Reason:** the document and provenance contracts should remain stable even if later experiments swap retrieval or orchestration implementations. This also makes dependency cost visible when a framework is eventually introduced.
+**Reason:** source, chunk, identity, and provenance contracts should remain stable while later experiments swap retrieval implementations. Dependencies should be introduced for demonstrated capability, not résumé decoration.
 
 ### Separate document identity from content version
 
 `document_id` is deterministic for a normalized source URI. `content_sha256` is deterministic for the exact text payload.
 
-**Reason:** a document edited in place is still the same logical source but has a new content version. Future ingestion can use this distinction for idempotent updates, re-chunking, and selective re-embedding.
+**Reason:** a document edited in place remains the same logical source but becomes a new source version. This distinction supports change detection and prevents source identity from being conflated with payload identity.
 
-**Tradeoff:** URI-derived identity assumes the source URI is the canonical logical identity. Systems with source moves, aliases, or external stable IDs will need an explicit identity strategy rather than silently relying on paths.
+**Tradeoff:** URI-derived identity assumes the URI is the canonical logical identifier. Source moves, aliases, and systems with external stable IDs will eventually need an explicit identity policy.
 
-### Preserve exact text at ingestion
+### Make chunks provenance-bearing domain objects
 
-The plain-text source does not trim or normalize content.
+A chunk carries source URI, logical document ID, document content digest, exact character offsets, chunk digest, strategy ID, and immutable metadata.
 
-**Reason:** normalization is a transformation step and should be explicit, testable, and attributable. Ingestion should not silently change source material.
+**Reason:** retrieval results should not need to reverse-engineer where text came from. Provenance is established at transformation time and can be preserved through indexing, retrieval, reranking, and citation generation.
 
-### Snapshot metadata
+### Use stable chunk IDs without coupling them to unrelated document edits
 
-Document metadata is copied and exposed as a read-only mapping.
+Chunk identity is derived from the logical document ID, chunking strategy/configuration, character span, and chunk content digest. The whole-document digest is recorded as provenance but is not part of the chunk ID.
 
-**Reason:** downstream stages should not be able to mutate provenance attached to an already-created document by retaining a reference to the caller's dictionary.
+**Reason:** if text elsewhere in a source changes while a chunk's span and contents remain identical, that chunk can retain identity. This creates a path toward selective re-indexing or re-embedding rather than invalidating every chunk on every source edit.
 
-## Near-term evolution
+**Consequence:** edits that shift offsets change downstream chunk IDs even when some text is repeated. That is deliberate for the current baseline because offsets are part of citation provenance. More sophisticated structural identity can be evaluated later if incremental ingestion requires it.
 
-Planned progression, gated by working tests and evidence:
+### Start with fixed-character chunking as a control
 
-1. ingestion pipeline and configurable chunking;
-2. dense embeddings and a baseline retriever;
-3. BM25 lexical retrieval;
-4. hybrid fusion with Reciprocal Rank Fusion;
-5. reranking and citation/provenance propagation;
-6. frozen retrieval evaluation set and controlled benchmark;
-7. CI, regression gates, architecture cleanup, and published results.
+`FixedCharacterChunker` supports `chunk_size` and `overlap`, validates configurations, produces exact source slices, and stops when the final chunk reaches the source end.
 
-ACL-aware retrieval, sufficient-context gating, ANN/HNSW experiments, load testing, and ablations come after the baseline retrieval/evaluation loop is measurable.
+**Reason:** this baseline is deterministic, dependency-free, and easy to audit. It gives future tokenizer-aware or structure-aware chunkers something measurable to beat.
+
+**Tradeoff:** character windows ignore tokenization, sentence boundaries, headings, tables, and semantic structure. Those limitations are expected and should be addressed through controlled retrieval experiments rather than hidden by premature complexity.
+
+### Character offsets refer to Python text, not encoded bytes
+
+`start_char` and `end_char` are half-open indices into the decoded Python string.
+
+**Reason:** chunk text can be verified directly with `document.text[start_char:end_char]`, including Unicode content. Byte offsets, PDF coordinates, timestamps, and other modality-specific locators can be added when corresponding source adapters exist.
+
+### Preserve exact text at ingestion and chunking
+
+The plain-text adapter does not trim or normalize source contents, and the fixed-character strategy slices the exact decoded string.
+
+**Reason:** normalization is a transformation and should be explicit, testable, and attributable rather than silently changing source material.
+
+### Snapshot metadata at domain boundaries
+
+Document and chunk metadata are copied and exposed as read-only mappings.
+
+**Reason:** downstream stages should not mutate provenance through shared dictionary references.
+
+## Next architectural boundary
+
+The next useful layer is retrieval, beginning with an embedding abstraction and a deliberately simple dense baseline. Before adding approximate indexes or framework integrations, the system should establish:
+
+1. an embedding contract;
+2. a minimal index/retriever contract;
+3. top-k result semantics and scores;
+4. a tiny frozen retrieval dataset suitable for regression tests;
+5. deterministic tests around ranking and provenance preservation.
+
+BM25, hybrid fusion, RRF, reranking, and larger evaluation experiments should build on that measurable baseline rather than arrive as one opaque stack.
+
+## Failure modes already addressed
+
+- invalid chunk size or overlap configurations;
+- terminal overlap producing a redundant tail chunk;
+- inconsistent text/content hashes in domain objects;
+- provenance metadata mutation after object creation;
+- loss of document source/version lineage during chunking;
+- non-deterministic chunk identity for identical inputs/configuration.
 
 ## Failure modes to design for later
 
-- duplicate sources under different URIs;
+- duplicate logical sources under different URIs;
+- source moves or aliases;
 - changed content with stale chunks or embeddings;
+- tokenizer/model changes invalidating stored embeddings;
 - provenance loss between retrieval and generation;
 - authorization filtering after retrieval instead of before/within candidate generation;
 - benchmark leakage into tuning;
