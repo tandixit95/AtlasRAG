@@ -13,33 +13,35 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Chunking strategy boundary plus configurable fixed-character baseline.
 - Ingestion pipeline composing source loading and chunking.
 - Regression tests covering current ingestion and chunking contracts.
+- Embedding model contract and optional Sentence Transformers adapter.
+- Exact exhaustive cosine retriever with deterministic top-k ranking and provenance-preserving results.
 
 ## Current architecture
 
-`DocumentSource -> Document -> ChunkingStrategy -> Chunk`, composed by `IngestionPipeline`.
+`DocumentSource -> Document -> ChunkingStrategy -> Chunk`, composed by `IngestionPipeline`, followed by `EmbeddingModel -> ExactDenseRetriever -> RetrievalResult`.
 
-The implementation is dependency-free at runtime and stops before embedding/retrieval.
+Core runtime remains standard-library-only; the real Sentence Transformers adapter is optional.
 
 ## Benchmark status
 
-No retrieval-quality or performance benchmark has been published yet. There is not yet a retrieval implementation to benchmark.
+No retrieval-quality or performance benchmark has been published yet. Exact dense retrieval now exists as a correctness baseline; benchmark/evaluation results remain deliberately unclaimed until a frozen dataset and reproducible experiment are added.
 
 ## Next highest-value task
 
-Establish the dense retrieval baseline: embedding contract, first real embedding implementation, minimal vector retrieval path, top-k semantics, provenance-preserving retrieval results, and a tiny frozen evaluation fixture for deterministic regression coverage.
+Add lexical BM25 retrieval and a common result contract suitable for comparing dense and lexical candidates before introducing Reciprocal Rank Fusion. Preserve the exact dense path as the correctness baseline.
 
 ## Unresolved questions
 
-- Which embedding model offers the right quality/reproducibility/dependency tradeoff for the first public baseline?
-- Whether the first vector baseline should be exact cosine search before HNSW, so ANN tradeoffs can be measured rather than assumed.
-- What small public corpus/query set should seed retrieval regression tests without contaminating later evaluation work?
+- Whether `all-MiniLM-L6-v2` remains the first benchmark model after the frozen evaluation corpus is chosen.
+- When ANN/HNSW becomes justified by corpus scale; exact cosine remains the current correctness reference.
+- What small public corpus/query set should seed retrieval evaluation without contaminating later tuning.
 
 ## Known limitations
 
 - Only local plain-text sources are supported.
 - Chunking is character-based rather than tokenizer- or structure-aware.
 - URI-derived document identity does not yet handle aliases/moves.
-- No persistence, incremental ingestion store, embeddings, retrieval, ACL enforcement, generation, or evaluation harness exists yet.
+- No persistence, incremental ingestion store, lexical/hybrid retrieval, ANN index, ACL enforcement, generation, or evaluation harness exists yet.
 
 ## Publication status
 

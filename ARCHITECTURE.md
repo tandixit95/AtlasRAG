@@ -33,7 +33,7 @@ ChunkingStrategy.chunk()
 
 `IngestionPipeline` composes source loading and chunking while returning both the original `Document` objects and the ordered `Chunk` artifacts.
 
-There is still no embedding, index, lexical retrieval, fusion, reranking, generation, or authorization layer.
+The next layer now provides a model-independent embedding contract and exact exhaustive cosine retrieval. There is still no lexical retrieval, fusion, ANN index, reranking, generation, or authorization layer.
 
 ## Decisions
 
@@ -123,3 +123,10 @@ BM25, hybrid fusion, RRF, reranking, and larger evaluation experiments should bu
 - benchmark leakage into tuning;
 - quality gains that hide unacceptable latency or cost regressions;
 - retrieval metrics that improve while answer faithfulness degrades.
+
+
+## Dense retrieval baseline
+
+`EmbeddingModel` separates embedding providers from retrieval semantics. `ExactDenseRetriever` embeds chunks, validates vector cardinality/dimensions, and performs exhaustive cosine search with deterministic chunk-ID tie breaking. Retrieval results retain the original `Chunk`, so source/version provenance survives ranking without a second lookup.
+
+The first real adapter targets `sentence-transformers/all-MiniLM-L6-v2` as an optional dependency. Exact search is deliberately retained before HNSW: it is the small-corpus correctness reference against which future ANN recall/latency tradeoffs can be measured. No retrieval-quality benchmark is claimed yet.

@@ -48,7 +48,9 @@ Implemented from scratch in the current reconstruction:
 - immutable `Chunk` model with exact source spans, chunk hashing, document-version lineage, and metadata propagation;
 - deterministic `ChunkingStrategy` boundary and configurable fixed-character chunking baseline;
 - `IngestionPipeline` composition from source loading through ordered chunk production;
-- regression coverage for chunk boundaries, overlap, identity, provenance, Unicode offsets, and end-to-end ingestion.
+- regression coverage for chunk boundaries, overlap, identity, provenance, Unicode offsets, and end-to-end ingestion;
+- embedding provider contract plus optional Sentence Transformers adapter;
+- exact exhaustive cosine retrieval baseline with deterministic top-k semantics and provenance-preserving results.
 
 ## NEW
 
@@ -59,7 +61,8 @@ Design choices introduced during this rebuild, without claiming they existed his
 - a deliberately framework-free ingestion boundary so retrieval libraries can be evaluated later rather than baked into the domain model;
 - deterministic chunk IDs that preserve identity for an unchanged source span/configuration even when unrelated document content changes;
 - explicit chunk strategy IDs so artifacts remain attributable to the transformation configuration that produced them;
-- exact character-span provenance as the first citation primitive, with richer modality-specific locators deferred until corresponding source types exist.
+- exact character-span provenance as the first citation primitive, with richer modality-specific locators deferred until corresponding source types exist;
+- exact dense search retained as a correctness reference before ANN/HNSW optimization is justified by measured scale.
 
 ## UNCERTAIN / UNKNOWN
 

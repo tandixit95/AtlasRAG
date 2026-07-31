@@ -14,9 +14,11 @@ The repository currently provides a framework-independent ingestion boundary:
 - a `ChunkingStrategy` contract;
 - a deterministic fixed-character baseline with configurable overlap;
 - an `IngestionPipeline` that preserves loaded documents and ordered derived chunks;
-- regression coverage for identity, hashing, overlap boundaries, metadata propagation, Unicode offsets, empty sources, and end-to-end text ingestion.
+- regression coverage for identity, hashing, overlap boundaries, metadata propagation, Unicode offsets, empty sources, and end-to-end text ingestion;
+- exact in-memory cosine retrieval with deterministic ranking and provenance-preserving results;
+- optional `sentence-transformers/all-MiniLM-L6-v2` embeddings behind the `embeddings` extra, while deterministic retrieval tests use a local test embedder.
 
-Dense retrieval, BM25, hybrid fusion, reranking, ACL enforcement, generation, and benchmark claims are intentionally not implemented yet.
+AtlasRAG now also includes an exact dense-retrieval correctness baseline with model-independent embedding contracts and an optional Sentence Transformers adapter. BM25, hybrid fusion, reranking, ACL enforcement, generation, and benchmark claims are intentionally not implemented yet.
 
 ## Why this shape?
 
