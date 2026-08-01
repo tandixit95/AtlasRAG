@@ -79,6 +79,7 @@ class ReciprocalRankFusionRetriever(Retriever):
             text=request.text,
             top_k=component_top_k,
             principal=request.principal,
+            excluded_chunk_ids=request.excluded_chunk_ids,
         )
         lexical_results = self._lexical.search(component_query)
         dense_results = self._dense.search(component_query)

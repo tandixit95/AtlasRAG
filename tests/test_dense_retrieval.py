@@ -5,6 +5,7 @@ import pytest
 from atlasrag.embeddings.base import EmbeddingModel, Vector
 from atlasrag.ingestion.chunking import FixedCharacterChunker
 from atlasrag.models import Document
+from atlasrag.retrieval import RetrievalQuery
 from atlasrag.retrieval.dense import ExactDenseRetriever
 
 
@@ -176,3 +177,20 @@ def test_exact_dense_rejects_malformed_permission_metadata_at_index_time():
 
     with pytest.raises(ValueError, match="comma-separated"):
         ExactDenseRetriever(KeywordEmbedding()).index((chunk,))
+
+
+def test_dense_excludes_chunks_before_ranking() -> None:
+    first, second = _chunks()[:2]
+    retriever = ExactDenseRetriever(KeywordEmbedding())
+    retriever.index((first, second))
+
+    results = retriever.search(
+        RetrievalQuery(
+            text="mars",
+            top_k=2,
+            excluded_chunk_ids=frozenset({first.chunk_id}),
+        )
+    )
+
+    assert [result.chunk.chunk_id for result in results] == [second.chunk_id]
+    assert results[0].rank == 1

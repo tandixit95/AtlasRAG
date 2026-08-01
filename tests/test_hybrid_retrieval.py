@@ -10,6 +10,7 @@ from atlasrag.retrieval import (
     PermissionPolicy,
     ReciprocalRankFusionRetriever,
     RetrievalMethod,
+    RetrievalQuery,
     ScoreKind,
 )
 
@@ -177,3 +178,31 @@ def test_hybrid_rejects_invalid_fusion_configuration() -> None:
             ExactDenseRetriever(AliasEmbedding()),
             candidate_k=0,
         )
+
+
+def test_hybrid_propagates_chunk_exclusions_to_both_components() -> None:
+    first = _chunk("first", "mars mars")
+    second = _chunk("second", "mars ocean")
+    lexical = BM25Retriever()
+    dense = ExactDenseRetriever(AliasEmbedding())
+    retriever = ReciprocalRankFusionRetriever(
+        lexical,
+        dense,
+        rrf_k=60,
+        candidate_k=2,
+    )
+    retriever.index((first, second))
+
+    results = retriever.search(
+        RetrievalQuery(
+            text="mars",
+            top_k=2,
+            excluded_chunk_ids=frozenset({first.chunk_id}),
+        )
+    )
+
+    assert [result.chunk.chunk_id for result in results] == [second.chunk_id]
+    assert {item.method for item in results[0].contributions} == {
+        RetrievalMethod.BM25,
+        RetrievalMethod.EXACT_DENSE,
+    }

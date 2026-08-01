@@ -80,3 +80,16 @@ def test_group_collections_reject_bare_strings() -> None:
 def test_retrieval_query_requires_access_principal() -> None:
     with pytest.raises(TypeError, match="AccessPrincipal"):
         RetrievalQuery("mars", principal=None)  # type: ignore[arg-type]
+
+
+def test_retrieval_query_normalizes_excluded_chunk_ids() -> None:
+    query = RetrievalQuery(text="query", excluded_chunk_ids={" chunk-b ", "chunk-a"})
+
+    assert query.excluded_chunk_ids == frozenset({"chunk-a", "chunk-b"})
+
+
+@pytest.mark.parametrize("excluded", ["chunk-a", {" "}])
+def test_retrieval_query_rejects_invalid_exclusions(excluded) -> None:
+    expected = TypeError if isinstance(excluded, str) else ValueError
+    with pytest.raises(expected):
+        RetrievalQuery(text="query", excluded_chunk_ids=excluded)

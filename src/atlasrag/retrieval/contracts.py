@@ -46,6 +46,17 @@ def _normalize_groups(groups: Iterable[str]) -> frozenset[str]:
     return frozenset(normalized)
 
 
+def _normalize_chunk_ids(chunk_ids: Iterable[str]) -> frozenset[str]:
+    if isinstance(chunk_ids, str):
+        raise TypeError(
+            "excluded_chunk_ids must be an iterable of chunk IDs, not a string"
+        )
+    return frozenset(
+        _normalize_nonblank(chunk_id, field_name="excluded chunk ID")
+        for chunk_id in chunk_ids
+    )
+
+
 @dataclass(frozen=True, slots=True)
 class AccessPrincipal:
     """Caller identity used for permission-aware retrieval.
@@ -72,6 +83,7 @@ class RetrievalQuery:
     text: str
     top_k: int = 5
     principal: AccessPrincipal = field(default_factory=AccessPrincipal)
+    excluded_chunk_ids: frozenset[str] = field(default_factory=frozenset)
 
     def __post_init__(self) -> None:
         if not self.text.strip():
@@ -80,6 +92,11 @@ class RetrievalQuery:
             raise ValueError("top_k must be positive")
         if not isinstance(self.principal, AccessPrincipal):
             raise TypeError("principal must be an AccessPrincipal")
+        object.__setattr__(
+            self,
+            "excluded_chunk_ids",
+            _normalize_chunk_ids(self.excluded_chunk_ids),
+        )
 
 
 @dataclass(frozen=True, slots=True)

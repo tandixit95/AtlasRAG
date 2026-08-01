@@ -106,7 +106,10 @@ class ExactDenseRetriever(Retriever):
     ) -> tuple[RetrievalResult, ...]:
         request = resolve_query(query, top_k=top_k, principal=principal)
         visible = tuple(
-            item for item in self._indexed if item.policy.allows(request.principal)
+            item
+            for item in self._indexed
+            if item.chunk.chunk_id not in request.excluded_chunk_ids
+            and item.policy.allows(request.principal)
         )
         if not visible:
             return ()

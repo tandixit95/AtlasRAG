@@ -45,7 +45,8 @@ Every retriever consumes a `RetrievalQuery` and returns `RetrievalResult` object
 
 - query text;
 - `top_k`;
-- an `AccessPrincipal` with optional tenant identity and groups.
+- an `AccessPrincipal` with optional tenant identity and groups;
+- optional chunk IDs to exclude before corpus statistics, scoring, and fusion, for evaluation tasks that place the query document inside the corpus.
 
 `RetrievalResult` contains:
 

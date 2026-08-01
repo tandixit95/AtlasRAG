@@ -164,3 +164,21 @@ def test_bm25_rejects_overrides_with_typed_query() -> None:
 
 def test_bm25_search_before_index_returns_empty_results() -> None:
     assert BM25Retriever().search("mars") == ()
+
+
+def test_bm25_excludes_chunks_before_scoring_and_ranking() -> None:
+    first = _chunk("first", "alpha alpha beta")
+    second = _chunk("second", "alpha beta")
+    retriever = BM25Retriever()
+    retriever.index((first, second))
+
+    results = retriever.search(
+        RetrievalQuery(
+            text="alpha",
+            top_k=2,
+            excluded_chunk_ids=frozenset({first.chunk_id}),
+        )
+    )
+
+    assert [result.chunk.chunk_id for result in results] == [second.chunk_id]
+    assert results[0].rank == 1

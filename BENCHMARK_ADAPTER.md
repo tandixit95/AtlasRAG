@@ -40,6 +40,8 @@ Do not compare or average raw `result.score` values across methods. Interpret sc
 - `result.score_kind`;
 - `result.contributions` for hybrid component ranks and raw scores.
 
+For evaluation tasks that place the query document inside the corpus, map the external document ID to its AtlasRAG chunk ID and pass it through `RetrievalQuery(excluded_chunk_ids=...)`. Exclusions are applied before BM25 statistics, dense scoring, and hybrid fusion.
+
 Use `result.chunk.chunk_id` as the retrieval item ID and preserve these provenance fields in raw output:
 
 - `document_id`;
