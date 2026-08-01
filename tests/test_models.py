@@ -7,14 +7,18 @@ from atlasrag.models import Document
 
 def test_document_identity_is_stable_for_same_source_uri() -> None:
     first = Document.from_text(source_uri="file:///docs/manual.txt", text="version one")
-    second = Document.from_text(source_uri="file:///docs/manual.txt", text="version two")
+    second = Document.from_text(
+        source_uri="file:///docs/manual.txt", text="version two"
+    )
 
     assert first.document_id == second.document_id
 
 
 def test_content_hash_changes_when_text_changes() -> None:
     first = Document.from_text(source_uri="file:///docs/manual.txt", text="version one")
-    second = Document.from_text(source_uri="file:///docs/manual.txt", text="version two")
+    second = Document.from_text(
+        source_uri="file:///docs/manual.txt", text="version two"
+    )
 
     assert first.content_sha256 != second.content_sha256
 

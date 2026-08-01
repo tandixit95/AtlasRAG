@@ -1,9 +1,12 @@
 """Embedding contracts."""
+
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 
 Vector = tuple[float, ...]
+
 
 class EmbeddingModel(ABC):
     """Model-independent boundary for document and query embeddings."""

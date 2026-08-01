@@ -26,8 +26,6 @@ class IngestionPipeline:
     def run(self, source: DocumentSource) -> IngestionResult:
         documents = tuple(source.load())
         chunks = tuple(
-            chunk
-            for document in documents
-            for chunk in self.chunker.chunk(document)
+            chunk for document in documents for chunk in self.chunker.chunk(document)
         )
         return IngestionResult(documents=documents, chunks=chunks)

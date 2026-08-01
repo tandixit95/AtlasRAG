@@ -1,7 +1,11 @@
 """Sentence Transformers embedding adapter."""
+
 from __future__ import annotations
+
 from collections.abc import Sequence
+
 from atlasrag.embeddings.base import EmbeddingModel, Vector
+
 
 class SentenceTransformerEmbedding(EmbeddingModel):
     """Lazy adapter around a Sentence Transformers model.
@@ -9,7 +13,10 @@ class SentenceTransformerEmbedding(EmbeddingModel):
     The optional dependency is loaded only when this adapter is instantiated,
     keeping AtlasRAG's core domain and deterministic tests lightweight.
     """
-    def __init__(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2") -> None:
+
+    def __init__(
+        self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2"
+    ) -> None:
         try:
             from sentence_transformers import SentenceTransformer
         except ImportError as exc:

@@ -51,7 +51,9 @@ def test_plain_text_source_runs_through_pipeline_with_provenance(tmp_path) -> No
     )
 
     assert len(result.documents) == 1
-    assert [(chunk.text, chunk.start_char, chunk.end_char) for chunk in result.chunks] == [
+    assert [
+        (chunk.text, chunk.start_char, chunk.end_char) for chunk in result.chunks
+    ] == [
         ("abcde", 0, 5),
         ("defgh", 3, 8),
     ]

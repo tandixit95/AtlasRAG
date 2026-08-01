@@ -1,34 +1,22 @@
 # AtlasRAG
 
-AtlasRAG is a from-scratch reconstruction of prior Applied AI / RAG work, rebuilt as a public engineering artifact rather than presented as recovered historical source.
+AtlasRAG is a reconstruction-first retrieval systems lab. It rebuilds prior Applied AI and RAG experience as a new public engineering artifact rather than presenting unavailable historical source as recovered code.
 
-The project is becoming a permission-aware, evaluation-driven RAG platform for controlled experiments in ingestion, retrieval, reranking, context construction, reliability, and systems tradeoffs. Capabilities are added only when the repository can prove them with working code, tests, or reproducible measurements.
+The current release candidate implements a coherent, framework-independent retrieval slice:
 
-## Current capabilities
+- immutable documents and chunks with deterministic IDs, SHA-256 versioning, exact character spans, and source metadata;
+- deterministic fixed-character chunking as an auditable control strategy;
+- an embedding contract plus optional `sentence-transformers/all-MiniLM-L6-v2` adapter;
+- exact exhaustive cosine retrieval as the dense correctness reference;
+- a dependency-light BM25 lexical baseline;
+- Reciprocal Rank Fusion (RRF) over BM25 and exact dense rankings;
+- explicit tenant and group permission metadata enforced by every retrieval path;
+- typed query and result contracts that preserve method, rank, score semantics, component contributions, and chunk provenance;
+- deterministic tie-breaking and regression tests for authorization leakage, malformed policies, edge cases, and reproducibility.
 
-The repository currently provides a framework-independent ingestion boundary:
+AtlasRAG does not yet claim a public benchmark result, distributed serving, production traffic, model training, generation quality, or ANN scale. Those claims must be earned by separate reproducible evidence.
 
-- immutable `Document` objects with deterministic logical source identity and SHA-256 content versioning;
-- `DocumentSource` adapters, including exact UTF-8 plain-text ingestion;
-- immutable `Chunk` objects with source-version provenance, character offsets, configuration identity, and content hashes;
-- a `ChunkingStrategy` contract;
-- a deterministic fixed-character baseline with configurable overlap;
-- an `IngestionPipeline` that preserves loaded documents and ordered derived chunks;
-- regression coverage for identity, hashing, overlap boundaries, metadata propagation, Unicode offsets, empty sources, and end-to-end text ingestion;
-- exact in-memory cosine retrieval with deterministic ranking and provenance-preserving results;
-- optional `sentence-transformers/all-MiniLM-L6-v2` embeddings behind the `embeddings` extra, while deterministic retrieval tests use a local test embedder.
-
-AtlasRAG now also includes an exact dense-retrieval correctness baseline with model-independent embedding contracts and an optional Sentence Transformers adapter. BM25, hybrid fusion, reranking, ACL enforcement, generation, and benchmark claims are intentionally not implemented yet.
-
-## Why this shape?
-
-A retrieval system becomes difficult to trust when source identity, transformation boundaries, and provenance are vague. AtlasRAG makes those contracts explicit before adding retrieval machinery.
-
-A logical document ID is derived from its source URI, while a separate digest identifies the exact document contents. Chunks carry both their own content hash and the source-document version that produced them. Chunk IDs are deterministic for a source, strategy configuration, character span, and chunk contents, allowing an unchanged span to retain identity even when unrelated content elsewhere in the source changes.
-
-The first chunker is intentionally simple. Fixed-character windows are a transparent control configuration, not a claim that character chunking is optimal. Later strategies should earn their complexity through retrieval measurements.
-
-## Data flow
+## Retrieval flow
 
 ```text
 DocumentSource
@@ -40,50 +28,145 @@ DocumentSource
 ChunkingStrategy
      |
      v
-   Chunk[]
-
-IngestionPipeline composes the two stages and returns both
-source documents and the ordered chunk artifacts derived from them.
+   Chunk + provenance + access metadata
+     |
+     +-------------------------+
+     |                         |
+     v                         v
+BM25Retriever          ExactDenseRetriever
+     |                         |
+     +------------+------------+
+                  |
+                  v
+      ReciprocalRankFusionRetriever
+                  |
+                  v
+ RetrievalResult[]
+ - original Chunk and provenance
+ - method and rank
+ - method-specific score + score kind
+ - raw component ranks/scores for hybrid results
 ```
+
+## Permission model
+
+A chunk is public when it has no AtlasRAG access metadata. Protected chunks use a `PermissionPolicy` with an optional tenant and optional allowed groups:
+
+- tenant present: caller tenant must match;
+- groups present: caller must belong to at least one allowed group;
+- both present: both checks must pass;
+- malformed access metadata fails during indexing instead of degrading to public access.
+
+BM25 computes document frequency and length statistics only over chunks visible to the current principal. Unauthorized chunks therefore cannot appear in results or perturb the authorized caller's BM25 scores and ranks. Exact dense retrieval filters the candidate set before scoring, and hybrid retrieval fuses only already-authorized component results.
+
+## Minimal example
+
+```python
+from atlasrag.embeddings.base import EmbeddingModel
+from atlasrag.ingestion import FixedCharacterChunker
+from atlasrag.models import Document
+from atlasrag.retrieval import (
+    AccessPrincipal,
+    BM25Retriever,
+    ExactDenseRetriever,
+    PermissionPolicy,
+    ReciprocalRankFusionRetriever,
+    RetrievalQuery,
+)
+
+# Supply any EmbeddingModel implementation. Deterministic test embedders are used
+# in the test suite; SentenceTransformerEmbedding is available via [embeddings].
+embedder: EmbeddingModel = ...
+
+public = Document.from_text(
+    source_uri="memory://public-guide",
+    text="Mars rover operations guide",
+)
+private = Document.from_text(
+    source_uri="memory://tenant-a-runbook",
+    text="Mars rover incident runbook",
+    metadata=PermissionPolicy(
+        tenant_id="tenant-a",
+        allowed_groups=frozenset({"ops"}),
+    ).to_metadata(),
+)
+
+chunker = FixedCharacterChunker(chunk_size=500)
+chunks = tuple(chunker.chunk(public)) + tuple(chunker.chunk(private))
+
+lexical = BM25Retriever()
+dense = ExactDenseRetriever(embedder)
+hybrid = ReciprocalRankFusionRetriever(lexical, dense)
+hybrid.index(chunks)
+
+results = hybrid.search(
+    RetrievalQuery(
+        text="mars incident",
+        top_k=5,
+        principal=AccessPrincipal(
+            tenant_id="tenant-a",
+            groups=frozenset({"ops"}),
+        ),
+    )
+)
+
+for result in results:
+    print(result.rank, result.method.value, result.score, result.chunk.source_uri)
+    for component in result.contributions:
+        print("  ", component.method.value, component.rank, component.score)
+```
+
+Raw BM25 and cosine scores are intentionally not added or treated as calibrated. RRF combines component ranks; the original component rank, score, and score kind remain attached for inspection.
 
 ## Repository layout
 
 ```text
 .
-├── ARCHITECTURE.md
-├── PROJECT_STATE.md
-├── RECONSTRUCTION_LEDGER.md
-├── pyproject.toml
-├── src/
-│   └── atlasrag/
-│       ├── __init__.py
-│       ├── models.py
-│       └── ingestion/
-│           ├── __init__.py
-│           ├── base.py
-│           ├── chunking.py
-│           ├── pipeline.py
-│           └── text.py
-└── tests/
-    ├── test_chunking.py
-    ├── test_ingestion_pipeline.py
-    ├── test_models.py
-    └── test_text_source.py
+|-- ARCHITECTURE.md
+|-- BENCHMARK_ADAPTER.md
+|-- PROJECT_STATE.md
+|-- RECONSTRUCTION_LEDGER.md
+|-- pyproject.toml
+|-- src/atlasrag/
+|   |-- embeddings/
+|   |-- ingestion/
+|   |-- models.py
+|   `-- retrieval/
+|       |-- access.py
+|       |-- bm25.py
+|       |-- contracts.py
+|       |-- dense.py
+|       `-- hybrid.py
+`-- tests/
 ```
 
 ## Local development
 
-Python 3.11+ is required.
+Python 3.11 or newer is required.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e '.[dev]'
 pytest
+ruff check .
+ruff format --check .
 ```
+
+To use the real MiniLM adapter:
+
+```bash
+python -m pip install -e '.[embeddings]'
+```
+
+The core runtime remains standard-library-only. The embedding extra is optional and loaded lazily.
+
+## Benchmark boundary
+
+No integrated retrieval-quality or latency number is claimed in this branch. Lane 02 and the final integration guard should use the API and fixed methodology described in [`BENCHMARK_ADAPTER.md`](BENCHMARK_ADAPTER.md), preserve raw machine-readable outputs, and freeze claims only after reproducibility and privacy checks pass.
 
 ## Reconstruction integrity
 
 The original local source is unavailable. This repository contains new reconstruction work committed on its real development timeline. It does not recreate old commits, backdate history, or label reconstructed code as the lost original implementation.
 
-See [`RECONSTRUCTION_LEDGER.md`](RECONSTRUCTION_LEDGER.md) for the evidence boundary, [`ARCHITECTURE.md`](ARCHITECTURE.md) for current design decisions, and [`PROJECT_STATE.md`](PROJECT_STATE.md) for the current development frontier.
+See [`RECONSTRUCTION_LEDGER.md`](RECONSTRUCTION_LEDGER.md) for the evidence boundary, [`ARCHITECTURE.md`](ARCHITECTURE.md) for current design decisions, and [`PROJECT_STATE.md`](PROJECT_STATE.md) for the current frontier.
