@@ -1,6 +1,6 @@
-# Benchmark Adapter for Lanes 02 and 08
+# Benchmark Adapter Contract
 
-This note defines the stable retrieval API the benchmark and integration lanes should use. It does not contain or authorize benchmark claims.
+This note defines the stable retrieval API for reproducible benchmark harnesses. It does not itself contain or authorize benchmark claims.
 
 ## Frozen adapter surface
 
@@ -85,6 +85,6 @@ At minimum, include public, same-tenant, wrong-tenant, same-tenant allowed-group
 
 For BM25, also compare the authorized result scores and ranks with and without an unauthorized matching chunk. They should remain unchanged because statistics are scoped to the visible corpus.
 
-## Integration expectation
+## Validation expectation
 
-Lane 02 should import this branch as an editable or built package and emit raw machine-readable records using the fields above. Lane 08 should rerun the adapter from a clean installation, verify checksums and deterministic IDs, and freeze any public claim only after raw artifacts, documentation, and privacy/IP review agree.
+Run benchmark adapters from a clean installed package and emit raw machine-readable records using the fields above. Verify package identity, checksums, deterministic IDs, result equality, documentation, and privacy/IP boundaries before freezing any public claim.

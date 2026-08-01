@@ -2,7 +2,7 @@
 
 AtlasRAG is a reconstruction-first retrieval systems lab. It rebuilds prior Applied AI and RAG experience as a new public engineering artifact rather than presenting unavailable historical source as recovered code.
 
-The current release candidate implements a coherent, framework-independent retrieval slice:
+The current implementation provides a coherent, framework-independent retrieval slice:
 
 - immutable documents and chunks with deterministic IDs, SHA-256 versioning, exact character spans, and source metadata;
 - deterministic fixed-character chunking as an auditable control strategy;
@@ -163,7 +163,7 @@ The core runtime remains standard-library-only. The embedding extra is optional 
 
 ## Benchmark boundary
 
-No integrated retrieval-quality or latency number is claimed in this branch. Lane 02 and the final integration guard should use the API and fixed methodology described in [`BENCHMARK_ADAPTER.md`](BENCHMARK_ADAPTER.md), preserve raw machine-readable outputs, and freeze claims only after reproducibility and privacy checks pass.
+This code milestone does not publish retrieval-quality or latency numbers. [`BENCHMARK_ADAPTER.md`](BENCHMARK_ADAPTER.md) defines the fixed API, inputs, result separation, authorization checks, and reproducibility requirements that future public benchmark evidence must satisfy. Raw outputs and limitations must accompany any result claim.
 
 ## Reconstruction integrity
 

@@ -46,11 +46,11 @@ The core runtime remains standard-library-only. Sentence Transformers is an opti
 
 ## Benchmark status
 
-No integrated AtlasRAG benchmark result is published or claimed yet. The API is ready for a frozen benchmark adapter, but quality, latency, authorization leakage, and failure behavior must be measured and reported separately. See `BENCHMARK_ADAPTER.md`.
+No retrieval-quality or latency artifact is committed to the public repository yet. The retrieval API and benchmark adapter contract are stable; future evidence must report quality, latency, authorization leakage, failure behavior, package identity, and reproducibility separately. See `BENCHMARK_ADAPTER.md`.
 
 ## Next highest-value task
 
-Run the Lane 02 reproducible benchmark package against this branch using the frozen adapter contract, then let Lane 08 validate raw outputs, checksums, clean installation, privacy/IP boundaries, and documentation claims before integration into canonical `main`.
+Add a reranking boundary over hybrid candidates, preserve provenance through reranking, document candidate-depth tradeoffs, and measure whether ranking gains justify added latency before making it part of the default path.
 
 ## Deferred work
 
@@ -75,4 +75,4 @@ Run the Lane 02 reproducible benchmark package against this branch using the fro
 
 ## Publication status
 
-The canonical repository is public at `tandixit95/AtlasRAG`; `main` remains canonical. This branch is a local merge candidate only until the integration lane completes validation.
+The canonical repository is public at `tandixit95/AtlasRAG`; `main` is the canonical branch and contains the validated permission-aware hybrid retrieval core.
