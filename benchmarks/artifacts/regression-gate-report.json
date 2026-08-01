@@ -1,0 +1,198 @@
+{
+  "check_count": 27,
+  "checks": [
+    {
+      "actual": 0.8212222222222223,
+      "comparator": ">=",
+      "gate": "scifact.hybrid_rrf.recall@10",
+      "passed": true,
+      "threshold": 0.8
+    },
+    {
+      "actual": 0.6466534391534392,
+      "comparator": ">=",
+      "gate": "scifact.hybrid_rrf.mrr@10",
+      "passed": true,
+      "threshold": 0.63
+    },
+    {
+      "actual": 0.6858218991790226,
+      "comparator": ">=",
+      "gate": "scifact.hybrid_rrf.ndcg@10",
+      "passed": true,
+      "threshold": 0.67
+    },
+    {
+      "actual": 0.8366666666666667,
+      "comparator": ">=",
+      "gate": "scifact.hybrid_rrf.success@10",
+      "passed": true,
+      "threshold": 0.82
+    },
+    {
+      "actual": 0.9966666666666667,
+      "comparator": ">=",
+      "gate": "scifact.ann_mean_top10_overlap",
+      "passed": true,
+      "threshold": 0.98
+    },
+    {
+      "actual": 23.724528989987427,
+      "comparator": "<=",
+      "gate": "scifact.hybrid_sequential_p95_ms",
+      "passed": true,
+      "threshold": 50.0
+    },
+    {
+      "actual": 1563396,
+      "comparator": "<=",
+      "gate": "scifact.process_peak_rss_kb",
+      "passed": true,
+      "threshold": 2500000
+    },
+    {
+      "actual": 24762673,
+      "comparator": "<=",
+      "gate": "scifact.serialized_index_artifact_bytes",
+      "passed": true,
+      "threshold": 100000000
+    },
+    {
+      "actual": 0.835,
+      "comparator": ">=",
+      "gate": "arguana-contrast-200.hybrid_rrf.recall@10",
+      "passed": true,
+      "threshold": 0.8
+    },
+    {
+      "actual": 0.4343492063492064,
+      "comparator": ">=",
+      "gate": "arguana-contrast-200.hybrid_rrf.mrr@10",
+      "passed": true,
+      "threshold": 0.4
+    },
+    {
+      "actual": 0.5291792703786153,
+      "comparator": ">=",
+      "gate": "arguana-contrast-200.hybrid_rrf.ndcg@10",
+      "passed": true,
+      "threshold": 0.5
+    },
+    {
+      "actual": 0.835,
+      "comparator": ">=",
+      "gate": "arguana-contrast-200.hybrid_rrf.success@10",
+      "passed": true,
+      "threshold": 0.8
+    },
+    {
+      "actual": 0.9990000000000001,
+      "comparator": ">=",
+      "gate": "arguana-contrast-200.ann_mean_top10_overlap",
+      "passed": true,
+      "threshold": 0.98
+    },
+    {
+      "actual": 23.628427565563467,
+      "comparator": "<=",
+      "gate": "arguana-contrast-200.hybrid_sequential_p95_ms",
+      "passed": true,
+      "threshold": 50.0
+    },
+    {
+      "actual": 1548840,
+      "comparator": "<=",
+      "gate": "arguana-contrast-200.process_peak_rss_kb",
+      "passed": true,
+      "threshold": 2500000
+    },
+    {
+      "actual": 38494616,
+      "comparator": "<=",
+      "gate": "arguana-contrast-200.serialized_index_artifact_bytes",
+      "passed": true,
+      "threshold": 100000000
+    },
+    {
+      "actual": 0,
+      "comparator": "==",
+      "gate": "safety.unauthorized_return_count",
+      "passed": true,
+      "threshold": 0
+    },
+    {
+      "actual": 1.0,
+      "comparator": "==",
+      "gate": "safety.provenance_completeness",
+      "passed": true,
+      "threshold": 1.0
+    },
+    {
+      "actual": 1.0,
+      "comparator": "==",
+      "gate": "safety.partial_result_signaling_accuracy",
+      "passed": true,
+      "threshold": 1.0
+    },
+    {
+      "actual": 1.0,
+      "comparator": "==",
+      "gate": "safety.stale_index_signaling_accuracy",
+      "passed": true,
+      "threshold": 1.0
+    },
+    {
+      "actual": 1.0,
+      "comparator": "==",
+      "gate": "safety.unsupported_query_accuracy",
+      "passed": true,
+      "threshold": 1.0
+    },
+    {
+      "actual": true,
+      "comparator": "==",
+      "gate": "safety.deterministic_reproducibility",
+      "passed": true,
+      "threshold": true
+    },
+    {
+      "actual": 0,
+      "comparator": "==",
+      "gate": "adapter.unauthorized_return_count",
+      "passed": true,
+      "threshold": 0
+    },
+    {
+      "actual": 1.0,
+      "comparator": "==",
+      "gate": "adapter.provenance_completeness",
+      "passed": true,
+      "threshold": 1.0
+    },
+    {
+      "actual": true,
+      "comparator": "==",
+      "gate": "adapter.bm25_unauthorized_score_rank_invariant",
+      "passed": true,
+      "threshold": true
+    },
+    {
+      "actual": true,
+      "comparator": "==",
+      "gate": "adapter.deterministic_rerun",
+      "passed": true,
+      "threshold": true
+    },
+    {
+      "actual": true,
+      "comparator": "==",
+      "gate": "reproducibility.passed",
+      "passed": true,
+      "threshold": true
+    }
+  ],
+  "failed_count": 0,
+  "passed": true,
+  "schema_version": "atlasrag.regression-gate-report.v1",
+  "scope": "local benchmark regression budgets, not production SLOs"
+}

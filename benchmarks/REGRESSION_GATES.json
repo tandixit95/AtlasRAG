@@ -1,0 +1,44 @@
+{
+  "schema_version": "atlasrag.regression-gates.v1",
+  "scope": "local benchmark regression budgets, not production SLOs",
+  "public_quality_minimums": {
+    "scifact": {
+      "hybrid_rrf": {
+        "recall@10": 0.80,
+        "mrr@10": 0.63,
+        "ndcg@10": 0.67,
+        "success@10": 0.82
+      },
+      "ann_mean_top10_overlap": 0.98
+    },
+    "arguana-contrast-200": {
+      "hybrid_rrf": {
+        "recall@10": 0.80,
+        "mrr@10": 0.40,
+        "ndcg@10": 0.50,
+        "success@10": 0.80
+      },
+      "ann_mean_top10_overlap": 0.98
+    }
+  },
+  "local_system_maximums": {
+    "hybrid_sequential_p95_ms": 50.0,
+    "process_peak_rss_kb": 2500000,
+    "serialized_index_artifact_bytes": 100000000
+  },
+  "safety_requirements": {
+    "unauthorized_return_count": 0,
+    "provenance_completeness": 1.0,
+    "partial_result_signaling_accuracy": 1.0,
+    "stale_index_signaling_accuracy": 1.0,
+    "unsupported_query_accuracy": 1.0,
+    "deterministic_reproducibility": true
+  },
+  "adapter_requirements": {
+    "unauthorized_return_count": 0,
+    "provenance_completeness": 1.0,
+    "bm25_unauthorized_score_rank_invariant": true,
+    "deterministic_rerun": true
+  },
+  "reproducibility_required": true
+}

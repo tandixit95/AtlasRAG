@@ -1,0 +1,3 @@
+# Preserve validated benchmark CSV bytes exactly; hashes in the evidence manifests
+# are computed over the original CRLF-formatted artifacts.
+benchmarks/artifacts/*.csv binary

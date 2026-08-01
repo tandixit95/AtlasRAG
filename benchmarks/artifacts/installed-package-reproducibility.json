@@ -1,0 +1,958 @@
+{
+  "datasets": [
+    {
+      "dataset": "scifact",
+      "dataset_hashes_equal": true,
+      "model_revision_equal": true,
+      "neutral_harness_comparison": {
+        "note": "Neutral equivalence is informative, not a release gate. Equal or nearly equal scores can order differently because the installed package preserves its deterministic chunk-ID tie breaker and uses a different numeric path.",
+        "quality_delta_installed_minus_neutral": {
+          "bm25": {
+            "mrr@10": 0.0,
+            "ndcg@10": 0.0,
+            "recall@10": 0.0,
+            "success@10": 0.0
+          },
+          "exact_dense": {
+            "mrr@10": 0.0,
+            "ndcg@10": 0.0,
+            "recall@10": 0.0,
+            "success@10": 0.0
+          },
+          "hybrid_rrf": {
+            "mrr@10": -0.0017261904761904923,
+            "ndcg@10": -0.0012897956765871577,
+            "recall@10": 0.0,
+            "success@10": 0.0
+          }
+        },
+        "quality_equal": false,
+        "rankings": {
+          "all_equal": false,
+          "equal_by_method": {
+            "bm25": 300,
+            "exact_dense": 300,
+            "hybrid_rrf": 270
+          },
+          "equal_queries": 270,
+          "mismatch_examples": [
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "803312",
+                    "43385013",
+                    "40212412",
+                    "25404036",
+                    "10607877",
+                    "6863070",
+                    "16939583",
+                    "29638116",
+                    "10608397",
+                    "4346436"
+                  ],
+                  "right": [
+                    "803312",
+                    "43385013",
+                    "40212412",
+                    "25404036",
+                    "10607877",
+                    "6863070",
+                    "16939583",
+                    "10608397",
+                    "29638116",
+                    "4346436"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "70704988",
+                    "49429882",
+                    "75636923",
+                    "4857093",
+                    "11748341",
+                    "29460384",
+                    "20288322",
+                    "756887",
+                    "4345757",
+                    "23983289"
+                  ],
+                  "right": [
+                    "70704988",
+                    "49429882",
+                    "75636923",
+                    "4857093",
+                    "11748341",
+                    "29460384",
+                    "20288322",
+                    "756887",
+                    "23983289",
+                    "4345757"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1110"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "15305881",
+                    "799586",
+                    "8065561",
+                    "2479538",
+                    "52944377",
+                    "5473074",
+                    "18261004",
+                    "21383026",
+                    "10071552",
+                    "1914588"
+                  ],
+                  "right": [
+                    "15305881",
+                    "799586",
+                    "8065561",
+                    "2479538",
+                    "52944377",
+                    "5473074",
+                    "18261004",
+                    "10071552",
+                    "21383026",
+                    "1914588"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1163"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "6372244",
+                    "4465735",
+                    "32454714",
+                    "52805891",
+                    "2604063",
+                    "4695107",
+                    "20148808",
+                    "33918970",
+                    "13714201",
+                    "2851611"
+                  ],
+                  "right": [
+                    "4465735",
+                    "6372244",
+                    "32454714",
+                    "52805891",
+                    "2604063",
+                    "4695107",
+                    "20148808",
+                    "33918970",
+                    "13714201",
+                    "2851611"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "118"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "86704258",
+                    "7808055",
+                    "3662132",
+                    "13494853",
+                    "1256116",
+                    "13916484",
+                    "4679264",
+                    "4283694",
+                    "36355784",
+                    "10827901"
+                  ],
+                  "right": [
+                    "86704258",
+                    "7808055",
+                    "3662132",
+                    "13494853",
+                    "1256116",
+                    "13916484",
+                    "4679264",
+                    "36355784",
+                    "4283694",
+                    "10827901"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1191"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "3475317",
+                    "34615397",
+                    "21258863",
+                    "44562221",
+                    "9225850",
+                    "3330111",
+                    "24707550",
+                    "16066726",
+                    "14853989",
+                    "4391121"
+                  ],
+                  "right": [
+                    "34615397",
+                    "3475317",
+                    "21258863",
+                    "44562221",
+                    "9225850",
+                    "3330111",
+                    "24707550",
+                    "16066726",
+                    "14853989",
+                    "4391121"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1202"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "32797183",
+                    "6148876",
+                    "2828460",
+                    "14296612",
+                    "2973910",
+                    "4932668",
+                    "14060030",
+                    "3619372",
+                    "39164524",
+                    "4418112"
+                  ],
+                  "right": [
+                    "32797183",
+                    "6148876",
+                    "14296612",
+                    "2828460",
+                    "2973910",
+                    "4932668",
+                    "14060030",
+                    "3619372",
+                    "39164524",
+                    "4418112"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1241"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "9559146",
+                    "6896063",
+                    "15521377",
+                    "17717391",
+                    "11903247",
+                    "8519911",
+                    "4434951",
+                    "25419778",
+                    "2466614",
+                    "31293581"
+                  ],
+                  "right": [
+                    "6896063",
+                    "9559146",
+                    "15521377",
+                    "17717391",
+                    "11903247",
+                    "8519911",
+                    "4434951",
+                    "25419778",
+                    "2466614",
+                    "31293581"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1344"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "12885341",
+                    "38376189",
+                    "34287602",
+                    "10559501",
+                    "11016410",
+                    "8005007",
+                    "40584205",
+                    "29134911",
+                    "22705234",
+                    "42065070"
+                  ],
+                  "right": [
+                    "12885341",
+                    "38376189",
+                    "10559501",
+                    "34287602",
+                    "11016410",
+                    "8005007",
+                    "40584205",
+                    "29134911",
+                    "22705234",
+                    "42065070"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1352"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "30720103",
+                    "23267371",
+                    "3150030",
+                    "36960449",
+                    "21553394",
+                    "8856690",
+                    "9555784",
+                    "13312471",
+                    "3034412",
+                    "38551172"
+                  ],
+                  "right": [
+                    "30720103",
+                    "23267371",
+                    "3150030",
+                    "36960449",
+                    "21553394",
+                    "8856690",
+                    "13312471",
+                    "9555784",
+                    "3034412",
+                    "38551172"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "1368"
+            }
+          ],
+          "queries": 300
+        }
+      },
+      "package_identity_equal": true,
+      "package_rerun_rankings": {
+        "all_equal": true,
+        "equal_by_method": {
+          "bm25": 300,
+          "exact_dense": 300,
+          "hybrid_rrf": 300
+        },
+        "equal_queries": 300,
+        "mismatch_examples": [],
+        "queries": 300
+      },
+      "passed": true,
+      "quality_equal_between_package_runs": true
+    },
+    {
+      "dataset": "arguana-contrast-200",
+      "dataset_hashes_equal": true,
+      "model_revision_equal": true,
+      "neutral_harness_comparison": {
+        "note": "Neutral equivalence is informative, not a release gate. Equal or nearly equal scores can order differently because the installed package preserves its deterministic chunk-ID tie breaker and uses a different numeric path.",
+        "quality_delta_installed_minus_neutral": {
+          "bm25": {
+            "mrr@10": -0.002972222222222265,
+            "ndcg@10": -0.0011862130144132954,
+            "recall@10": 0.0050000000000000044,
+            "success@10": 0.0050000000000000044
+          },
+          "exact_dense": {
+            "mrr@10": -0.007180555555555468,
+            "ndcg@10": -0.005244760536625204,
+            "recall@10": 0.0,
+            "success@10": 0.0
+          },
+          "hybrid_rrf": {
+            "mrr@10": -0.005507936507936517,
+            "ndcg@10": -0.001829239977045205,
+            "recall@10": 0.010000000000000009,
+            "success@10": 0.010000000000000009
+          }
+        },
+        "quality_equal": false,
+        "rankings": {
+          "all_equal": false,
+          "equal_by_method": {
+            "bm25": 170,
+            "exact_dense": 186,
+            "hybrid_rrf": 155
+          },
+          "equal_queries": 139,
+          "mismatch_examples": [
+            {
+              "method_differences": {
+                "exact_dense": {
+                  "left": [
+                    "training-digital-freedoms-iphwclcp-con02a",
+                    "test-culture-ascidfakhba-con01a",
+                    "test-culture-ascidfakhba-con02b",
+                    "test-science-ascidfakhba-con02b",
+                    "training-digital-freedoms-iphwclcp-pro04b",
+                    "test-culture-ascidfakhba-pro02b",
+                    "test-science-ascidfakhba-pro02b",
+                    "test-culture-ascidfakhba-pro02a",
+                    "test-science-ascidfakhba-pro01b",
+                    "test-culture-ascidfakhba-pro01b"
+                  ],
+                  "right": [
+                    "training-digital-freedoms-iphwclcp-con02a",
+                    "test-culture-ascidfakhba-con01a",
+                    "test-culture-ascidfakhba-con02b",
+                    "test-science-ascidfakhba-con02b",
+                    "training-digital-freedoms-iphwclcp-pro04b",
+                    "test-culture-ascidfakhba-pro02b",
+                    "test-science-ascidfakhba-pro02b",
+                    "test-culture-ascidfakhba-pro02a",
+                    "test-culture-ascidfakhba-pro01b",
+                    "test-science-ascidfakhba-pro01b"
+                  ]
+                },
+                "hybrid_rrf": {
+                  "left": [
+                    "training-digital-freedoms-iphwclcp-con02a",
+                    "test-culture-ascidfakhba-con01a",
+                    "test-culture-ascidfakhba-pro02a",
+                    "test-culture-ascidfakhba-pro02b",
+                    "test-science-ascidfakhba-pro02b",
+                    "test-culture-ascidfakhba-pro01a",
+                    "test-culture-ascidfakhba-con02b",
+                    "test-culture-ascidfakhba-con04a",
+                    "test-science-ascidfakhba-con02b",
+                    "test-culture-ascidfakhba-con01b"
+                  ],
+                  "right": [
+                    "training-digital-freedoms-iphwclcp-con02a",
+                    "test-culture-ascidfakhba-con01a",
+                    "test-culture-ascidfakhba-pro02a",
+                    "test-culture-ascidfakhba-pro02b",
+                    "test-science-ascidfakhba-pro02b",
+                    "test-culture-ascidfakhba-pro01a",
+                    "test-culture-ascidfakhba-con04a",
+                    "test-culture-ascidfakhba-con02b",
+                    "test-science-ascidfakhba-con02b",
+                    "test-culture-ascidfakhba-con01b"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-culture-ascidfakhba-con02a"
+            },
+            {
+              "method_differences": {
+                "bm25": {
+                  "left": [
+                    "test-culture-mmctyshwbcp-pro03b",
+                    "test-culture-mmctyshwbcp-con02a",
+                    "test-culture-mmctyshwbcp-con01b",
+                    "training-law-lgsghwlp-pro05a",
+                    "test-culture-mmctyshwbcp-pro05a",
+                    "test-culture-tlhrilsfhwr-pro03a",
+                    "test-society-tlhrilsfhwr-pro01b",
+                    "test-culture-tlhrilsfhwr-pro01b",
+                    "test-religion-wcprrgrhbmi-pro01a",
+                    "test-culture-tlhrilsfhwr-con02b"
+                  ],
+                  "right": [
+                    "test-culture-mmctyshwbcp-pro03b",
+                    "test-culture-mmctyshwbcp-con02a",
+                    "test-culture-mmctyshwbcp-con01b",
+                    "training-law-lgsghwlp-pro05a",
+                    "test-culture-mmctyshwbcp-pro05a",
+                    "test-culture-tlhrilsfhwr-pro03a",
+                    "test-culture-tlhrilsfhwr-pro01b",
+                    "test-society-tlhrilsfhwr-pro01b",
+                    "test-religion-wcprrgrhbmi-pro01a",
+                    "test-culture-tlhrilsfhwr-con02b"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-culture-mmctyshwbcp-pro03a"
+            },
+            {
+              "method_differences": {
+                "bm25": {
+                  "left": [
+                    "test-culture-mmctyshwbcp-pro04b",
+                    "test-culture-mmctyshwbcp-pro05a",
+                    "test-culture-mmctyshwbcp-con02a",
+                    "test-culture-mmctyshwbcp-con01a",
+                    "training-health-mchdhgwhwff-pro03b",
+                    "test-culture-mmctyshwbcp-pro05b",
+                    "test-culture-mmctyshwbcp-pro01a",
+                    "test-culture-mmctyshwbcp-con03b",
+                    "test-culture-mmctyshwbcp-con03a",
+                    "training-health-mthwhwbpd-pro02a"
+                  ],
+                  "right": [
+                    "test-culture-mmctyshwbcp-pro04b",
+                    "test-culture-mmctyshwbcp-pro05a",
+                    "test-culture-mmctyshwbcp-con02a",
+                    "training-health-mchdhgwhwff-pro03b",
+                    "test-culture-mmctyshwbcp-con01a",
+                    "test-culture-mmctyshwbcp-pro05b",
+                    "test-culture-mmctyshwbcp-pro01a",
+                    "test-culture-mmctyshwbcp-con03b",
+                    "test-culture-mmctyshwbcp-con03a",
+                    "training-health-mthwhwbpd-pro02a"
+                  ]
+                },
+                "hybrid_rrf": {
+                  "left": [
+                    "test-culture-mmctyshwbcp-pro04b",
+                    "test-culture-mmctyshwbcp-pro05a",
+                    "test-culture-mmctyshwbcp-pro05b",
+                    "test-culture-mmctyshwbcp-con01a",
+                    "test-culture-mmctyshwbcp-pro03a",
+                    "test-culture-mmctyshwbcp-con02a",
+                    "test-culture-mmctyshwbcp-con03b",
+                    "test-culture-mmctyshwbcp-pro03b",
+                    "test-culture-mmctyshwbcp-con03a",
+                    "training-health-mthwhwbpd-pro02a"
+                  ],
+                  "right": [
+                    "test-culture-mmctyshwbcp-pro04b",
+                    "test-culture-mmctyshwbcp-pro05a",
+                    "test-culture-mmctyshwbcp-pro05b",
+                    "test-culture-mmctyshwbcp-pro03a",
+                    "test-culture-mmctyshwbcp-con02a",
+                    "test-culture-mmctyshwbcp-con01a",
+                    "test-culture-mmctyshwbcp-con03b",
+                    "test-culture-mmctyshwbcp-pro03b",
+                    "test-culture-mmctyshwbcp-con03a",
+                    "training-health-mthwhwbpd-pro02a"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-culture-mmctyshwbcp-pro04a"
+            },
+            {
+              "method_differences": {
+                "bm25": {
+                  "left": [
+                    "test-culture-tlhrilsfhwr-pro03a",
+                    "test-society-tlhrilsfhwr-pro02b",
+                    "test-culture-tlhrilsfhwr-pro02b",
+                    "test-society-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro04a",
+                    "test-culture-tlhrilsfhwr-con02a",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro03b"
+                  ],
+                  "right": [
+                    "test-culture-tlhrilsfhwr-pro03a",
+                    "test-culture-tlhrilsfhwr-pro02b",
+                    "test-society-tlhrilsfhwr-pro02b",
+                    "test-culture-tlhrilsfhwr-pro04b",
+                    "test-society-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro04a",
+                    "test-culture-tlhrilsfhwr-con02a",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro03b"
+                  ]
+                },
+                "exact_dense": {
+                  "left": [
+                    "test-society-tlhrilsfhwr-pro02b",
+                    "test-culture-tlhrilsfhwr-pro02b",
+                    "test-religion-msgfhwbamec-con02b",
+                    "test-culture-tlhrilsfhwr-con03a",
+                    "validation-philosophy-ehbidachsb-pro03b",
+                    "test-culture-tlhrilsfhwr-pro04a",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-con03b",
+                    "test-society-tlhrilsfhwr-con03b",
+                    "test-economy-epehwmrbals-pro01b"
+                  ],
+                  "right": [
+                    "test-culture-tlhrilsfhwr-pro02b",
+                    "test-society-tlhrilsfhwr-pro02b",
+                    "test-religion-msgfhwbamec-con02b",
+                    "test-culture-tlhrilsfhwr-con03a",
+                    "validation-philosophy-ehbidachsb-pro03b",
+                    "test-culture-tlhrilsfhwr-pro04a",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-con03b",
+                    "test-society-tlhrilsfhwr-con03b",
+                    "test-economy-epehwmrbals-pro01b"
+                  ]
+                },
+                "hybrid_rrf": {
+                  "left": [
+                    "test-society-tlhrilsfhwr-pro02b",
+                    "test-culture-tlhrilsfhwr-pro02b",
+                    "test-culture-tlhrilsfhwr-pro04a",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-con03a",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-con03b"
+                  ],
+                  "right": [
+                    "test-culture-tlhrilsfhwr-pro02b",
+                    "test-society-tlhrilsfhwr-pro02b",
+                    "test-culture-tlhrilsfhwr-pro04a",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-con03a",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro03b",
+                    "test-culture-tlhrilsfhwr-con01b",
+                    "test-society-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-con03b"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-culture-tlhrilsfhwr-pro02a"
+            },
+            {
+              "method_differences": {
+                "bm25": {
+                  "left": [
+                    "test-culture-tlhrilsfhwr-con01a",
+                    "test-culture-tlhrilsfhwr-pro02a",
+                    "test-culture-tlhrilsfhwr-pro03a",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-society-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-con01b"
+                  ],
+                  "right": [
+                    "test-culture-tlhrilsfhwr-con01a",
+                    "test-culture-tlhrilsfhwr-pro02a",
+                    "test-culture-tlhrilsfhwr-pro03a",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro03b",
+                    "test-culture-tlhrilsfhwr-pro04b",
+                    "test-society-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-con01b",
+                    "test-society-tlhrilsfhwr-con01b"
+                  ]
+                },
+                "exact_dense": {
+                  "left": [
+                    "test-society-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro04b",
+                    "test-society-tlhrilsfhwr-pro01b",
+                    "test-culture-tlhrilsfhwr-pro01b",
+                    "test-society-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro03b",
+                    "validation-law-hrilhbiccfg-con01a",
+                    "test-culture-tlhrilsfhwr-pro01a"
+                  ],
+                  "right": [
+                    "test-culture-tlhrilsfhwr-pro04b",
+                    "test-society-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro01b",
+                    "test-society-tlhrilsfhwr-pro01b",
+                    "test-culture-tlhrilsfhwr-con01b",
+                    "test-society-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-pro03b",
+                    "validation-law-hrilhbiccfg-con01a",
+                    "test-culture-tlhrilsfhwr-pro01a"
+                  ]
+                },
+                "hybrid_rrf": {
+                  "left": [
+                    "test-society-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-culture-tlhrilsfhwr-con01a",
+                    "test-society-tlhrilsfhwr-pro03b",
+                    "test-society-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-con01b",
+                    "test-society-tlhrilsfhwr-pro01b",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-pro03a"
+                  ],
+                  "right": [
+                    "test-culture-tlhrilsfhwr-pro04b",
+                    "test-society-tlhrilsfhwr-pro04b",
+                    "test-culture-tlhrilsfhwr-pro03b",
+                    "test-culture-tlhrilsfhwr-con01a",
+                    "test-society-tlhrilsfhwr-pro03b",
+                    "test-culture-tlhrilsfhwr-con01b",
+                    "test-society-tlhrilsfhwr-con01b",
+                    "test-culture-tlhrilsfhwr-pro01b",
+                    "test-culture-tlhrilsfhwr-pro01a",
+                    "test-culture-tlhrilsfhwr-pro03a"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-culture-tlhrilsfhwr-pro04a"
+            },
+            {
+              "method_differences": {
+                "bm25": {
+                  "left": [
+                    "test-digital-freedoms-aihwbasmn-con03a",
+                    "training-science-ciidffehwa-pro01a",
+                    "test-digital-freedoms-aihwbasmn-con04b",
+                    "training-digital-freedoms-fehbwdsot-pro01a",
+                    "training-digital-freedoms-dfaihbssp-con03a",
+                    "test-digital-freedoms-aihwbasmn-pro01a",
+                    "test-digital-freedoms-piidfaihbg-pro03a",
+                    "test-law-sdiflhrdffe-pro01a",
+                    "test-digital-freedoms-aihwbasmn-con02a",
+                    "test-digital-freedoms-aihwbasmn-con01a"
+                  ],
+                  "right": [
+                    "test-digital-freedoms-aihwbasmn-con03a",
+                    "training-science-ciidffehwa-pro01a",
+                    "test-digital-freedoms-aihwbasmn-con04b",
+                    "training-digital-freedoms-dfaihbssp-con03a",
+                    "training-digital-freedoms-fehbwdsot-pro01a",
+                    "test-digital-freedoms-aihwbasmn-pro01a",
+                    "test-digital-freedoms-piidfaihbg-pro03a",
+                    "test-law-sdiflhrdffe-pro01a",
+                    "test-digital-freedoms-aihwbasmn-con02a",
+                    "training-digital-freedoms-piidfphwbaa-pro02b"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-digital-freedoms-aihwbasmn-con04a"
+            },
+            {
+              "method_differences": {
+                "bm25": {
+                  "left": [
+                    "test-digital-freedoms-eifpgdff-con03b",
+                    "test-digital-freedoms-piidfiphwu-con03b",
+                    "test-digital-freedoms-eifpgdff-con02b",
+                    "test-digital-freedoms-piidfiphwu-con01a",
+                    "test-digital-freedoms-eifpgdff-pro01a",
+                    "test-digital-freedoms-piidfiphwu-pro02a",
+                    "test-digital-freedoms-eifpgdff-con02a",
+                    "test-digital-freedoms-eifpgdff-pro03a",
+                    "test-digital-freedoms-piidfiphwu-pro02b",
+                    "test-digital-freedoms-eifpgdff-pro02b"
+                  ],
+                  "right": [
+                    "test-digital-freedoms-eifpgdff-con03b",
+                    "test-digital-freedoms-piidfiphwu-con03b",
+                    "test-digital-freedoms-eifpgdff-con02b",
+                    "test-digital-freedoms-piidfiphwu-con01a",
+                    "test-digital-freedoms-eifpgdff-pro01a",
+                    "test-digital-freedoms-eifpgdff-con02a",
+                    "test-digital-freedoms-eifpgdff-pro03a",
+                    "test-digital-freedoms-piidfiphwu-pro02a",
+                    "test-digital-freedoms-piidfiphwu-pro02b",
+                    "test-digital-freedoms-eifpgdff-pro02b"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-digital-freedoms-eifpgdff-con03a"
+            },
+            {
+              "method_differences": {
+                "bm25": {
+                  "left": [
+                    "test-digital-freedoms-piidfiphwu-con03a",
+                    "test-digital-freedoms-piidfiphwu-con03b",
+                    "test-digital-freedoms-piidfiphwu-pro02a",
+                    "test-digital-freedoms-piidfiphwu-con01a",
+                    "test-digital-freedoms-piidfiphwu-con02b",
+                    "test-digital-freedoms-piidfiphwu-pro01b",
+                    "training-law-lgpisyhwhcdt-con03a",
+                    "training-digital-freedoms-iphwclcp-pro04a",
+                    "test-culture-ascidfakhba-pro04a",
+                    "test-digital-freedoms-piidfiphwu-pro03b"
+                  ],
+                  "right": [
+                    "test-digital-freedoms-piidfiphwu-con03a",
+                    "test-digital-freedoms-piidfiphwu-con03b",
+                    "test-digital-freedoms-piidfiphwu-pro02a",
+                    "test-digital-freedoms-piidfiphwu-con01a",
+                    "test-digital-freedoms-piidfiphwu-con02b",
+                    "test-digital-freedoms-piidfiphwu-pro01b",
+                    "training-law-lgpisyhwhcdt-con03a",
+                    "training-digital-freedoms-iphwclcp-pro04a",
+                    "test-culture-ascidfakhba-pro04a",
+                    "training-economy-eptppppgh-con02a"
+                  ]
+                },
+                "hybrid_rrf": {
+                  "left": [
+                    "test-digital-freedoms-piidfiphwu-con03a",
+                    "test-digital-freedoms-piidfiphwu-con03b",
+                    "test-digital-freedoms-piidfiphwu-pro02a",
+                    "test-digital-freedoms-piidfiphwu-con02b",
+                    "test-digital-freedoms-piidfiphwu-pro03b",
+                    "test-digital-freedoms-piidfiphwu-pro01b",
+                    "test-culture-ascidfakhba-pro04a",
+                    "test-digital-freedoms-piidfiphwu-con01a",
+                    "test-digital-freedoms-piidfiphwu-pro02b",
+                    "test-digital-freedoms-piidfiphwu-con02a"
+                  ],
+                  "right": [
+                    "test-digital-freedoms-piidfiphwu-con03a",
+                    "test-digital-freedoms-piidfiphwu-con03b",
+                    "test-digital-freedoms-piidfiphwu-pro02a",
+                    "test-digital-freedoms-piidfiphwu-con02b",
+                    "test-digital-freedoms-piidfiphwu-pro01b",
+                    "test-digital-freedoms-piidfiphwu-pro03b",
+                    "test-culture-ascidfakhba-pro04a",
+                    "test-digital-freedoms-piidfiphwu-con01a",
+                    "test-digital-freedoms-piidfiphwu-pro02b",
+                    "test-digital-freedoms-piidfiphwu-con02a"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-digital-freedoms-piidfiphwu-pro03a"
+            },
+            {
+              "method_differences": {
+                "bm25": {
+                  "left": [
+                    "test-economy-beghwbh-con03b",
+                    "test-economy-beghwbh-con01a",
+                    "test-economy-beghwbh-pro03a",
+                    "test-economy-beghwbh-pro01a",
+                    "validation-economy-epeghwbhst-con03a",
+                    "test-economy-beghwbh-con02a",
+                    "test-economy-beghwbh-con04a",
+                    "test-economy-beghwbh-pro02b",
+                    "test-economy-beghwbh-pro03b",
+                    "validation-economy-ephwcnhsrsu-pro02a"
+                  ],
+                  "right": [
+                    "test-economy-beghwbh-con03b",
+                    "test-economy-beghwbh-con01a",
+                    "test-economy-beghwbh-pro03a",
+                    "test-economy-beghwbh-pro01a",
+                    "validation-economy-epeghwbhst-con03a",
+                    "test-economy-beghwbh-con02a",
+                    "test-economy-beghwbh-pro02b",
+                    "test-economy-beghwbh-con04a",
+                    "test-economy-beghwbh-pro03b",
+                    "validation-economy-ephwcnhsrsu-pro02a"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-economy-beghwbh-pro02a"
+            },
+            {
+              "method_differences": {
+                "hybrid_rrf": {
+                  "left": [
+                    "test-economy-bepahbtsnrt-con01b",
+                    "test-economy-bepahbtsnrt-con03a",
+                    "test-economy-bepahbtsnrt-pro03a",
+                    "test-economy-bepahbtsnrt-con02b",
+                    "test-economy-bepahbtsnrt-con03b",
+                    "test-economy-bepahbtsnrt-pro02a",
+                    "test-economy-bepahbtsnrt-pro04a",
+                    "test-economy-bepahbtsnrt-con02a",
+                    "test-economy-bepahbtsnrt-pro01b",
+                    "test-economy-bepahbtsnrt-pro01a"
+                  ],
+                  "right": [
+                    "test-economy-bepahbtsnrt-con01b",
+                    "test-economy-bepahbtsnrt-con03a",
+                    "test-economy-bepahbtsnrt-con02b",
+                    "test-economy-bepahbtsnrt-pro03a",
+                    "test-economy-bepahbtsnrt-con03b",
+                    "test-economy-bepahbtsnrt-pro02a",
+                    "test-economy-bepahbtsnrt-pro04a",
+                    "test-economy-bepahbtsnrt-con02a",
+                    "test-economy-bepahbtsnrt-pro01b",
+                    "test-economy-bepahbtsnrt-pro01a"
+                  ]
+                }
+              },
+              "missing_left": false,
+              "missing_right": false,
+              "query_id": "test-economy-bepahbtsnrt-con01a"
+            }
+          ],
+          "queries": 200
+        }
+      },
+      "package_identity_equal": true,
+      "package_rerun_rankings": {
+        "all_equal": true,
+        "equal_by_method": {
+          "bm25": 200,
+          "exact_dense": 200,
+          "hybrid_rrf": 200
+        },
+        "equal_queries": 200,
+        "mismatch_examples": [],
+        "queries": 200
+      },
+      "passed": true,
+      "quality_equal_between_package_runs": true
+    }
+  ],
+  "passed": true,
+  "schema_version": "atlasrag.installed-package-reproducibility.v1"
+}

@@ -1,0 +1,158 @@
+{
+  "atlasrag_package": {
+    "git_commit": "5e86c78a4c40bc6d552d14d4fdcc370b0db8ece1",
+    "import_origin": "installed-wheel-site-packages",
+    "version": "0.2.0",
+    "wheel": "atlasrag-0.2.0-py3-none-any.whl",
+    "wheel_sha256": "30cbaf0030fe86177b7962e43267b6d182534c023eb9d61e7eec7481df048200"
+  },
+  "created_at": "2026-08-01T00:40:00-04:00",
+  "documentation": {
+    "adapter": "ATLASRAG_ADAPTER_SPEC.md",
+    "claim_ledger": "CLAIM_LEDGER.md",
+    "dataset_provenance": "DATASET_PROVENANCE.json",
+    "limitations": "LIMITATIONS.md",
+    "methodology": "METHODOLOGY.md",
+    "results": "RESULTS.md",
+    "runbook": "RUNBOOK.md"
+  },
+  "frozen_configuration": {
+    "ann_ef": 100,
+    "bm25_b": 0.75,
+    "bm25_k1": 1.5,
+    "candidate_k": 100,
+    "hnsw_M": 16,
+    "hnsw_ef_construction": 160,
+    "latency_sample_queries_per_dataset": 25,
+    "rrf_k": 60,
+    "seed": 20260731,
+    "top_k": 10
+  },
+  "installed_package_runs": [
+    {
+      "artifact": "artifacts/scifact-atlasrag-installed-a.json",
+      "artifact_sha256": "502225c5a9b57ad6cf5ad4302dce988249a0ba70db843b5bdd7dfbb654a67774",
+      "raw_rankings": "artifacts/scifact-atlasrag-installed-a.queries.jsonl",
+      "raw_rankings_sha256": "e983151220793db5dea5b7e47f4d451087c12c0d0120df7a0cb7211007ab82e5",
+      "rerun_artifact": "artifacts/scifact-atlasrag-installed-b.json",
+      "rerun_artifact_sha256": "09a3c3dd84b868e72fa809f88bff5f755a73cd844cc69599457046458d80019a",
+      "rerun_raw_rankings": "artifacts/scifact-atlasrag-installed-b.queries.jsonl",
+      "rerun_raw_rankings_sha256": "e983151220793db5dea5b7e47f4d451087c12c0d0120df7a0cb7211007ab82e5",
+      "rerun_summary_csv": "artifacts/scifact-atlasrag-installed-b.summary.csv",
+      "rerun_summary_csv_sha256": "57ad6eb12423dfabb796e846440c2849a6cb01a76dcbdf2e34813dcb071c1f28",
+      "run_id": "scifact-atlasrag-installed-a",
+      "scope": "installed AtlasRAG wheel, full official 300-query test split",
+      "summary_csv": "artifacts/scifact-atlasrag-installed-a.summary.csv",
+      "summary_csv_sha256": "57ad6eb12423dfabb796e846440c2849a6cb01a76dcbdf2e34813dcb071c1f28"
+    },
+    {
+      "artifact": "artifacts/arguana-contrast-atlasrag-installed-a.json",
+      "artifact_sha256": "0071dc8c8e456d2e808cdf70d5ccbb9cb02e95ffa909a953e9ba34140de1d2b8",
+      "raw_rankings": "artifacts/arguana-contrast-atlasrag-installed-a.queries.jsonl",
+      "raw_rankings_sha256": "4b6b2de7a6f5ff48e0cb56cb79696b6f6072cf74690b8daf2f14c5a7d62304cb",
+      "rerun_artifact": "artifacts/arguana-contrast-atlasrag-installed-b.json",
+      "rerun_artifact_sha256": "717a03b22d7cba17a45cd7e37557d735d632bc7b42d689956676837e3014946f",
+      "rerun_raw_rankings": "artifacts/arguana-contrast-atlasrag-installed-b.queries.jsonl",
+      "rerun_raw_rankings_sha256": "4b6b2de7a6f5ff48e0cb56cb79696b6f6072cf74690b8daf2f14c5a7d62304cb",
+      "rerun_summary_csv": "artifacts/arguana-contrast-atlasrag-installed-b.summary.csv",
+      "rerun_summary_csv_sha256": "33f099a3428d8bf6603ae785ed03d2f9ebc1274b3f0a2da2b6acf17aad10430a",
+      "run_id": "arguana-contrast-atlasrag-installed-a",
+      "scope": "installed AtlasRAG wheel, deterministic 200-query contrast slice",
+      "summary_csv": "artifacts/arguana-contrast-atlasrag-installed-a.summary.csv",
+      "summary_csv_sha256": "33f099a3428d8bf6603ae785ed03d2f9ebc1274b3f0a2da2b6acf17aad10430a"
+    }
+  ],
+  "model": {
+    "license": "Apache-2.0",
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  },
+  "neutral_runs": [
+    {
+      "artifact": "artifacts/scifact-official-a.json",
+      "artifact_sha256": "ad046e22bcec52b7da488b41390b9f1b38772c37f3cb626a66e2464a14bf07b1",
+      "raw_rankings": "artifacts/scifact-official-a.queries.jsonl",
+      "raw_rankings_sha256": "5998341ceb32426dd42ce5ceef7d8b5272b6652acb72e19dfa4f706034e4bf91",
+      "rerun_artifact": "artifacts/scifact-official-b.json",
+      "rerun_artifact_sha256": "6ecbc6b2ad14c10075e760ec86fab1062853c674fbe0a1e79a4be05cfcb88b8c",
+      "rerun_raw_rankings": "artifacts/scifact-official-b.queries.jsonl",
+      "rerun_raw_rankings_sha256": "5998341ceb32426dd42ce5ceef7d8b5272b6652acb72e19dfa4f706034e4bf91",
+      "rerun_summary_csv": "artifacts/scifact-official-b.summary.csv",
+      "rerun_summary_csv_sha256": "4fd9696a8d07851261df5d2c3c10929d7e46ba930537b499320c6e8fe25d71d7",
+      "run_id": "scifact-neutral-a",
+      "scope": "full official 300-query test split",
+      "summary_csv": "artifacts/scifact-official-a.summary.csv",
+      "summary_csv_sha256": "4fd9696a8d07851261df5d2c3c10929d7e46ba930537b499320c6e8fe25d71d7"
+    },
+    {
+      "artifact": "artifacts/arguana-contrast-official-a.json",
+      "artifact_sha256": "06406eae1ea06f3c3d62a71566d52efb5e19e5ffb3890f252e0588d58f32b56b",
+      "raw_rankings": "artifacts/arguana-contrast-official-a.queries.jsonl",
+      "raw_rankings_sha256": "757d1233caf8a69866b89d8164e8776bfab65c2e933061f35c7455a70b34d553",
+      "rerun_artifact": "artifacts/arguana-contrast-official-b.json",
+      "rerun_artifact_sha256": "7fc14d982155cdb8548475e9d3ae01315c356ead1ef6f711eb4771b50e0cb139",
+      "rerun_raw_rankings": "artifacts/arguana-contrast-official-b.queries.jsonl",
+      "rerun_raw_rankings_sha256": "757d1233caf8a69866b89d8164e8776bfab65c2e933061f35c7455a70b34d553",
+      "rerun_summary_csv": "artifacts/arguana-contrast-official-b.summary.csv",
+      "rerun_summary_csv_sha256": "08e5a6d495ccb5df7559cd80ec21834dd1679c0404d49da9c149aed4fb143c5b",
+      "run_id": "arguana-contrast-neutral-a",
+      "scope": "deterministic 200-query contrast slice, not full official score",
+      "summary_csv": "artifacts/arguana-contrast-official-a.summary.csv",
+      "summary_csv_sha256": "08e5a6d495ccb5df7559cd80ec21834dd1679c0404d49da9c149aed4fb143c5b"
+    }
+  ],
+  "publication_boundary": "Published as an AtlasRAG v0.2.0 GitHub release asset. No third-party dataset payload, hosted demo deployment, DOI, paper submission, peer-review claim, or external adoption claim.",
+  "purpose": "Local evidence for AtlasRAG retrieval quality, implementation comparison, authorization contracts, provenance, reproducibility, and claim safety.",
+  "schema_version": "atlasrag.experiment-manifest.v2",
+  "status": "published_github_release_evidence",
+  "supporting_experiments": [
+    {
+      "artifact": "artifacts/scifact-train-ablations.json",
+      "id": "scifact-train-ablations",
+      "scope": "train-only exploratory",
+      "sha256": "b8cb919d4ff4b2d8f0457383248eca96d37a051834a71c512066da25feffa90c"
+    },
+    {
+      "artifact": "artifacts/safety-evaluation.json",
+      "id": "synthetic-safety",
+      "scope": "fully synthetic contract harness",
+      "sha256": "b482aebad3d63497763b4213d7af2a477599ce3a43c3e9cced758ded9bedd91f"
+    },
+    {
+      "artifact": "artifacts/atlasrag-adapter-smoke.json",
+      "id": "atlasrag-adapter-smoke",
+      "scope": "actual AtlasRAG API on synthetic fixtures",
+      "sha256": "652d28f9307b4de62cdba96169dfeafa4ebfd9bba28a632c25ff13f52e50c4c2"
+    },
+    {
+      "artifact": "artifacts/failure-analysis.json",
+      "id": "failure-analysis",
+      "scope": "top-10 qrel failure and rescue analysis",
+      "sha256": "b9ee32809150b29c187cef9cf47a4cd678423ed3b66b0d3e63d883f9ff078631"
+    },
+    {
+      "artifact": "artifacts/official-reproducibility.json",
+      "id": "neutral-reproducibility",
+      "scope": "neutral quality and ranking equality",
+      "sha256": "c84be75051ca20984569c1f712f37de881c042a4d1e411979027ab88c0987038"
+    },
+    {
+      "artifact": "artifacts/installed-package-reproducibility.json",
+      "id": "installed-package-reproducibility",
+      "scope": "installed-wheel A/B equality and neutral comparison",
+      "sha256": "661d32cc20d5c948a4bdd4a23db5276375b181681b2aca01eb8723fa7bc15268"
+    },
+    {
+      "artifact": "artifacts/installed-package-summary.json",
+      "id": "installed-package-summary",
+      "scope": "compact package result surface",
+      "sha256": "4f4c0862e70f9bafa820a15bd3800c3f123fff78a6982bcd31a129c97d45bf13"
+    },
+    {
+      "artifact": "artifacts/regression-gate-report.json",
+      "id": "regression-gates",
+      "scope": "local evidence gates",
+      "sha256": "b8ecac68b4ff4ec13df201e71b29506d2f5917acedc7299e30c4554ca46b624a"
+    }
+  ]
+}

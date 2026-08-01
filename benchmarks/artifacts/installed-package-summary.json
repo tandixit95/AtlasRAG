@@ -1,0 +1,240 @@
+{
+  "comparison_rule": "Installed-package A/B equality is a release gate. Neutral-harness equivalence is informative only because implementations and timing paths differ.",
+  "datasets": {
+    "arguana_contrast_200": {
+      "dataset": {
+        "corpus_docs": 8674,
+        "corpus_sha256": "0627982cec4ee896df6dc98604ef6b499c83fd87a19eaaeb3f23b88bbef6cbce",
+        "evaluated_queries": 200,
+        "positive_qrels": 200,
+        "qrels_sha256": "2e9306c30617779a2c03a48eba50cde2506611cae8c583866a485d7e66d7169b",
+        "queries_in_file": 1406,
+        "queries_sha256": "f8b7c903f95d9a2d291de3915a8fac25085e9db679f19f59fea4145bfd1df618"
+      },
+      "latency_ms_run_a": {
+        "bm25": {
+          "max": 933.0667269823607,
+          "mean": 342.07972464035265,
+          "p50": 294.03405799530447,
+          "p95": 540.0762932084035
+        },
+        "exact_dense": {
+          "max": 450.1041789771989,
+          "mean": 308.4283685206901,
+          "p50": 283.5632079804782,
+          "p95": 447.1502000000328
+        },
+        "hybrid_rrf": {
+          "max": 1246.898871002486,
+          "mean": 632.5548936822452,
+          "p50": 582.3556969990022,
+          "p95": 896.1272418033329
+        }
+      },
+      "latency_ms_run_b": {
+        "bm25": {
+          "max": 698.8177199964412,
+          "mean": 305.79462227993645,
+          "p50": 275.06527298828587,
+          "p95": 519.1077497962394
+        },
+        "exact_dense": {
+          "max": 377.10435199551284,
+          "mean": 270.6568903569132,
+          "p50": 244.81667499640025,
+          "p95": 367.8926251945086
+        },
+        "hybrid_rrf": {
+          "max": 900.6000829976983,
+          "mean": 547.4323615990579,
+          "p50": 528.7203449988738,
+          "p95": 762.1331118105442
+        }
+      },
+      "latency_semantics": "installed-package per-query steady-state search including query embedding for dense and hybrid; model load and index build excluded",
+      "neutral_quality_delta_installed_minus_neutral": {
+        "bm25": {
+          "mrr@10": -0.002972222222222265,
+          "ndcg@10": -0.0011862130144132954,
+          "recall@10": 0.0050000000000000044,
+          "success@10": 0.0050000000000000044
+        },
+        "exact_dense": {
+          "mrr@10": -0.007180555555555468,
+          "ndcg@10": -0.005244760536625204,
+          "recall@10": 0.0,
+          "success@10": 0.0
+        },
+        "hybrid_rrf": {
+          "mrr@10": -0.005507936507936517,
+          "ndcg@10": -0.001829239977045205,
+          "recall@10": 0.010000000000000009,
+          "success@10": 0.010000000000000009
+        }
+      },
+      "neutral_query_count": 200,
+      "neutral_ranking_matches_by_method": {
+        "bm25": 170,
+        "exact_dense": 186,
+        "hybrid_rrf": 155
+      },
+      "package_a_sha256": "0071dc8c8e456d2e808cdf70d5ccbb9cb02e95ffa909a953e9ba34140de1d2b8",
+      "package_b_sha256": "717a03b22d7cba17a45cd7e37557d735d632bc7b42d689956676837e3014946f",
+      "package_rerun_equal_by_method": {
+        "bm25": 200,
+        "exact_dense": 200,
+        "hybrid_rrf": 200
+      },
+      "quality": {
+        "bm25": {
+          "mrr@10": 0.3531944444444444,
+          "ndcg@10": 0.44940593662692424,
+          "recall@10": 0.76,
+          "success@10": 0.76
+        },
+        "exact_dense": {
+          "mrr@10": 0.4027678571428572,
+          "ndcg@10": 0.49914871998186655,
+          "recall@10": 0.81,
+          "success@10": 0.81
+        },
+        "hybrid_rrf": {
+          "mrr@10": 0.42884126984126986,
+          "ndcg@10": 0.5273500304015701,
+          "recall@10": 0.845,
+          "success@10": 0.845
+        }
+      },
+      "quality_equal_across_package_reruns": true,
+      "raw_rankings_equal_across_package_reruns": true,
+      "scope": "deterministic 200-query contrast slice, not the full official score"
+    },
+    "scifact": {
+      "dataset": {
+        "corpus_docs": 5183,
+        "corpus_sha256": "dec31c8182f3d744c7d2c09423756fd1d17cbef75808db13ba01cc0aab4d1ac6",
+        "evaluated_queries": 300,
+        "positive_qrels": 339,
+        "qrels_sha256": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c",
+        "queries_in_file": 1109,
+        "queries_sha256": "8ff84a7c903f722981cd8d595c022660140c51867b27608a6d4910db86080313"
+      },
+      "latency_ms_run_a": {
+        "bm25": {
+          "max": 51.94001100608148,
+          "mean": 28.259306761901826,
+          "p50": 27.021153015084565,
+          "p95": 48.38573480956254
+        },
+        "exact_dense": {
+          "max": 285.10731301503256,
+          "mean": 161.07818043674342,
+          "p50": 153.36032799677923,
+          "p95": 173.89315241016448
+        },
+        "hybrid_rrf": {
+          "max": 329.813396994723,
+          "mean": 193.51365087903105,
+          "p50": 183.86433299747296,
+          "p95": 280.24744779686426
+        }
+      },
+      "latency_ms_run_b": {
+        "bm25": {
+          "max": 139.41315698320977,
+          "mean": 30.64689603750594,
+          "p50": 23.020439984975383,
+          "p95": 43.42808281653561
+        },
+        "exact_dense": {
+          "max": 262.1461590169929,
+          "mean": 149.2158559593372,
+          "p50": 143.33616400836036,
+          "p95": 153.69406439713202
+        },
+        "hybrid_rrf": {
+          "max": 316.8010799854528,
+          "mean": 183.18431755527854,
+          "p50": 173.21778199402615,
+          "p95": 284.69328639330314
+        }
+      },
+      "latency_semantics": "installed-package per-query steady-state search including query embedding for dense and hybrid; model load and index build excluded",
+      "neutral_quality_delta_installed_minus_neutral": {
+        "bm25": {
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0,
+          "recall@10": 0.0,
+          "success@10": 0.0
+        },
+        "exact_dense": {
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0,
+          "recall@10": 0.0,
+          "success@10": 0.0
+        },
+        "hybrid_rrf": {
+          "mrr@10": -0.0017261904761904923,
+          "ndcg@10": -0.0012897956765871577,
+          "recall@10": 0.0,
+          "success@10": 0.0
+        }
+      },
+      "neutral_query_count": 300,
+      "neutral_ranking_matches_by_method": {
+        "bm25": 300,
+        "exact_dense": 300,
+        "hybrid_rrf": 270
+      },
+      "package_a_sha256": "502225c5a9b57ad6cf5ad4302dce988249a0ba70db843b5bdd7dfbb654a67774",
+      "package_b_sha256": "09a3c3dd84b868e72fa809f88bff5f755a73cd844cc69599457046458d80019a",
+      "package_rerun_equal_by_method": {
+        "bm25": 300,
+        "exact_dense": 300,
+        "hybrid_rrf": 300
+      },
+      "quality": {
+        "bm25": {
+          "mrr@10": 0.6339986772486772,
+          "ndcg@10": 0.6646172354026965,
+          "recall@10": 0.781611111111111,
+          "success@10": 0.8
+        },
+        "exact_dense": {
+          "mrr@10": 0.6047248677248678,
+          "ndcg@10": 0.6450816521455776,
+          "recall@10": 0.7833333333333333,
+          "success@10": 0.7933333333333333
+        },
+        "hybrid_rrf": {
+          "mrr@10": 0.6449272486772487,
+          "ndcg@10": 0.6845321035024354,
+          "recall@10": 0.8212222222222223,
+          "success@10": 0.8366666666666667
+        }
+      },
+      "quality_equal_across_package_reruns": true,
+      "raw_rankings_equal_across_package_reruns": true,
+      "scope": "full official 300-query test split"
+    }
+  },
+  "methods": [
+    "bm25",
+    "exact_dense",
+    "hybrid_rrf"
+  ],
+  "model": {
+    "license": "Apache-2.0",
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  },
+  "package": {
+    "git_commit": "5e86c78a4c40bc6d552d14d4fdcc370b0db8ece1",
+    "import_origin": "installed-wheel-site-packages",
+    "version": "0.2.0",
+    "wheel": "atlasrag-0.2.0-py3-none-any.whl",
+    "wheel_sha256": "30cbaf0030fe86177b7962e43267b6d182534c023eb9d61e7eec7481df048200"
+  },
+  "reproducibility_passed": true,
+  "schema_version": "atlasrag.installed-package-summary.v1"
+}

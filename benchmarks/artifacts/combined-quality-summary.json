@@ -1,0 +1,69 @@
+{
+  "rows": [
+    {
+      "dataset": "scifact",
+      "method": "ann_hnsw",
+      "mrr@10": 0.6047248677248678,
+      "ndcg@10": 0.6450816521455776,
+      "recall@10": 0.7833333333333333,
+      "success@10": 0.7933333333333333
+    },
+    {
+      "dataset": "scifact",
+      "method": "bm25",
+      "mrr@10": 0.6339986772486772,
+      "ndcg@10": 0.6646172354026965,
+      "recall@10": 0.781611111111111,
+      "success@10": 0.8
+    },
+    {
+      "dataset": "scifact",
+      "method": "exact_dense",
+      "mrr@10": 0.6047248677248678,
+      "ndcg@10": 0.6450816521455776,
+      "recall@10": 0.7833333333333333,
+      "success@10": 0.7933333333333333
+    },
+    {
+      "dataset": "scifact",
+      "method": "hybrid_rrf",
+      "mrr@10": 0.6466534391534392,
+      "ndcg@10": 0.6858218991790226,
+      "recall@10": 0.8212222222222223,
+      "success@10": 0.8366666666666667
+    },
+    {
+      "dataset": "arguana-contrast-200",
+      "method": "ann_hnsw",
+      "mrr@10": 0.40994841269841265,
+      "ndcg@10": 0.5043934805184918,
+      "recall@10": 0.81,
+      "success@10": 0.81
+    },
+    {
+      "dataset": "arguana-contrast-200",
+      "method": "bm25",
+      "mrr@10": 0.3561666666666667,
+      "ndcg@10": 0.45059214964133754,
+      "recall@10": 0.755,
+      "success@10": 0.755
+    },
+    {
+      "dataset": "arguana-contrast-200",
+      "method": "exact_dense",
+      "mrr@10": 0.40994841269841265,
+      "ndcg@10": 0.5043934805184918,
+      "recall@10": 0.81,
+      "success@10": 0.81
+    },
+    {
+      "dataset": "arguana-contrast-200",
+      "method": "hybrid_rrf",
+      "mrr@10": 0.4343492063492064,
+      "ndcg@10": 0.5291792703786153,
+      "recall@10": 0.835,
+      "success@10": 0.835
+    }
+  ],
+  "schema_version": "atlasrag.combined-quality.v1"
+}

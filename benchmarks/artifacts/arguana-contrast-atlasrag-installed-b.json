@@ -1,0 +1,166 @@
+{
+  "artifacts": {
+    "raw_queries": "arguana-contrast-atlasrag-installed-b.queries.jsonl",
+    "raw_queries_sha256": "4b6b2de7a6f5ff48e0cb56cb79696b6f6072cf74690b8daf2f14c5a7d62304cb",
+    "summary_csv": "arguana-contrast-atlasrag-installed-b.summary.csv",
+    "summary_csv_sha256": "33f099a3428d8bf6603ae785ed03d2f9ebc1274b3f0a2da2b6acf17aad10430a"
+  },
+  "atlasrag": {
+    "git_commit": "5e86c78a4c40bc6d552d14d4fdcc370b0db8ece1",
+    "import_origin": "installed-wheel-site-packages",
+    "module_relative_path": "atlasrag/__init__.py",
+    "query_exclusion_applied_before_scoring": true,
+    "retrieval_methods": [
+      "bm25",
+      "exact_dense",
+      "hybrid_rrf"
+    ],
+    "version": "0.2.0",
+    "wheel": "atlasrag-0.2.0-py3-none-any.whl",
+    "wheel_sha256": "30cbaf0030fe86177b7962e43267b6d182534c023eb9d61e7eec7481df048200"
+  },
+  "build": {
+    "chunk_construction_seconds": 0.19206812701304443,
+    "combined_index_seconds": 6.829004768980667,
+    "corpus_embedding_seconds": 0.0,
+    "embedding_cache": "corpus_embeddings.npy",
+    "embedding_cache_bytes": 13323392,
+    "embedding_cache_load_seconds": 0.014108457020483911,
+    "embedding_cache_rebuilt": false,
+    "embedding_cache_sha256": "6fdfc22b8626b0691c648026d2ce870acc4e5df887c0b3b5d857b5bc7e44b5a5",
+    "python_vector_conversion_seconds": 0.255312609981047
+  },
+  "contracts": {
+    "external_id_mapping_complete": true,
+    "method_specific_scores_preserved": true,
+    "provenance_complete": true
+  },
+  "dataset": {
+    "corpus_docs": 8674,
+    "corpus_sha256": "0627982cec4ee896df6dc98604ef6b499c83fd87a19eaaeb3f23b88bbef6cbce",
+    "evaluated_queries": 200,
+    "positive_qrels": 200,
+    "qrels_sha256": "2e9306c30617779a2c03a48eba50cde2506611cae8c583866a485d7e66d7169b",
+    "queries_in_file": 1406,
+    "queries_sha256": "f8b7c903f95d9a2d291de3915a8fac25085e9db679f19f59fea4145bfd1df618"
+  },
+  "environment": {
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "dependencies": {
+      "atlasrag": "0.2.0",
+      "numpy": "2.5.1",
+      "sentence-transformers": "5.6.1",
+      "transformers": "5.14.1"
+    },
+    "logical_cpus": 16,
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "torch": "2.13.0+cu130"
+  },
+  "limitations": [
+    "Single WSL2 laptop host; no distributed or production-scale claim.",
+    "Installed-package latency is not directly comparable to the neutral NumPy harness because the package uses dependency-light Python exact scoring.",
+    "The benchmark uses one whole-document chunk per BEIR corpus record.",
+    "The ArguAna result is a deterministic 200-query contrast slice, not a full official score.",
+    "One model and two public datasets cannot establish universal retrieval method superiority."
+  ],
+  "model": {
+    "device": "cuda",
+    "license": "Apache-2.0",
+    "load_seconds": 1.601686050009448,
+    "model_card": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "snapshot": "local-huggingface-cache/1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  },
+  "quality": {
+    "bm25": {
+      "mrr@10": 0.3531944444444444,
+      "ndcg@10": 0.44940593662692424,
+      "recall@10": 0.76,
+      "success@10": 0.76
+    },
+    "exact_dense": {
+      "mrr@10": 0.4027678571428572,
+      "ndcg@10": 0.49914871998186655,
+      "recall@10": 0.81,
+      "success@10": 0.81
+    },
+    "hybrid_rrf": {
+      "mrr@10": 0.42884126984126986,
+      "ndcg@10": 0.5273500304015701,
+      "recall@10": 0.845,
+      "success@10": 0.845
+    }
+  },
+  "run": {
+    "bm25_b": 0.75,
+    "bm25_k1": 1.5,
+    "candidate_k": 100,
+    "dataset": "arguana",
+    "evaluated_queries": 200,
+    "identical_query_document_ids_excluded": true,
+    "latency_sample_ids": [
+      "test-politics-ypppdghwid-con05a",
+      "test-politics-cpegiepgh-con02a",
+      "test-science-eassgbatj-con02a",
+      "test-law-thgglcplgphw-pro03a",
+      "test-culture-tlhrilsfhwr-pro02a",
+      "test-digital-freedoms-eifdfaihs-con02a",
+      "test-environment-opecewiahw-con04a",
+      "test-society-cpisydfphwj-pro02a",
+      "test-society-mmcpsgfhbf-pro04a",
+      "test-international-gpdwhwcusa-pro03a",
+      "test-international-atiahblit-pro01a",
+      "test-economy-thhghwhwift-pro01a",
+      "test-law-lgplhbssbco-pro04a",
+      "test-health-dhghhbampt-con01a",
+      "test-international-gmehwasr-con02a",
+      "test-culture-mmciahbans-con03a",
+      "test-society-mmcpsgfhbf-con02a",
+      "test-international-aglhrilhb-pro02a",
+      "test-free-speech-debate-nshbbsbfb-con03a",
+      "test-education-usuprmhbu-pro02a",
+      "test-free-speech-debate-yfsdfkhbwu-pro03a",
+      "test-philosophy-apessghwba-con05a",
+      "test-environment-ehwsnwu-con02a",
+      "test-education-udfakusma-con02a",
+      "test-international-glilpdwhsn-pro01a"
+    ],
+    "latency_sample_queries": 25,
+    "latency_semantics": "installed-package per-query steady-state search including query embedding for dense and hybrid; model load and index build excluded",
+    "query_ids_absent_from_corpus": 17,
+    "query_ids_present_in_corpus": 183,
+    "rrf_k": 60,
+    "seed": 20260731,
+    "split": "test",
+    "top_k": 10
+  },
+  "sampled_latency_ms": {
+    "bm25": {
+      "max": 698.8177199964412,
+      "mean": 305.79462227993645,
+      "p50": 275.06527298828587,
+      "p95": 519.1077497962394
+    },
+    "exact_dense": {
+      "max": 377.10435199551284,
+      "mean": 270.6568903569132,
+      "p50": 244.81667499640025,
+      "p95": 367.8926251945086
+    },
+    "hybrid_rrf": {
+      "max": 900.6000829976983,
+      "mean": 547.4323615990579,
+      "p50": 528.7203449988738,
+      "p95": 762.1331118105442
+    }
+  },
+  "schema_version": "atlasrag.installed-package-benchmark.v1",
+  "systems": {
+    "memory_measurement_note": "coarse process peak RSS including model, chunks, lexical index, and Python tuple embeddings",
+    "process_peak_rss_kb": 1428104
+  }
+}

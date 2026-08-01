@@ -1,0 +1,242 @@
+{
+  "baselines": {
+    "bm25": {
+      "mrr@10": 0.6363470480899406,
+      "ndcg@10": 0.6683025576977518,
+      "recall@10": 0.7873712402142563,
+      "success@10": 0.8034610630407911
+    },
+    "exact_dense": {
+      "mrr@10": 0.6261301430337277,
+      "ndcg@10": 0.6602002541701137,
+      "recall@10": 0.7855583024309848,
+      "success@10": 0.796044499381953
+    }
+  },
+  "dataset": "scifact",
+  "fixed_test_configuration": {
+    "ann_ef": 100,
+    "candidate_k": 100,
+    "rrf_k": 60
+  },
+  "interpretation": [
+    "Candidate-k and RRF-k are explored on the SciFact train split, never the official test split.",
+    "The final test configuration remains candidate_k=100 and rrf_k=60; stronger exploratory cells are reported but not used for a post-hoc test rerun.",
+    "ANN ef is evaluated against exact dense top-10 overlap and retrieval quality; exact dense remains the oracle."
+  ],
+  "purpose": "exploratory engineering ablations only; official test labels were not used for parameter selection",
+  "query_count": 809,
+  "rows": [
+    {
+      "ann_ef": null,
+      "candidate_k": 10,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6658627150901563,
+      "ndcg@10": 0.7057746940275442,
+      "recall@10": 0.8446847960444994,
+      "rrf_k": 10,
+      "success@10": 0.8566131025957973
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 10,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6646060195812976,
+      "ndcg@10": 0.7048093469751336,
+      "recall@10": 0.8446847960444994,
+      "rrf_k": 60,
+      "success@10": 0.8566131025957973
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 10,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6646060195812976,
+      "ndcg@10": 0.7048093469751336,
+      "recall@10": 0.8446847960444994,
+      "rrf_k": 100,
+      "success@10": 0.8566131025957973
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 25,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6659019561677163,
+      "ndcg@10": 0.7028689566402612,
+      "recall@10": 0.834693036670787,
+      "rrf_k": 10,
+      "success@10": 0.8504326328800988
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 25,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6606627817999883,
+      "ndcg@10": 0.697948991200912,
+      "recall@10": 0.8309847548413679,
+      "rrf_k": 60,
+      "success@10": 0.8442521631644005
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 25,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6604979692742363,
+      "ndcg@10": 0.6975580394559726,
+      "recall@10": 0.830366707869798,
+      "rrf_k": 100,
+      "success@10": 0.8442521631644005
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 50,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6661918496281907,
+      "ndcg@10": 0.7035227598633399,
+      "recall@10": 0.8365471775854965,
+      "rrf_k": 10,
+      "success@10": 0.8529048207663782
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 50,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6565243196578178,
+      "ndcg@10": 0.6910430183308848,
+      "recall@10": 0.8142974866089823,
+      "rrf_k": 60,
+      "success@10": 0.826946847960445
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 50,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6562064669295818,
+      "ndcg@10": 0.6905101497575717,
+      "recall@10": 0.8136794396374124,
+      "rrf_k": 100,
+      "success@10": 0.826946847960445
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 100,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6674485451370495,
+      "ndcg@10": 0.7048348119467173,
+      "recall@10": 0.8380922950144211,
+      "rrf_k": 10,
+      "success@10": 0.8541409147095179
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 100,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6573532874212725,
+      "ndcg@10": 0.6922972482066626,
+      "recall@10": 0.8173877214668315,
+      "rrf_k": 60,
+      "success@10": 0.8294190358467244
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 100,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6563163419467499,
+      "ndcg@10": 0.6900695378194043,
+      "recall@10": 0.8118252987227029,
+      "rrf_k": 100,
+      "success@10": 0.8244746600741656
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 200,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6674843526203229,
+      "ndcg@10": 0.7047898391831178,
+      "recall@10": 0.8374742480428512,
+      "rrf_k": 10,
+      "success@10": 0.8529048207663782
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 200,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6573498538269861,
+      "ndcg@10": 0.6923105815287636,
+      "recall@10": 0.8173877214668315,
+      "rrf_k": 60,
+      "success@10": 0.8294190358467244
+    },
+    {
+      "ann_ef": null,
+      "candidate_k": 200,
+      "kind": "hybrid_grid",
+      "mean_top10_overlap": null,
+      "mrr@10": 0.6567161104243923,
+      "ndcg@10": 0.6907888665318823,
+      "recall@10": 0.8136794396374124,
+      "rrf_k": 100,
+      "success@10": 0.826946847960445
+    },
+    {
+      "ann_ef": 10,
+      "candidate_k": 10,
+      "kind": "ann_ef",
+      "mean_top10_overlap": 0.8833127317676144,
+      "mrr@10": 0.5916651951262581,
+      "ndcg@10": 0.6233395805349472,
+      "recall@10": 0.7410589204779563,
+      "rrf_k": null,
+      "success@10": 0.7515451174289246
+    },
+    {
+      "ann_ef": 50,
+      "candidate_k": 10,
+      "kind": "ann_ef",
+      "mean_top10_overlap": 0.9867737948084054,
+      "mrr@10": 0.6225248690329036,
+      "ndcg@10": 0.6554431589206375,
+      "recall@10": 0.776905644829007,
+      "rrf_k": null,
+      "success@10": 0.7873918417799752
+    },
+    {
+      "ann_ef": 100,
+      "candidate_k": 10,
+      "kind": "ann_ef",
+      "mean_top10_overlap": 0.9966625463535228,
+      "mrr@10": 0.624997056919183,
+      "ndcg@10": 0.6590498505136572,
+      "recall@10": 0.7843222084878451,
+      "rrf_k": null,
+      "success@10": 0.7948084054388134
+    },
+    {
+      "ann_ef": 200,
+      "candidate_k": 10,
+      "kind": "ann_ef",
+      "mean_top10_overlap": 0.9995055624227441,
+      "mrr@10": 0.624894049090588,
+      "ndcg@10": 0.6589641602269741,
+      "recall@10": 0.7843222084878451,
+      "rrf_k": null,
+      "success@10": 0.7948084054388134
+    }
+  ],
+  "schema_version": "atlasrag.ablation.v2",
+  "split": "train"
+}

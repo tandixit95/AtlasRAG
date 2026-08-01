@@ -1,0 +1,249 @@
+{
+  "details": [
+    {
+      "leaked_forbidden_ids": [],
+      "partial_signal_correct": true,
+      "retrieval_expectation_correct": true,
+      "returned_ids": [
+        "a-public-01"
+      ],
+      "scenario_id": "tenant_isolation",
+      "stale_signal_correct": true,
+      "status_correct": true,
+      "unsupported_behavior_correct": true
+    },
+    {
+      "leaked_forbidden_ids": [],
+      "partial_signal_correct": true,
+      "retrieval_expectation_correct": true,
+      "returned_ids": [
+        "a-ops-01"
+      ],
+      "scenario_id": "group_isolation",
+      "stale_signal_correct": true,
+      "status_correct": true,
+      "unsupported_behavior_correct": true
+    },
+    {
+      "leaked_forbidden_ids": [],
+      "partial_signal_correct": true,
+      "retrieval_expectation_correct": true,
+      "returned_ids": [],
+      "scenario_id": "missing_shard",
+      "stale_signal_correct": true,
+      "status_correct": true,
+      "unsupported_behavior_correct": true
+    },
+    {
+      "leaked_forbidden_ids": [],
+      "partial_signal_correct": true,
+      "retrieval_expectation_correct": true,
+      "returned_ids": [
+        "a-eng-01"
+      ],
+      "scenario_id": "missing_dense_component",
+      "stale_signal_correct": true,
+      "status_correct": true,
+      "unsupported_behavior_correct": true
+    },
+    {
+      "leaked_forbidden_ids": [],
+      "partial_signal_correct": true,
+      "retrieval_expectation_correct": true,
+      "returned_ids": [
+        "a-ops-stale"
+      ],
+      "scenario_id": "stale_index",
+      "stale_signal_correct": true,
+      "status_correct": true,
+      "unsupported_behavior_correct": true
+    },
+    {
+      "leaked_forbidden_ids": [],
+      "partial_signal_correct": true,
+      "retrieval_expectation_correct": true,
+      "returned_ids": [],
+      "scenario_id": "unsupported_query",
+      "stale_signal_correct": true,
+      "status_correct": true,
+      "unsupported_behavior_correct": true
+    },
+    {
+      "leaked_forbidden_ids": [],
+      "partial_signal_correct": true,
+      "retrieval_expectation_correct": true,
+      "returned_ids": [
+        "a-eng-01"
+      ],
+      "scenario_id": "provenance_complete",
+      "stale_signal_correct": true,
+      "status_correct": true,
+      "unsupported_behavior_correct": true
+    }
+  ],
+  "gates": {
+    "checks": {
+      "deterministic_reproducibility_true": true,
+      "partial_result_signaling_accuracy_eq_1": true,
+      "provenance_completeness_eq_1": true,
+      "retrieval_expectation_accuracy_eq_1": true,
+      "stale_index_signaling_accuracy_eq_1": true,
+      "unauthorized_return_count_eq_0": true,
+      "unsupported_query_accuracy_eq_1": true
+    },
+    "passed": true
+  },
+  "limitations": [
+    "This harness validates explicit contract behavior over synthetic fixtures; it is not a penetration test.",
+    "Authorization logic is intentionally small and deterministic; production identity, policy, and storage systems are not represented.",
+    "Staleness and component failures are injected fixtures, not observed distributed-system incidents."
+  ],
+  "metrics": {
+    "deterministic_reproducibility": true,
+    "partial_result_signaling_accuracy": 1.0,
+    "provenance_completeness": 1.0,
+    "retrieval_expectation_accuracy": 1.0,
+    "run_hash": "eaa7011605b2d58d80b9933b7ea50ca7e1f11493ee0ff7e05dfa71700f35ecc4",
+    "scenario_count": 7,
+    "stale_index_signaling_accuracy": 1.0,
+    "status_accuracy": 1.0,
+    "unauthorized_return_count": 0,
+    "unsupported_query_accuracy": 1.0
+  },
+  "results": [
+    {
+      "failed_components": [],
+      "failed_shards": [],
+      "partial": false,
+      "results": [
+        {
+          "chunk_id": "a-public-01",
+          "document_version": "sha256:alpha-public-v3",
+          "groups": [
+            "all"
+          ],
+          "index_version": 3,
+          "score": 4.0,
+          "shard_id": 0,
+          "source_uri": "synthetic://alpha/public/01",
+          "tenant_id": "alpha"
+        }
+      ],
+      "scenario_id": "tenant_isolation",
+      "stale_index": false,
+      "status": "ok"
+    },
+    {
+      "failed_components": [],
+      "failed_shards": [],
+      "partial": false,
+      "results": [
+        {
+          "chunk_id": "a-ops-01",
+          "document_version": "sha256:alpha-ops-v3",
+          "groups": [
+            "ops"
+          ],
+          "index_version": 3,
+          "score": 6.0,
+          "shard_id": 1,
+          "source_uri": "synthetic://alpha/ops/01",
+          "tenant_id": "alpha"
+        }
+      ],
+      "scenario_id": "group_isolation",
+      "stale_index": false,
+      "status": "ok"
+    },
+    {
+      "failed_components": [],
+      "failed_shards": [
+        1
+      ],
+      "partial": true,
+      "results": [],
+      "scenario_id": "missing_shard",
+      "stale_index": false,
+      "status": "partial"
+    },
+    {
+      "failed_components": [
+        "dense"
+      ],
+      "failed_shards": [],
+      "partial": true,
+      "results": [
+        {
+          "chunk_id": "a-eng-01",
+          "document_version": "sha256:alpha-eng-v3",
+          "groups": [
+            "engineering"
+          ],
+          "index_version": 3,
+          "score": 4.0,
+          "shard_id": 2,
+          "source_uri": "synthetic://alpha/engineering/01",
+          "tenant_id": "alpha"
+        }
+      ],
+      "scenario_id": "missing_dense_component",
+      "stale_index": false,
+      "status": "partial"
+    },
+    {
+      "failed_components": [],
+      "failed_shards": [],
+      "partial": false,
+      "results": [
+        {
+          "chunk_id": "a-ops-stale",
+          "document_version": "sha256:alpha-ops-v2",
+          "groups": [
+            "ops"
+          ],
+          "index_version": 2,
+          "score": 5.0,
+          "shard_id": 0,
+          "source_uri": "synthetic://alpha/ops/stale",
+          "tenant_id": "alpha"
+        }
+      ],
+      "scenario_id": "stale_index",
+      "stale_index": true,
+      "status": "stale"
+    },
+    {
+      "failed_components": [],
+      "failed_shards": [],
+      "partial": false,
+      "results": [],
+      "scenario_id": "unsupported_query",
+      "stale_index": false,
+      "status": "unsupported"
+    },
+    {
+      "failed_components": [],
+      "failed_shards": [],
+      "partial": false,
+      "results": [
+        {
+          "chunk_id": "a-eng-01",
+          "document_version": "sha256:alpha-eng-v3",
+          "groups": [
+            "engineering"
+          ],
+          "index_version": 3,
+          "score": 5.0,
+          "shard_id": 2,
+          "source_uri": "synthetic://alpha/engineering/01",
+          "tenant_id": "alpha"
+        }
+      ],
+      "scenario_id": "provenance_complete",
+      "stale_index": false,
+      "status": "ok"
+    }
+  ],
+  "schema_version": "atlasrag.safety-evaluation.v1",
+  "scope": "fully synthetic, offline, deterministic contract harness"
+}

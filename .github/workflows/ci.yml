@@ -1,0 +1,105 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install development dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+      - name: Verify package metadata and import
+        run: |
+          python - <<'PY'
+          from importlib.metadata import version
+          import atlasrag
+
+          assert version("atlasrag") == "0.2.0"
+          assert atlasrag.__file__
+          print(atlasrag.__file__)
+          PY
+      - name: Test
+        run: python -m pytest
+      - name: Lint and format
+        run: |
+          python -m ruff check .
+          python -m ruff format --check .
+      - name: Verify benchmark evidence
+        run: python benchmarks/verify_artifacts.py
+
+  package-smoke:
+    name: Wheel and sdist smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Build distributions
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build twine
+          python -m build
+          python -m twine check dist/*
+      - name: Test wheel from outside source tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          wheel=$(find dist -maxdepth 1 -name 'atlasrag-*.whl' -print -quit)
+          python -m venv /tmp/atlasrag-wheel
+          /tmp/atlasrag-wheel/bin/python -m pip install --upgrade pip
+          /tmp/atlasrag-wheel/bin/python -m pip install "$wheel" 'pytest>=8.3,<9'
+          cp -R tests /tmp/atlasrag-wheel-tests
+          cd /tmp
+          /tmp/atlasrag-wheel/bin/python - <<'PY'
+          from importlib.metadata import version
+          from pathlib import Path
+          import atlasrag
+
+          assert version("atlasrag") == "0.2.0"
+          assert "site-packages" in Path(atlasrag.__file__).as_posix()
+          print(atlasrag.__file__)
+          PY
+          /tmp/atlasrag-wheel/bin/python -m pytest -q /tmp/atlasrag-wheel-tests
+      - name: Test source distribution from outside source tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdist=$(find dist -maxdepth 1 -name 'atlasrag-*.tar.gz' -print -quit)
+          python -m venv /tmp/atlasrag-sdist
+          /tmp/atlasrag-sdist/bin/python -m pip install --upgrade pip
+          /tmp/atlasrag-sdist/bin/python -m pip install "$sdist"
+          cd /tmp
+          /tmp/atlasrag-sdist/bin/python - <<'PY'
+          from importlib.metadata import version
+          from pathlib import Path
+          import atlasrag
+
+          assert version("atlasrag") == "0.2.0"
+          assert "site-packages" in Path(atlasrag.__file__).as_posix()
+          print(atlasrag.__file__)
+          PY

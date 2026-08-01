@@ -22,6 +22,8 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Authorization-scoped BM25 corpus statistics so invisible chunks do not perturb visible scores or ranks.
 - Deterministic ranking and chunk-ID tie-breaking.
 - Regression coverage for provenance, positive retrieval, no-match behavior, malformed policies, unauthorized leakage, stable ties, raw hybrid contribution metadata, and invalid embedding contracts.
+- Public benchmark evidence for installed-package BM25, exact dense, and RRF across SciFact and a deterministic ArguAna contrast slice, with A/B ranking checks and explicit limitations.
+- CI across Python 3.11-3.13 plus clean wheel and source-distribution install/import validation.
 
 ## Current architecture
 
@@ -46,7 +48,9 @@ The core runtime remains standard-library-only. Sentence Transformers is an opti
 
 ## Benchmark status
 
-No retrieval-quality or latency artifact is committed to the public repository yet. The retrieval API and benchmark adapter contract are stable; future evidence must report quality, latency, authorization leakage, failure behavior, package identity, and reproducibility separately. See `BENCHMARK_ADAPTER.md`.
+Version 0.2.0 publishes a compact in-repository evidence surface and a checksummed full archive with raw rankings. The installed-package evaluation covers 300 SciFact queries and a deterministic 200-query ArguAna contrast slice. A/B runs reproduced every quality metric and raw top-10 ranking for BM25, exact dense, and RRF. Authorization/provenance smoke tests returned zero unauthorized results across nine checks.
+
+The benchmarked wheel is pinned by SHA-256. `benchmarks/SOURCE_EQUIVALENCE.json` verifies that the release runtime source tree is byte-identical to the evaluated runtime source. Timings remain single-host evidence and are not production SLOs. HNSW remains neutral-harness evidence, not an AtlasRAG capability.
 
 ## Next highest-value task
 
@@ -75,4 +79,4 @@ Add a reranking boundary over hybrid candidates, preserve provenance through rer
 
 ## Publication status
 
-The canonical repository is public at `tandixit95/AtlasRAG`; `main` is the canonical branch and contains the validated permission-aware hybrid retrieval core.
+The canonical repository is public at `tandixit95/AtlasRAG`; `main` is the canonical branch. Version 0.2.0 is the first evidence-backed GitHub release of the validated permission-aware hybrid retrieval core.

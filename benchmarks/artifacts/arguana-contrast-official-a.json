@@ -1,0 +1,196 @@
+{
+  "ann_vs_exact": {
+    "mean_top10_overlap": 0.9990000000000001,
+    "note": "ANN is an approximation tradeoff only; exact dense remains the correctness reference.",
+    "quality_reference": "exact_dense"
+  },
+  "artifacts": {
+    "raw_queries": "arguana-contrast-official-a.queries.jsonl",
+    "raw_queries_sha256": "757d1233caf8a69866b89d8164e8776bfab65c2e933061f35c7455a70b34d553",
+    "summary_csv": "arguana-contrast-official-a.summary.csv",
+    "summary_csv_sha256": "08e5a6d495ccb5df7559cd80ec21834dd1679c0404d49da9c149aed4fb143c5b"
+  },
+  "build": {
+    "artifact_bytes": {
+      "bm25": 10560592,
+      "embeddings": 13323392,
+      "hnsw": 14610632,
+      "total": 38494616
+    },
+    "batch_query_encoding_seconds": 0.35528828101814725,
+    "bm25_seconds": 0.8202919689938426,
+    "corpus_embedding_seconds": 12.140242874011165,
+    "hnsw_seconds": 0.21891481798957102
+  },
+  "dataset": {
+    "corpus_docs": 8674,
+    "corpus_sha256": "0627982cec4ee896df6dc98604ef6b499c83fd87a19eaaeb3f23b88bbef6cbce",
+    "evaluated_queries": 200,
+    "positive_qrels": 200,
+    "qrels_sha256": "2e9306c30617779a2c03a48eba50cde2506611cae8c583866a485d7e66d7169b",
+    "queries_in_file": 1406,
+    "queries_sha256": "f8b7c903f95d9a2d291de3915a8fac25085e9db679f19f59fea4145bfd1df618"
+  },
+  "environment": {
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "dependencies": {
+      "hnswlib": "0.8.0",
+      "numpy": "2.5.1",
+      "sentence-transformers": "5.6.1",
+      "transformers": "5.14.1"
+    },
+    "logical_cpus": 16,
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "torch": "2.13.0+cu130"
+  },
+  "limitations": [
+    "Single WSL2 laptop host; no distributed or production-scale claim.",
+    "Latency is measured on a deterministic query sample while quality uses the full frozen evaluation slice.",
+    "Exact dense is exhaustive NumPy cosine search and is a correctness baseline, not a scalable serving design.",
+    "One model and two public datasets cannot establish universal retrieval method superiority."
+  ],
+  "model": {
+    "cached_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license": "Apache-2.0",
+    "load_seconds": 1.8182538690161891,
+    "model_card": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+    "name": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "quality": {
+    "ann_hnsw": {
+      "mrr@10": 0.40994841269841265,
+      "ndcg@10": 0.5043934805184918,
+      "recall@10": 0.81,
+      "success@10": 0.81
+    },
+    "bm25": {
+      "mrr@10": 0.3561666666666667,
+      "ndcg@10": 0.45059214964133754,
+      "recall@10": 0.755,
+      "success@10": 0.755
+    },
+    "exact_dense": {
+      "mrr@10": 0.40994841269841265,
+      "ndcg@10": 0.5043934805184918,
+      "recall@10": 0.81,
+      "success@10": 0.81
+    },
+    "hybrid_rrf": {
+      "mrr@10": 0.4343492063492064,
+      "ndcg@10": 0.5291792703786153,
+      "recall@10": 0.835,
+      "success@10": 0.835
+    }
+  },
+  "run": {
+    "ann_ef": 100,
+    "candidate_k": 100,
+    "dataset": "arguana",
+    "evaluated_queries": 200,
+    "identical_query_document_ids_excluded": true,
+    "latency_sample_ids": [
+      "test-politics-ypppdghwid-con05a",
+      "test-politics-cpegiepgh-con02a",
+      "test-science-eassgbatj-con02a",
+      "test-law-thgglcplgphw-pro03a",
+      "test-culture-tlhrilsfhwr-pro02a",
+      "test-digital-freedoms-eifdfaihs-con02a",
+      "test-environment-opecewiahw-con04a",
+      "test-society-cpisydfphwj-pro02a",
+      "test-society-mmcpsgfhbf-pro04a",
+      "test-international-gpdwhwcusa-pro03a",
+      "test-international-atiahblit-pro01a",
+      "test-economy-thhghwhwift-pro01a",
+      "test-law-lgplhbssbco-pro04a",
+      "test-health-dhghhbampt-con01a",
+      "test-international-gmehwasr-con02a",
+      "test-culture-mmciahbans-con03a",
+      "test-society-mmcpsgfhbf-con02a",
+      "test-international-aglhrilhb-pro02a",
+      "test-free-speech-debate-nshbbsbfb-con03a",
+      "test-education-usuprmhbu-pro02a",
+      "test-free-speech-debate-yfsdfkhbwu-pro03a",
+      "test-philosophy-apessghwba-con05a",
+      "test-environment-ehwsnwu-con02a",
+      "test-education-udfakusma-con02a",
+      "test-international-glilpdwhsn-pro01a"
+    ],
+    "latency_sample_queries": 25,
+    "latency_semantics": "per-query sampled steady-state timings; offline index build/model load excluded",
+    "quality_query_encoding": "batched offline evaluation pass",
+    "rrf_k": 60,
+    "seed": 20260731,
+    "split": "test",
+    "top_k": 10
+  },
+  "sampled_latency_ms": {
+    "ann_end_to_end": {
+      "max": 16.89196500228718,
+      "mean": 11.723911837907508,
+      "p50": 12.168202025350183,
+      "p95": 15.171339194057506
+    },
+    "ann_search": {
+      "max": 0.7448889955412596,
+      "mean": 0.34899267833679914,
+      "p50": 0.27663400396704674,
+      "p95": 0.6137761985883116
+    },
+    "bm25_end_to_end": {
+      "max": 15.751150000141934,
+      "mean": 5.613911240361631,
+      "p50": 4.92631399538368,
+      "p95": 10.0690395978745
+    },
+    "bm25_search": {
+      "max": 15.751150000141934,
+      "mean": 5.613911240361631,
+      "p50": 4.92631399538368,
+      "p95": 10.0690395978745
+    },
+    "exact_end_to_end": {
+      "max": 17.090504989027977,
+      "mean": 11.880591760855168,
+      "p50": 12.489434011513367,
+      "p95": 15.918156591942529
+    },
+    "exact_search": {
+      "max": 2.174836990889162,
+      "mean": 0.5056726012844592,
+      "p50": 0.360314006684348,
+      "p95": 1.176475605461746
+    },
+    "hybrid_concurrent": {
+      "max": 29.87388995825313,
+      "mean": 17.866777401650324,
+      "p50": 17.6984729769174,
+      "p95": 27.52080241334623
+    },
+    "hybrid_sequential": {
+      "max": 29.176947980886325,
+      "mean": 17.613111520186067,
+      "p50": 16.789101966423914,
+      "p95": 23.628427565563467
+    },
+    "query_encode": {
+      "max": 16.59003397799097,
+      "mean": 11.374919159570709,
+      "p50": 11.610896995989606,
+      "p95": 14.88587878993712
+    },
+    "rrf_fusion": {
+      "max": 0.14191700029186904,
+      "mean": 0.1186085189692676,
+      "p50": 0.1190180191770196,
+      "p95": 0.1335453940555453
+    }
+  },
+  "schema_version": "atlasrag.batched-retrieval-benchmark.v1",
+  "systems": {
+    "memory_measurement_note": "coarse process peak RSS including model and all in-process artifacts",
+    "process_peak_rss_kb": 1548840
+  }
+}

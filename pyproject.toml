@@ -12,10 +12,19 @@ license = "MIT"
 license-files = ["LICENSE"]
 authors = [{name = "Tanmay Dixit"}]
 classifiers = [
+    "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
+keywords = ["rag", "information-retrieval", "bm25", "hybrid-search", "evaluation"]
 dependencies = []
+
+[project.urls]
+Repository = "https://github.com/tandixit95/AtlasRAG"
+Issues = "https://github.com/tandixit95/AtlasRAG/issues"
+Changelog = "https://github.com/tandixit95/AtlasRAG/blob/main/CHANGELOG.md"
+"Benchmark evidence" = "https://github.com/tandixit95/AtlasRAG/tree/main/benchmarks"
 
 [project.optional-dependencies]
 embeddings = [
@@ -40,3 +49,6 @@ line-length = 88
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"benchmarks/src/*.py" = ["E501"]

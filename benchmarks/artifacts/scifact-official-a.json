@@ -1,0 +1,196 @@
+{
+  "ann_vs_exact": {
+    "mean_top10_overlap": 0.9966666666666667,
+    "note": "ANN is an approximation tradeoff only; exact dense remains the correctness reference.",
+    "quality_reference": "exact_dense"
+  },
+  "artifacts": {
+    "raw_queries": "scifact-official-a.queries.jsonl",
+    "raw_queries_sha256": "5998341ceb32426dd42ce5ceef7d8b5272b6652acb72e19dfa4f706034e4bf91",
+    "summary_csv": "scifact-official-a.summary.csv",
+    "summary_csv_sha256": "4fd9696a8d07851261df5d2c3c10929d7e46ba930537b499320c6e8fe25d71d7"
+  },
+  "build": {
+    "artifact_bytes": {
+      "bm25": 8070937,
+      "embeddings": 7961216,
+      "hnsw": 8730520,
+      "total": 24762673
+    },
+    "batch_query_encoding_seconds": 0.0890051489986945,
+    "bm25_seconds": 0.5779748219938483,
+    "corpus_embedding_seconds": 8.558289075997891,
+    "hnsw_seconds": 0.10433983799885027
+  },
+  "dataset": {
+    "corpus_docs": 5183,
+    "corpus_sha256": "dec31c8182f3d744c7d2c09423756fd1d17cbef75808db13ba01cc0aab4d1ac6",
+    "evaluated_queries": 300,
+    "positive_qrels": 339,
+    "qrels_sha256": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c",
+    "queries_in_file": 1109,
+    "queries_sha256": "8ff84a7c903f722981cd8d595c022660140c51867b27608a6d4910db86080313"
+  },
+  "environment": {
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "dependencies": {
+      "hnswlib": "0.8.0",
+      "numpy": "2.5.1",
+      "sentence-transformers": "5.6.1",
+      "transformers": "5.14.1"
+    },
+    "logical_cpus": 16,
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "torch": "2.13.0+cu130"
+  },
+  "limitations": [
+    "Single WSL2 laptop host; no distributed or production-scale claim.",
+    "Latency is measured on a deterministic query sample while quality uses the full frozen evaluation slice.",
+    "Exact dense is exhaustive NumPy cosine search and is a correctness baseline, not a scalable serving design.",
+    "One model and two public datasets cannot establish universal retrieval method superiority."
+  ],
+  "model": {
+    "cached_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license": "Apache-2.0",
+    "load_seconds": 1.737202817981597,
+    "model_card": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+    "name": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "quality": {
+    "ann_hnsw": {
+      "mrr@10": 0.6047248677248678,
+      "ndcg@10": 0.6450816521455776,
+      "recall@10": 0.7833333333333333,
+      "success@10": 0.7933333333333333
+    },
+    "bm25": {
+      "mrr@10": 0.6339986772486772,
+      "ndcg@10": 0.6646172354026965,
+      "recall@10": 0.781611111111111,
+      "success@10": 0.8
+    },
+    "exact_dense": {
+      "mrr@10": 0.6047248677248678,
+      "ndcg@10": 0.6450816521455776,
+      "recall@10": 0.7833333333333333,
+      "success@10": 0.7933333333333333
+    },
+    "hybrid_rrf": {
+      "mrr@10": 0.6466534391534392,
+      "ndcg@10": 0.6858218991790226,
+      "recall@10": 0.8212222222222223,
+      "success@10": 0.8366666666666667
+    }
+  },
+  "run": {
+    "ann_ef": 100,
+    "candidate_k": 100,
+    "dataset": "scifact",
+    "evaluated_queries": 300,
+    "identical_query_document_ids_excluded": false,
+    "latency_sample_ids": [
+      "922",
+      "1352",
+      "1359",
+      "75",
+      "1049",
+      "517",
+      "507",
+      "1336",
+      "324",
+      "1281",
+      "350",
+      "50",
+      "1344",
+      "113",
+      "1199",
+      "118",
+      "1185",
+      "870",
+      "1140",
+      "702",
+      "903",
+      "628",
+      "13",
+      "274",
+      "525"
+    ],
+    "latency_sample_queries": 25,
+    "latency_semantics": "per-query sampled steady-state timings; offline index build/model load excluded",
+    "quality_query_encoding": "batched offline evaluation pass",
+    "rrf_k": 60,
+    "seed": 20260731,
+    "split": "test",
+    "top_k": 10
+  },
+  "sampled_latency_ms": {
+    "ann_end_to_end": {
+      "max": 63.3248139929492,
+      "mean": 13.28388552647084,
+      "p50": 11.261640989687294,
+      "p95": 15.210048435255882
+    },
+    "ann_search": {
+      "max": 0.7334920228458941,
+      "mean": 0.4922638845164329,
+      "p50": 0.5527879984583706,
+      "p95": 0.7228017959278077
+    },
+    "bm25_end_to_end": {
+      "max": 1.6599020163994282,
+      "mean": 0.8472069608978927,
+      "p50": 0.7583200058434159,
+      "p95": 1.5607306151650837
+    },
+    "bm25_search": {
+      "max": 1.6599020163994282,
+      "mean": 0.8472069608978927,
+      "p50": 0.7583200058434159,
+      "p95": 1.5607306151650837
+    },
+    "exact_end_to_end": {
+      "max": 69.42656400497071,
+      "mean": 14.35473716002889,
+      "p50": 11.798616033047438,
+      "p95": 22.09041338064706
+    },
+    "exact_search": {
+      "max": 11.418531998060644,
+      "mean": 1.5631155180744827,
+      "p50": 0.5251519905868918,
+      "p95": 6.0213214135728705
+    },
+    "hybrid_concurrent": {
+      "max": 66.56542100245133,
+      "mean": 14.789891279069707,
+      "p50": 12.428842019289732,
+      "p95": 21.979777177330085
+    },
+    "hybrid_sequential": {
+      "max": 70.2580469660461,
+      "mean": 15.34593287971802,
+      "p50": 12.755489035043865,
+      "p95": 23.724528989987427
+    },
+    "query_encode": {
+      "max": 62.95607698848471,
+      "mean": 12.791621641954407,
+      "p50": 10.668136994354427,
+      "p95": 14.49605081579648
+    },
+    "rrf_fusion": {
+      "max": 0.7269729976542294,
+      "mean": 0.14398875879123807,
+      "p50": 0.11591898510232568,
+      "p95": 0.15277842176146805
+    }
+  },
+  "schema_version": "atlasrag.batched-retrieval-benchmark.v1",
+  "systems": {
+    "memory_measurement_note": "coarse process peak RSS including model and all in-process artifacts",
+    "process_peak_rss_kb": 1563396
+  }
+}

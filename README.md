@@ -1,5 +1,9 @@
 # AtlasRAG
 
+[![CI](https://github.com/tandixit95/AtlasRAG/actions/workflows/ci.yml/badge.svg)](https://github.com/tandixit95/AtlasRAG/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/tandixit95/AtlasRAG)](https://github.com/tandixit95/AtlasRAG/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 AtlasRAG is a reconstruction-first retrieval systems lab. It rebuilds prior Applied AI and RAG experience as a new public engineering artifact rather than presenting unavailable historical source as recovered code.
 
 The current implementation provides a coherent, framework-independent retrieval slice:
@@ -14,7 +18,7 @@ The current implementation provides a coherent, framework-independent retrieval 
 - typed query and result contracts that preserve method, rank, score semantics, component contributions, and chunk provenance;
 - deterministic tie-breaking and regression tests for authorization leakage, malformed policies, edge cases, and reproducibility.
 
-AtlasRAG does not yet claim a public benchmark result, distributed serving, production traffic, model training, generation quality, or ANN scale. Those claims must be earned by separate reproducible evidence.
+AtlasRAG publishes a bounded, reproducible benchmark evidence package for BM25, exact dense retrieval, and RRF. It does not claim distributed serving, production traffic, model training, generation quality, formal security certification, or ANN scale.
 
 ## Retrieval flow
 
@@ -58,6 +62,16 @@ A chunk is public when it has no AtlasRAG access metadata. Protected chunks use 
 - malformed access metadata fails during indexing instead of degrading to public access.
 
 BM25 computes document frequency and length statistics only over chunks visible to the current principal. Unauthorized chunks therefore cannot appear in results or perturb the authorized caller's BM25 scores and ranks. Exact dense retrieval filters the candidate set before scoring, and hybrid retrieval fuses only already-authorized component results.
+
+## Install
+
+Python 3.11 or newer is required.
+
+```bash
+python -m pip install "atlasrag @ git+https://github.com/tandixit95/AtlasRAG.git@v0.2.0"
+```
+
+The core runtime has no required third-party dependency. Install the optional MiniLM adapter with `.[embeddings]` when developing from source.
 
 ## Minimal example
 
@@ -122,10 +136,14 @@ Raw BM25 and cosine scores are intentionally not added or treated as calibrated.
 
 ```text
 .
+|-- .github/workflows/ci.yml
 |-- ARCHITECTURE.md
 |-- BENCHMARK_ADAPTER.md
+|-- CHANGELOG.md
 |-- PROJECT_STATE.md
 |-- RECONSTRUCTION_LEDGER.md
+|-- benchmarks/
+|-- docs/releases/
 |-- pyproject.toml
 |-- src/atlasrag/
 |   |-- embeddings/
@@ -161,9 +179,18 @@ python -m pip install -e '.[embeddings]'
 
 The core runtime remains standard-library-only. The embedding extra is optional and loaded lazily.
 
-## Benchmark boundary
+## Reproducible benchmark evidence
 
-This code milestone does not publish retrieval-quality or latency numbers. [`BENCHMARK_ADAPTER.md`](BENCHMARK_ADAPTER.md) defines the fixed API, inputs, result separation, authorization checks, and reproducibility requirements that future public benchmark evidence must satisfy. Raw outputs and limitations must accompany any result claim.
+The [benchmark package](benchmarks/README.md) separates installed AtlasRAG results from a neutral comparison harness and preserves dataset provenance, parameters, limitations, machine-readable summaries, A/B reproducibility checks, and authorization/provenance gates.
+
+| Evaluation | BM25 Recall@10 | Exact dense Recall@10 | Hybrid Recall@10 |
+|---|---:|---:|---:|
+| SciFact, 300 judged queries | 0.7816 | 0.7833 | 0.8212 |
+| ArguAna deterministic 200-query contrast slice | 0.7600 | 0.8100 | 0.8450 |
+
+The ArguAna result is not a full official test-set score. Package timing is single-host local evidence, not a production SLO. HNSW measurements remain neutral-harness evidence and are not an AtlasRAG capability. See [results](benchmarks/RESULTS.md), [methodology](benchmarks/METHODOLOGY.md), [limitations](benchmarks/LIMITATIONS.md), and the [claim ledger](benchmarks/CLAIM_LEDGER.md).
+
+[`BENCHMARK_ADAPTER.md`](BENCHMARK_ADAPTER.md) defines the stable package interface used by the installed-wheel evaluation.
 
 ## Reconstruction integrity
 

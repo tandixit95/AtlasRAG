@@ -1,0 +1,76 @@
+{
+  "evaluated_commit": "5e86c78a4c40bc6d552d14d4fdcc370b0db8ece1",
+  "evaluated_wheel_sha256": "30cbaf0030fe86177b7962e43267b6d182534c023eb9d61e7eec7481df048200",
+  "file_count": 16,
+  "files": [
+    {
+      "path": "src/atlasrag/__init__.py",
+      "sha256": "bb3e2a3816af429a82a48d58409ff80663b11347afcf7029ef25732aa3723eec"
+    },
+    {
+      "path": "src/atlasrag/embeddings/__init__.py",
+      "sha256": "c2c9819aaf7d83e4a176cf5f628d3988b42232a474e33a89985b526d78712c3b"
+    },
+    {
+      "path": "src/atlasrag/embeddings/base.py",
+      "sha256": "38cc3d96951b3e4c07412f8d37a2ecba985ad6a7a40b4b722e2aa3fb70110055"
+    },
+    {
+      "path": "src/atlasrag/embeddings/sentence_transformers.py",
+      "sha256": "de742a4cbb2795b4b549928832428b99d4273eb2a695953e50f07964e67548cc"
+    },
+    {
+      "path": "src/atlasrag/ingestion/__init__.py",
+      "sha256": "81d07b5ecb7fb4e5d84e5fe183627555c30f6ac014875f508af04ce5fc316982"
+    },
+    {
+      "path": "src/atlasrag/ingestion/base.py",
+      "sha256": "a7012ef1e3ac8934b382ffb11e2b65c89321e36a4d8883fa022a0e2bb0024eb2"
+    },
+    {
+      "path": "src/atlasrag/ingestion/chunking.py",
+      "sha256": "0db4e28b5b21cb357c72ef22fed1da0f0692d5b9dab39fffd9860791c9dd493c"
+    },
+    {
+      "path": "src/atlasrag/ingestion/pipeline.py",
+      "sha256": "1b0f0a61191429dfe1aa73bfd188b6a9d78f87b4c3875a3289810b83b9678346"
+    },
+    {
+      "path": "src/atlasrag/ingestion/text.py",
+      "sha256": "90b80256b745c704fe9fad5d6f369e30ddc27adcb4180d20663202dcc4d0fcf9"
+    },
+    {
+      "path": "src/atlasrag/models.py",
+      "sha256": "c564038651235711978b6598c8d6b816d88e89edb0b7a11f9d2619381e1eb8d6"
+    },
+    {
+      "path": "src/atlasrag/retrieval/__init__.py",
+      "sha256": "4d0ada703bca4b548413a27d33634308d3c3b97b7346f4cfdc2d617380e5f865"
+    },
+    {
+      "path": "src/atlasrag/retrieval/access.py",
+      "sha256": "4ef4aa208b0077931d93bf65d7398f857ed7996234eca91c4bbe3585631e59b9"
+    },
+    {
+      "path": "src/atlasrag/retrieval/bm25.py",
+      "sha256": "6b79b74133000b4326b41e574725fe96f78213d0e9eb9618ebd266a0fcd34e99"
+    },
+    {
+      "path": "src/atlasrag/retrieval/contracts.py",
+      "sha256": "99195bbecdd0a391107eb5b10bd3a203eb8fbd5e34cb4c5b8a2e60cbc01042c4"
+    },
+    {
+      "path": "src/atlasrag/retrieval/dense.py",
+      "sha256": "0402f0930287a41a4688d9eaed3684c22eb8a12a08c999cf8acc9c5b40a241d1"
+    },
+    {
+      "path": "src/atlasrag/retrieval/hybrid.py",
+      "sha256": "3db95d897825611287c4f2bca23b4a5bc91b182a105c0cb8b63ccfaf38079eff"
+    }
+  ],
+  "note": "Release-only documentation, CI, and evidence files are outside this runtime-source equivalence check.",
+  "release_version": "0.2.0",
+  "runtime_source_equal": true,
+  "schema_version": "atlasrag.source-equivalence.v1",
+  "scope": "src/atlasrag runtime package files only"
+}

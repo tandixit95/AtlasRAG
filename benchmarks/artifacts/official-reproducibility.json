@@ -1,0 +1,78 @@
+{
+  "datasets": [
+    {
+      "dataset": "scifact",
+      "dataset_hashes_equal": true,
+      "model_revision_equal": true,
+      "note": "Quality, rankings, run parameters, frozen inputs, model revision, and deterministic sample IDs must match exactly. Latency and build timing may vary.",
+      "quality": {
+        "ann_hnsw": {
+          "mrr@10": 0.6047248677248678,
+          "ndcg@10": 0.6450816521455776,
+          "recall@10": 0.7833333333333333,
+          "success@10": 0.7933333333333333
+        },
+        "bm25": {
+          "mrr@10": 0.6339986772486772,
+          "ndcg@10": 0.6646172354026965,
+          "recall@10": 0.781611111111111,
+          "success@10": 0.8
+        },
+        "exact_dense": {
+          "mrr@10": 0.6047248677248678,
+          "ndcg@10": 0.6450816521455776,
+          "recall@10": 0.7833333333333333,
+          "success@10": 0.7933333333333333
+        },
+        "hybrid_rrf": {
+          "mrr@10": 0.6466534391534392,
+          "ndcg@10": 0.6858218991790226,
+          "recall@10": 0.8212222222222223,
+          "success@10": 0.8366666666666667
+        }
+      },
+      "quality_equal": true,
+      "raw_rankings_equal": true,
+      "raw_rankings_sha256": "5998341ceb32426dd42ce5ceef7d8b5272b6652acb72e19dfa4f706034e4bf91",
+      "run_parameters_equal": true
+    },
+    {
+      "dataset": "arguana-contrast-200",
+      "dataset_hashes_equal": true,
+      "model_revision_equal": true,
+      "note": "Quality, rankings, run parameters, frozen inputs, model revision, and deterministic sample IDs must match exactly. Latency and build timing may vary.",
+      "quality": {
+        "ann_hnsw": {
+          "mrr@10": 0.40994841269841265,
+          "ndcg@10": 0.5043934805184918,
+          "recall@10": 0.81,
+          "success@10": 0.81
+        },
+        "bm25": {
+          "mrr@10": 0.3561666666666667,
+          "ndcg@10": 0.45059214964133754,
+          "recall@10": 0.755,
+          "success@10": 0.755
+        },
+        "exact_dense": {
+          "mrr@10": 0.40994841269841265,
+          "ndcg@10": 0.5043934805184918,
+          "recall@10": 0.81,
+          "success@10": 0.81
+        },
+        "hybrid_rrf": {
+          "mrr@10": 0.4343492063492064,
+          "ndcg@10": 0.5291792703786153,
+          "recall@10": 0.835,
+          "success@10": 0.835
+        }
+      },
+      "quality_equal": true,
+      "raw_rankings_equal": true,
+      "raw_rankings_sha256": "757d1233caf8a69866b89d8164e8776bfab65c2e933061f35c7455a70b34d553",
+      "run_parameters_equal": true
+    }
+  ],
+  "passed": true,
+  "schema_version": "atlasrag.reproducibility.v1"
+}
