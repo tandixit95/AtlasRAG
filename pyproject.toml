@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "atlasrag"
-version = "0.2.0"
+version = "0.3.0.dev0"
 description = "A reconstruction-first RAG systems lab focused on retrieval quality, provenance, permissions, and reproducible evaluation."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -28,6 +28,9 @@ Changelog = "https://github.com/tandixit95/AtlasRAG/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 embeddings = [
+    "sentence-transformers>=3,<6",
+]
+reranking = [
     "sentence-transformers>=3,<6",
 ]
 dev = [

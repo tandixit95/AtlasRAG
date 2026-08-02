@@ -55,7 +55,9 @@ Every retriever consumes a `RetrievalQuery` and returns `RetrievalResult` object
 - retrieval method;
 - raw method-specific score;
 - explicit score kind;
-- hybrid component contributions when applicable.
+- hybrid component contributions when applicable;
+- an immutable citation projection;
+- candidate-stage evidence when a result has been reranked.
 
 Raw cosine and BM25 scores are not assumed to be calibrated. Hybrid retrieval fuses ranks using RRF and retains each component's original rank, score, and score kind as separate metadata.
 
@@ -121,6 +123,25 @@ The default `rrf_k` is 60. `candidate_k` controls how deeply each component list
 
 RRF is selected because it combines rankings without pretending BM25 and cosine values share a meaningful numeric scale. The fused score is an RRF score, not a probability or calibrated relevance estimate.
 
+## Reranking boundary
+
+`RerankedRetriever` wraps any authorization-safe `Retriever`. It requests a configurable candidate depth, passes only those returned chunks to a `Reranker`, validates one finite score per candidate, and emits the requested final `top_k`.
+
+The boundary makes four constraints explicit:
+
+1. authorization and exclusions happen in the candidate retriever before reranking;
+2. the reranker cannot introduce a chunk absent from the safe candidate set;
+3. reranker scores are their own score kind and are not mixed numerically with BM25, cosine, or RRF scores;
+4. `RerankTrace` retains the candidate method, rank, score, score kind, and hybrid component contributions.
+
+Equal reranker scores preserve candidate rank before falling back to chunk ID. `candidate_k` is an accuracy/latency control and a recall ceiling: a reranker cannot rescue a relevant chunk that candidate generation did not return.
+
+`CrossEncoderReranker` is an optional Sentence Transformers adapter. It is not enabled by default because cross-encoder quality gains must be measured against added latency for a frozen dataset and model revision.
+
+## Citation projection
+
+Every `RetrievalResult` exposes a `Citation` derived from its original chunk. The citation carries chunk and document identity, document-version and chunk hashes, source URI, exact half-open character span, chunking strategy, and immutable metadata. Reranking never reconstructs citations from text or external IDs; it preserves the original chunk object.
+
 ## Identity and provenance decisions
 
 ### Separate source identity from source version
@@ -167,7 +188,9 @@ Embedding providers may introduce their own nondeterminism. Benchmark runs must 
 - tenant or group leakage on dense, lexical, or hybrid paths;
 - unauthorized BM25 documents perturbing visible statistics;
 - non-deterministic equal-score ordering;
-- hybrid fusion adding incomparable raw scores.
+- hybrid fusion adding incomparable raw scores;
+- reranker count mismatches, non-finite scores, duplicate candidate IDs, and inconsistent candidate traces;
+- reranking reintroducing a chunk outside the authorization-safe candidate set.
 
 ## Deferred failure modes
 
@@ -179,5 +202,5 @@ Embedding providers may introduce their own nondeterminism. Benchmark runs must 
 - partial remote index failures and degraded-mode signaling;
 - benchmark leakage into tuning;
 - quality improvements that hide latency, memory, or cost regressions;
-- context construction or generation that loses citation provenance;
+- context construction or generation that loses citation provenance after retrieval;
 - distributed term statistics and multi-node consistency.

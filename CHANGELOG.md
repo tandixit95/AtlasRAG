@@ -2,6 +2,20 @@
 
 All notable public changes to AtlasRAG are documented here.
 
+## [Unreleased]
+
+### Added
+
+- Model-independent reranking contract and authorization-safe `RerankedRetriever` composition.
+- Optional Sentence Transformers cross-encoder adapter with configurable batching.
+- Immutable source-span `Citation` projection on every retrieval result.
+- Rerank traces preserving candidate-stage method, rank, score semantics, and hybrid contributions.
+- Regression coverage for candidate-depth behavior, exclusions, authorization boundaries, deterministic ties, score validation, and citation integrity.
+
+### Changed
+
+- Development package version advanced to `0.3.0.dev0`; the latest stable release remains `0.2.0`.
+
 ## [0.2.0] - 2026-08-01
 
 ### Added

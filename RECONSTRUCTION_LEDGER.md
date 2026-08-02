@@ -57,6 +57,12 @@ Implemented from scratch on the current repository timeline:
 - deterministic tie-breaking on every retrieval path;
 - positive, negative, edge-case, provenance, determinism, invalid-contract, and authorization-leakage tests.
 
+- model-independent reranking boundary over authorization-safe candidates;
+- optional cross-encoder scoring adapter with explicit batching;
+- immutable citation projections derived from original chunks;
+- rerank traces preserving candidate-stage rank, method, score semantics, and hybrid contributions;
+- regression coverage proving reranking cannot reintroduce unauthorized or excluded chunks;
+
 ## NEW
 
 Design choices introduced during this rebuild, without claiming they existed historically:
@@ -73,7 +79,7 @@ Design choices introduced during this rebuild, without claiming they existed his
 - tenant and group policy metadata is conjunctive and fails closed;
 - BM25 statistics are computed only over visible chunks to prevent unauthorized corpus influence in the local baseline;
 - public chunks are visible to all callers, while protected chunks require explicit principal context;
-- HNSW, reranking, generation, persistence, and distributed serving are deferred until measured need justifies them.
+- HNSW, default-enabled reranking, generation, persistence, and distributed serving remain gated by measured need.
 
 ## UNCERTAIN OR NOT YET PROVED
 
@@ -82,7 +88,7 @@ Design choices introduced during this rebuild, without claiming they existed his
 - historical lexical retrieval, fusion, or reranking parameters;
 - historical access-control model;
 - historical context sufficiency, abstention, or generation behavior;
-- integrated AtlasRAG benchmark quality or latency;
+- reranking quality and latency on a clean pinned package;
 - ANN recall and latency tradeoffs;
 - load profile, deployment topology, user count, traffic, SLOs, or production observability;
 - whether the current policy model matches any prior production authorization design.

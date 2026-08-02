@@ -93,3 +93,19 @@ def test_retrieval_query_rejects_invalid_exclusions(excluded) -> None:
     expected = TypeError if isinstance(excluded, str) else ValueError
     with pytest.raises(expected):
         RetrievalQuery(text="query", excluded_chunk_ids=excluded)
+
+
+def test_citation_rejects_invalid_hashes() -> None:
+    from atlasrag.retrieval import Citation
+
+    with pytest.raises(ValueError, match="SHA-256"):
+        Citation(
+            chunk_id="chunk-1",
+            document_id="doc-1",
+            document_content_sha256="not-a-digest",
+            source_uri="memory://doc-1",
+            start_char=0,
+            end_char=4,
+            content_sha256="0" * 64,
+            strategy_id="test-v1",
+        )

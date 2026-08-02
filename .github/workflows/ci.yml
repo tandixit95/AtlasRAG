@@ -37,7 +37,7 @@ jobs:
           from importlib.metadata import version
           import atlasrag
 
-          assert version("atlasrag") == "0.2.0"
+          assert version("atlasrag") == "0.3.0.dev0"
           assert atlasrag.__file__
           print(atlasrag.__file__)
           PY
@@ -80,7 +80,7 @@ jobs:
           from pathlib import Path
           import atlasrag
 
-          assert version("atlasrag") == "0.2.0"
+          assert version("atlasrag") == "0.3.0.dev0"
           assert "site-packages" in Path(atlasrag.__file__).as_posix()
           print(atlasrag.__file__)
           PY
@@ -99,7 +99,7 @@ jobs:
           from pathlib import Path
           import atlasrag
 
-          assert version("atlasrag") == "0.2.0"
+          assert version("atlasrag") == "0.3.0.dev0"
           assert "site-packages" in Path(atlasrag.__file__).as_posix()
           print(atlasrag.__file__)
           PY

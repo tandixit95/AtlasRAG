@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
 from enum import StrEnum
 from math import isfinite
+from types import MappingProxyType
 
 from atlasrag.models import Chunk
 
@@ -17,6 +18,7 @@ class RetrievalMethod(StrEnum):
     EXACT_DENSE = "exact_dense"
     BM25 = "bm25"
     HYBRID_RRF = "hybrid_rrf"
+    RERANKED = "reranked"
 
 
 class ScoreKind(StrEnum):
@@ -25,6 +27,7 @@ class ScoreKind(StrEnum):
     COSINE_SIMILARITY = "cosine_similarity"
     BM25 = "bm25"
     RECIPROCAL_RANK_FUSION = "reciprocal_rank_fusion"
+    RERANKER_RELEVANCE = "reranker_relevance"
 
 
 def _normalize_nonblank(value: str, *, field_name: str) -> str:
@@ -32,6 +35,15 @@ def _normalize_nonblank(value: str, *, field_name: str) -> str:
     if not normalized:
         raise ValueError(f"{field_name} must not be blank")
     return normalized
+
+
+def _validate_sha256(value: str, *, field_name: str) -> None:
+    if len(value) != 64:
+        raise ValueError(f"{field_name} must be a SHA-256 hex digest")
+    try:
+        int(value, 16)
+    except ValueError as exc:
+        raise ValueError(f"{field_name} must be a SHA-256 hex digest") from exc
 
 
 def _normalize_groups(groups: Iterable[str]) -> frozenset[str]:
@@ -116,6 +128,80 @@ class RetrievalContribution:
 
 
 @dataclass(frozen=True, slots=True)
+class Citation:
+    """Stable source-span citation projection for a retrieved chunk."""
+
+    chunk_id: str
+    document_id: str
+    document_content_sha256: str
+    source_uri: str
+    start_char: int
+    end_char: int
+    content_sha256: str
+    strategy_id: str
+    metadata: Mapping[str, str] = field(default_factory=dict)
+
+    def __post_init__(self) -> None:
+        if not self.chunk_id.strip():
+            raise ValueError("citation chunk_id must not be blank")
+        if not self.document_id.strip():
+            raise ValueError("citation document_id must not be blank")
+        if not self.source_uri.strip():
+            raise ValueError("citation source_uri must not be blank")
+        _validate_sha256(
+            self.document_content_sha256,
+            field_name="citation document_content_sha256",
+        )
+        _validate_sha256(self.content_sha256, field_name="citation content_sha256")
+        if self.start_char < 0 or self.end_char <= self.start_char:
+            raise ValueError("citation span must be a non-empty half-open range")
+        if not self.strategy_id.strip():
+            raise ValueError("citation strategy_id must not be blank")
+        object.__setattr__(self, "metadata", MappingProxyType(dict(self.metadata)))
+
+    @classmethod
+    def from_chunk(cls, chunk: Chunk) -> Citation:
+        """Project immutable citation fields from ``chunk``."""
+
+        return cls(
+            chunk_id=chunk.chunk_id,
+            document_id=chunk.document_id,
+            document_content_sha256=chunk.document_content_sha256,
+            source_uri=chunk.source_uri,
+            start_char=chunk.start_char,
+            end_char=chunk.end_char,
+            content_sha256=chunk.content_sha256,
+            strategy_id=chunk.strategy_id,
+            metadata=chunk.metadata,
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class RerankTrace:
+    """Candidate-stage evidence retained after reranking."""
+
+    model_id: str
+    candidate_method: RetrievalMethod
+    candidate_score_kind: ScoreKind
+    candidate_score: float
+    candidate_rank: int
+    candidate_contributions: tuple[RetrievalContribution, ...] = ()
+
+    def __post_init__(self) -> None:
+        if not self.model_id.strip():
+            raise ValueError("rerank model_id must not be blank")
+        if self.candidate_rank <= 0:
+            raise ValueError("candidate_rank must be positive")
+        if not isfinite(self.candidate_score):
+            raise ValueError("candidate_score must be finite")
+        methods = [contribution.method for contribution in self.candidate_contributions]
+        if len(methods) != len(set(methods)):
+            raise ValueError(
+                "candidate_contributions must contain at most one entry per method"
+            )
+
+
+@dataclass(frozen=True, slots=True)
 class RetrievalResult:
     """One ranked result with provenance and explicit score semantics.
 
@@ -130,6 +216,7 @@ class RetrievalResult:
     method: RetrievalMethod
     score_kind: ScoreKind
     contributions: tuple[RetrievalContribution, ...] = ()
+    rerank_trace: RerankTrace | None = None
 
     def __post_init__(self) -> None:
         if self.rank <= 0:
@@ -139,6 +226,23 @@ class RetrievalResult:
         methods = [contribution.method for contribution in self.contributions]
         if len(methods) != len(set(methods)):
             raise ValueError("contributions must contain at most one entry per method")
+        if self.method is RetrievalMethod.RERANKED:
+            if self.score_kind is not ScoreKind.RERANKER_RELEVANCE:
+                raise ValueError("reranked results require reranker relevance scores")
+            if self.rerank_trace is None:
+                raise ValueError("reranked results require a rerank trace")
+            if self.contributions != self.rerank_trace.candidate_contributions:
+                raise ValueError(
+                    "reranked contributions must match candidate-stage contributions"
+                )
+        elif self.rerank_trace is not None:
+            raise ValueError("only reranked results may carry a rerank trace")
+
+    @property
+    def citation(self) -> Citation:
+        """Return an immutable source-span citation for this result."""
+
+        return Citation.from_chunk(self.chunk)
 
 
 class Retriever(ABC):

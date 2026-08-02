@@ -6,7 +6,7 @@
 
 AtlasRAG is a reconstruction-first retrieval systems lab. It rebuilds prior Applied AI and RAG experience as a new public engineering artifact rather than presenting unavailable historical source as recovered code.
 
-The current implementation provides a coherent, framework-independent retrieval slice:
+The latest stable release is `v0.2.0`. Current `main` advances toward `0.3.0` with a coherent, framework-independent retrieval and reranking slice:
 
 - immutable documents and chunks with deterministic IDs, SHA-256 versioning, exact character spans, and source metadata;
 - deterministic fixed-character chunking as an auditable control strategy;
@@ -14,11 +14,13 @@ The current implementation provides a coherent, framework-independent retrieval 
 - exact exhaustive cosine retrieval as the dense correctness reference;
 - a dependency-light BM25 lexical baseline;
 - Reciprocal Rank Fusion (RRF) over BM25 and exact dense rankings;
+- an authorization-safe reranking boundary plus an optional cross-encoder adapter;
+- immutable source-span citations and rerank traces that preserve candidate-stage evidence;
 - explicit tenant and group permission metadata enforced by every retrieval path;
 - typed query and result contracts that preserve method, rank, score semantics, component contributions, and chunk provenance;
 - deterministic tie-breaking and regression tests for authorization leakage, malformed policies, edge cases, and reproducibility.
 
-AtlasRAG publishes a bounded, reproducible benchmark evidence package for BM25, exact dense retrieval, and RRF. It does not claim distributed serving, production traffic, model training, generation quality, formal security certification, or ANN scale.
+AtlasRAG publishes a bounded, reproducible `v0.2.0` benchmark evidence package for BM25, exact dense retrieval, and RRF. Reranking on `main` is not enabled by default and earns a public result claim only through a separately pinned experiment. AtlasRAG does not claim distributed serving, production traffic, model training, generation quality, formal security certification, or ANN scale.
 
 ## Retrieval flow
 
@@ -45,11 +47,17 @@ BM25Retriever          ExactDenseRetriever
       ReciprocalRankFusionRetriever
                   |
                   v
+       authorization-safe candidates
+                  |
+                  v
+         RerankedRetriever (optional)
+                  |
+                  v
  RetrievalResult[]
- - original Chunk and provenance
- - method and rank
- - method-specific score + score kind
+ - original Chunk and immutable Citation
+ - final method, rank, score, and score kind
  - raw component ranks/scores for hybrid results
+ - candidate-stage method/rank/score in RerankTrace
 ```
 
 ## Permission model
@@ -67,11 +75,19 @@ BM25 computes document frequency and length statistics only over chunks visible 
 
 Python 3.11 or newer is required.
 
+Latest stable release (`v0.2.0`, retrieval without reranking):
+
 ```bash
 python -m pip install "atlasrag @ git+https://github.com/tandixit95/AtlasRAG.git@v0.2.0"
 ```
 
-The core runtime has no required third-party dependency. Install the optional MiniLM adapter with `.[embeddings]` when developing from source.
+Current development branch (`0.3.0.dev0`, including reranking):
+
+```bash
+python -m pip install "atlasrag[reranking] @ git+https://github.com/tandixit95/AtlasRAG.git@main"
+```
+
+The core runtime has no required third-party dependency. The example below targets current `main`; pin model revisions for reproducible experiments.
 
 ## Minimal example
 
@@ -86,6 +102,8 @@ from atlasrag.retrieval import (
     PermissionPolicy,
     ReciprocalRankFusionRetriever,
     RetrievalQuery,
+    RerankedRetriever,
+    CrossEncoderReranker,
 )
 
 # Supply any EmbeddingModel implementation. Deterministic test embedders are used
@@ -113,7 +131,14 @@ dense = ExactDenseRetriever(embedder)
 hybrid = ReciprocalRankFusionRetriever(lexical, dense)
 hybrid.index(chunks)
 
-results = hybrid.search(
+# Optional: rerank only the already-authorized hybrid candidate set.
+retriever = RerankedRetriever(
+    hybrid,
+    CrossEncoderReranker(),
+    candidate_k=50,
+)
+
+results = retriever.search(
     RetrievalQuery(
         text="mars incident",
         top_k=5,
@@ -125,12 +150,12 @@ results = hybrid.search(
 )
 
 for result in results:
-    print(result.rank, result.method.value, result.score, result.chunk.source_uri)
+    print(result.rank, result.method.value, result.score, result.citation.source_uri)
     for component in result.contributions:
         print("  ", component.method.value, component.rank, component.score)
 ```
 
-Raw BM25 and cosine scores are intentionally not added or treated as calibrated. RRF combines component ranks; the original component rank, score, and score kind remain attached for inspection.
+Raw BM25, cosine, RRF, and cross-encoder scores are not treated as mutually calibrated. RRF preserves component evidence, and reranking preserves the complete candidate-stage method, rank, score kind, score, and contributions in `RerankTrace`.
 
 ## Repository layout
 
@@ -154,7 +179,8 @@ Raw BM25 and cosine scores are intentionally not added or treated as calibrated.
 |       |-- bm25.py
 |       |-- contracts.py
 |       |-- dense.py
-|       `-- hybrid.py
+|       |-- hybrid.py
+|       `-- reranking.py
 `-- tests/
 ```
 
@@ -171,13 +197,14 @@ ruff check .
 ruff format --check .
 ```
 
-To use the real MiniLM adapter:
+To use the real MiniLM or cross-encoder adapters:
 
 ```bash
 python -m pip install -e '.[embeddings]'
+python -m pip install -e '.[reranking]'
 ```
 
-The core runtime remains standard-library-only. The embedding extra is optional and loaded lazily.
+The core runtime remains standard-library-only. Model-backed adapters are optional and loaded lazily.
 
 ## Reproducible benchmark evidence
 

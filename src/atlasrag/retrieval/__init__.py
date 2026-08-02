@@ -8,6 +8,8 @@ from atlasrag.retrieval.access import (
 from atlasrag.retrieval.bm25 import BM25Retriever, tokenize
 from atlasrag.retrieval.contracts import (
     AccessPrincipal,
+    Citation,
+    RerankTrace,
     RetrievalContribution,
     RetrievalMethod,
     RetrievalQuery,
@@ -17,14 +19,24 @@ from atlasrag.retrieval.contracts import (
 )
 from atlasrag.retrieval.dense import ExactDenseRetriever
 from atlasrag.retrieval.hybrid import ReciprocalRankFusionRetriever
+from atlasrag.retrieval.reranking import (
+    CrossEncoderReranker,
+    RerankedRetriever,
+    Reranker,
+)
 
 __all__ = [
     "AccessPrincipal",
     "BM25Retriever",
+    "Citation",
+    "CrossEncoderReranker",
     "ExactDenseRetriever",
     "GROUPS_METADATA_KEY",
     "PermissionPolicy",
     "ReciprocalRankFusionRetriever",
+    "RerankedRetriever",
+    "Reranker",
+    "RerankTrace",
     "RetrievalContribution",
     "RetrievalMethod",
     "RetrievalQuery",

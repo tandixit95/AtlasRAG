@@ -24,6 +24,9 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Regression coverage for provenance, positive retrieval, no-match behavior, malformed policies, unauthorized leakage, stable ties, raw hybrid contribution metadata, and invalid embedding contracts.
 - Public benchmark evidence for installed-package BM25, exact dense, and RRF across SciFact and a deterministic ArguAna contrast slice, with A/B ranking checks and explicit limitations.
 - CI across Python 3.11-3.13 plus clean wheel and source-distribution install/import validation.
+- Model-independent reranking contract and authorization-safe candidate composition.
+- Optional cross-encoder adapter with configurable batching.
+- Immutable citations plus rerank traces preserving candidate-stage evidence.
 
 ## Current architecture
 
@@ -42,6 +45,12 @@ DocumentSource -> Document -> ChunkingStrategy -> Chunk
                                              |
                                              v
                                       RetrievalResult
+                                             |
+                                             v
+                         RerankedRetriever + optional CrossEncoderReranker
+                                             |
+                                             v
+                         RetrievalResult + Citation + RerankTrace
 ```
 
 The core runtime remains standard-library-only. Sentence Transformers is an optional embedding extra. Exact dense search is the correctness reference and is not replaced by ANN in this milestone.
@@ -54,14 +63,14 @@ The benchmarked wheel is pinned by SHA-256. `benchmarks/SOURCE_EQUIVALENCE.json`
 
 ## Next highest-value task
 
-Add a reranking boundary over hybrid candidates, preserve provenance through reranking, document candidate-depth tradeoffs, and measure whether ranking gains justify added latency before making it part of the default path.
+Freeze and run the reranking experiment against a clean `0.3.0.dev0` wheel. Compare hybrid versus cross-encoder reranking across candidate depths, record candidate recall ceilings and added latency, and retain negative findings. Do not enable reranking by default unless measured gains justify it.
 
 ## Deferred work
 
 - HNSW or another ANN index, gated by corpus scale and exact-recall comparison.
 - Structure-aware or tokenizer-aware chunking, gated by measured retrieval gains.
 - Persistence and incremental index refresh.
-- Reranking and generation.
+- Generation.
 - Explicit partial/degraded serving metadata for multi-index or remote failures.
 - Context construction, abstention, and answer evaluation.
 - Distributed serving, replication, global term statistics, and production SLOs.
@@ -75,8 +84,9 @@ Add a reranking boundary over hybrid candidates, preserve provenance through rer
 - The tokenizer is a transparent Unicode word-token baseline, not a language-specific analyzer.
 - Exact dense retrieval is exhaustive and intended for correctness, not large-corpus latency.
 - Permission policy is conjunctive tenant/group metadata. It is not a general policy language or external authorization service.
-- No public benchmark result, production traffic, user count, scale, SLO, or deployment topology is claimed.
+- The released `v0.2.0` evidence does not cover reranking; `main` reranking remains experimental until a pinned clean-wheel experiment is published.
+- No production traffic, user count, scale, SLO, or deployment topology is claimed.
 
 ## Publication status
 
-The canonical repository is public at `tandixit95/AtlasRAG`; `main` is the canonical branch. Version 0.2.0 is the first evidence-backed GitHub release of the validated permission-aware hybrid retrieval core.
+The canonical repository is public at `tandixit95/AtlasRAG`; `main` is the canonical branch. Version 0.2.0 is the first evidence-backed GitHub release. Current `main` is `0.3.0.dev0` and adds an unreleased reranking/citation boundary.
