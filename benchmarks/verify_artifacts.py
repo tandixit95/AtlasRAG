@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -118,7 +119,11 @@ if not regression_gates["passed"]:
     fail("benchmark regression gates failed")
 
 checksum_count = verify_checksum_manifest()
+subprocess.run(
+    [sys.executable, str(ROOT / "reranking/verify_artifacts.py")],
+    check=True,
+)
 print(
     "PASS: benchmark documentation, JSON, privacy, source-equivalence, "
-    f"regression gates, and {checksum_count} checksums"
+    f"regression gates, reranking development evidence, and {checksum_count} checksums"
 )

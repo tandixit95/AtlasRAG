@@ -62,6 +62,9 @@ Implemented from scratch on the current repository timeline:
 - immutable citation projections derived from original chunks;
 - rerank traces preserving candidate-stage rank, method, score semantics, and hybrid contributions;
 - regression coverage proving reranking cannot reintroduce unauthorized or excluded chunks;
+- a clean-wheel reranking runner with pinned package, data, and model identities;
+- byte-identical A/B SciFact rankings, paired bootstrap analysis, and raw timing samples;
+- an evidence-backed decision to keep reranking disabled by default;
 
 ## NEW
 
@@ -88,7 +91,7 @@ Design choices introduced during this rebuild, without claiming they existed his
 - historical lexical retrieval, fusion, or reranking parameters;
 - historical access-control model;
 - historical context sufficiency, abstention, or generation behavior;
-- reranking quality and latency on a clean pinned package;
+- reranking generalization beyond SciFact and stable latency under controlled host conditions;
 - ANN recall and latency tradeoffs;
 - load profile, deployment topology, user count, traffic, SLOs, or production observability;
 - whether the current policy model matches any prior production authorization design.

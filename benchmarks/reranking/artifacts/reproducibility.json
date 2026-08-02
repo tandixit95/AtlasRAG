@@ -1,0 +1,267 @@
+{
+  "artifacts": {
+    "rankings_a_sha256": "199d11ad5e291c126d7b5177a55c47267a8a50829e13273ff7faecb59084e398",
+    "rankings_b_sha256": "199d11ad5e291c126d7b5177a55c47267a8a50829e13273ff7faecb59084e398",
+    "run_a_sha256": "3cf7807c8d5fbcba6466c8160bcffa22600d109b6ecb9041f179138c5fd84208",
+    "run_b_sha256": "c6967a2ff1332490e76e5c24b2f612312c264a6ee761850605e8c60dd03573d1",
+    "summary_a_sha256": "45e4fc723d5697370db157b0799873d11e7290d15ed968c848e55879bca20544",
+    "summary_b_sha256": "45e4fc723d5697370db157b0799873d11e7290d15ed968c848e55879bca20544"
+  },
+  "checks": {
+    "candidate_recall_equal": true,
+    "latency_query_ids_equal": true,
+    "quality_equal": true,
+    "query_count_equal": true,
+    "raw_rankings_byte_equal": true,
+    "run_invariants_equal": true,
+    "summary_csv_byte_equal": true
+  },
+  "dominated_candidate_depths": {
+    "20": 10
+  },
+  "latency_diagnostics": {
+    "high_dispersion_detected": true,
+    "post_hoc_heuristic": "High dispersion when p95 exceeds 3x p50 or max exceeds 10x p50. This diagnostic was added after inspecting host contention and is not a preregistered statistical test.",
+    "runs": {
+      "run_a": {
+        "hybrid_candidate_generation": {
+          "high_dispersion_heuristic": true,
+          "max_to_p50_ratio": 17.575516868869705,
+          "p95_to_p50_ratio": 11.905189050584456
+        },
+        "measured_end_to_end.10": {
+          "high_dispersion_heuristic": true,
+          "max_to_p50_ratio": 197.83209903068447,
+          "p95_to_p50_ratio": 91.85640468869774
+        },
+        "measured_end_to_end.20": {
+          "high_dispersion_heuristic": true,
+          "max_to_p50_ratio": 20.05233609274775,
+          "p95_to_p50_ratio": 15.67252329313906
+        },
+        "measured_end_to_end.50": {
+          "high_dispersion_heuristic": true,
+          "max_to_p50_ratio": 162.16798512139763,
+          "p95_to_p50_ratio": 13.138492810386088
+        },
+        "reranker_only.10": {
+          "high_dispersion_heuristic": true,
+          "max_to_p50_ratio": 19.46513699833931,
+          "p95_to_p50_ratio": 15.820302968753227
+        },
+        "reranker_only.20": {
+          "high_dispersion_heuristic": true,
+          "max_to_p50_ratio": 17.320910894229804,
+          "p95_to_p50_ratio": 12.641199109160825
+        },
+        "reranker_only.50": {
+          "high_dispersion_heuristic": true,
+          "max_to_p50_ratio": 5.308971593071153,
+          "p95_to_p50_ratio": 4.607115541253722
+        }
+      },
+      "run_b": {
+        "hybrid_candidate_generation": {
+          "high_dispersion_heuristic": false,
+          "max_to_p50_ratio": 1.8180410816400452,
+          "p95_to_p50_ratio": 1.6865714225645307
+        },
+        "measured_end_to_end.10": {
+          "high_dispersion_heuristic": false,
+          "max_to_p50_ratio": 1.5096056012533177,
+          "p95_to_p50_ratio": 1.3405511711835654
+        },
+        "measured_end_to_end.20": {
+          "high_dispersion_heuristic": false,
+          "max_to_p50_ratio": 1.1484019677456,
+          "p95_to_p50_ratio": 1.117429754487401
+        },
+        "measured_end_to_end.50": {
+          "high_dispersion_heuristic": false,
+          "max_to_p50_ratio": 1.3933388925677397,
+          "p95_to_p50_ratio": 1.2923435149460858
+        },
+        "reranker_only.10": {
+          "high_dispersion_heuristic": false,
+          "max_to_p50_ratio": 1.277321445649871,
+          "p95_to_p50_ratio": 1.1804910876382069
+        },
+        "reranker_only.20": {
+          "high_dispersion_heuristic": false,
+          "max_to_p50_ratio": 1.1162623960636835,
+          "p95_to_p50_ratio": 1.0996480835046247
+        },
+        "reranker_only.50": {
+          "high_dispersion_heuristic": false,
+          "max_to_p50_ratio": 1.1354671754441223,
+          "p95_to_p50_ratio": 1.1036717971830752
+        }
+      }
+    }
+  },
+  "paired_analysis": {
+    "10": {
+      "metrics": {
+        "mrr@10": {
+          "bootstrap_95_percent_interval": [
+            -0.014538359788359788,
+            0.04312566137566138
+          ],
+          "degraded_queries": 40,
+          "improved_queries": 51,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.013935185185185184,
+          "unchanged_queries": 209
+        },
+        "ndcg@10": {
+          "bootstrap_95_percent_interval": [
+            -0.014539012946246158,
+            0.027257672836157234
+          ],
+          "degraded_queries": 46,
+          "improved_queries": 52,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.006818914057347666,
+          "unchanged_queries": 202
+        },
+        "recall@10": {
+          "bootstrap_95_percent_interval": [
+            0.0,
+            0.0
+          ],
+          "degraded_queries": 0,
+          "improved_queries": 0,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.0,
+          "unchanged_queries": 300
+        },
+        "success@10": {
+          "bootstrap_95_percent_interval": [
+            0.0,
+            0.0
+          ],
+          "degraded_queries": 0,
+          "improved_queries": 0,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.0,
+          "unchanged_queries": 300
+        }
+      },
+      "success_losses": 0,
+      "success_rescues": 0
+    },
+    "20": {
+      "metrics": {
+        "mrr@10": {
+          "bootstrap_95_percent_interval": [
+            -0.017834656084656085,
+            0.04460185185185186
+          ],
+          "degraded_queries": 44,
+          "improved_queries": 51,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.013011904761904763,
+          "unchanged_queries": 205
+        },
+        "ndcg@10": {
+          "bootstrap_95_percent_interval": [
+            -0.020672303053690114,
+            0.027601893242313793
+          ],
+          "degraded_queries": 49,
+          "improved_queries": 53,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.003571120217337084,
+          "unchanged_queries": 198
+        },
+        "recall@10": {
+          "bootstrap_95_percent_interval": [
+            -0.02861111111111111,
+            0.014333333333333333
+          ],
+          "degraded_queries": 9,
+          "improved_queries": 7,
+          "interval_excludes_zero": false,
+          "mean_delta": -0.0067777777777777775,
+          "unchanged_queries": 284
+        },
+        "success@10": {
+          "bootstrap_95_percent_interval": [
+            -0.02666666666666667,
+            0.013333333333333334
+          ],
+          "degraded_queries": 6,
+          "improved_queries": 4,
+          "interval_excludes_zero": false,
+          "mean_delta": -0.006666666666666667,
+          "unchanged_queries": 290
+        }
+      },
+      "success_losses": 6,
+      "success_rescues": 4
+    },
+    "50": {
+      "metrics": {
+        "mrr@10": {
+          "bootstrap_95_percent_interval": [
+            -0.01627248677248677,
+            0.049484126984126985
+          ],
+          "degraded_queries": 50,
+          "improved_queries": 58,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.0165,
+          "unchanged_queries": 192
+        },
+        "ndcg@10": {
+          "bootstrap_95_percent_interval": [
+            -0.01892827964557178,
+            0.03814329652076684
+          ],
+          "degraded_queries": 56,
+          "improved_queries": 60,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.009778409617028687,
+          "unchanged_queries": 184
+        },
+        "recall@10": {
+          "bootstrap_95_percent_interval": [
+            -0.02861111111111111,
+            0.041277777777777774
+          ],
+          "degraded_queries": 16,
+          "improved_queries": 19,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.005999999999999999,
+          "unchanged_queries": 265
+        },
+        "success@10": {
+          "bootstrap_95_percent_interval": [
+            -0.03,
+            0.03666666666666667
+          ],
+          "degraded_queries": 13,
+          "improved_queries": 14,
+          "interval_excludes_zero": false,
+          "mean_delta": 0.0033333333333333335,
+          "unchanged_queries": 273
+        }
+      },
+      "success_losses": 13,
+      "success_rescues": 14
+    }
+  },
+  "passed": true,
+  "recommendation": {
+    "all_quality_delta_intervals_include_zero": true,
+    "efficient_point_estimate_depth": 10,
+    "enable_by_default": false,
+    "highest_quality_point_estimate_depth": 50,
+    "publish_latency_as_stable_component_claim": false,
+    "reason": "A/B rankings reproduce exactly, but every paired 95% bootstrap interval includes zero; evidence is limited to one dataset, one dense model, one reranker, and one host.",
+    "rejected_depths": {
+      "20": 10
+    }
+  },
+  "schema_version": "atlasrag.reranking-reproducibility.v1"
+}

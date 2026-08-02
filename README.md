@@ -219,6 +219,19 @@ The ArguAna result is not a full official test-set score. Package timing is sing
 
 [`BENCHMARK_ADAPTER.md`](BENCHMARK_ADAPTER.md) defines the stable package interface used by the installed-wheel evaluation.
 
+### Reranking development evidence
+
+Current `main` also publishes a separate [`0.3.0.dev0` reranking experiment](benchmarks/reranking/README.md) over 300 SciFact queries. Clean installed-wheel A/B runs reproduced every aggregate quality value and the complete raw ranking artifact exactly.
+
+| Method | Recall@10 | MRR@10 | nDCG@10 | Success@10 |
+|---|---:|---:|---:|---:|
+| Hybrid RRF | 0.8212 | 0.6449 | 0.6845 | 0.8367 |
+| Reranked depth 10 | 0.8212 | 0.6589 | 0.6914 | 0.8367 |
+| Reranked depth 20 | 0.8144 | 0.6579 | 0.6881 | 0.8300 |
+| Reranked depth 50 | 0.8272 | 0.6614 | 0.6943 | 0.8400 |
+
+Every paired 95% bootstrap interval for the quality deltas includes zero. Depth 20 is dominated by depth 10 in this experiment, and timing was not stable across both runs because one run overlapped heavy host contention. Reranking therefore remains opt-in and disabled by default.
+
 ## Reconstruction integrity
 
 The original local source is unavailable. This repository contains new reconstruction work committed on its real development timeline. It does not recreate old commits, backdate history, or label reconstructed code as the lost original implementation.

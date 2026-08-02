@@ -11,6 +11,11 @@ All notable public changes to AtlasRAG are documented here.
 - Immutable source-span `Citation` projection on every retrieval result.
 - Rerank traces preserving candidate-stage method, rank, score semantics, and hybrid contributions.
 - Regression coverage for candidate-depth behavior, exclusions, authorization boundaries, deterministic ties, score validation, and citation integrity.
+- Clean-wheel SciFact reranking evidence with exact A/B ranking reproduction, paired bootstrap intervals, raw ranking checksums, and host-contention diagnostics.
+
+### Decisions
+
+- Reranking remains opt-in: depth 20 was dominated by depth 10, all paired quality-delta intervals included zero, and latency did not reproduce stably across host conditions.
 
 ### Changed
 

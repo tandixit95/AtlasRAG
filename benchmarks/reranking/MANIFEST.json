@@ -1,0 +1,92 @@
+{
+  "artifacts": {
+    "quality-summary.csv": {
+      "bytes": 494,
+      "line_endings": "LF",
+      "sha256": "6f64dadb9b50b900ad9ab496f055aadbc1f971bde9e95495f42d69cf6655bfd7"
+    },
+    "rankings.jsonl.gz": {
+      "bytes": 560826,
+      "sha256": "bdcc5e3a6903ed5a859b1d7bd19f93628865062715159c9866b87370b0c29477"
+    },
+    "reproducibility.json": {
+      "bytes": 8821,
+      "sha256": "b922076972e0d6715a4f81d32a0025c0ee72143cf5f490ed9e6545821d1e42d9"
+    },
+    "run-a.json": {
+      "bytes": 15023,
+      "sha256": "3cf7807c8d5fbcba6466c8160bcffa22600d109b6ecb9041f179138c5fd84208"
+    },
+    "run-b.json": {
+      "bytes": 15019,
+      "sha256": "c6967a2ff1332490e76e5c24b2f612312c264a6ee761850605e8c60dd03573d1"
+    }
+  },
+  "canonical_rankings": {
+    "compressed_path": "artifacts/rankings.jsonl.gz",
+    "line_count": 300,
+    "uncompressed_sha256": "199d11ad5e291c126d7b5177a55c47267a8a50829e13273ff7faecb59084e398"
+  },
+  "configuration": {
+    "bootstrap_samples": 10000,
+    "candidate_depths": [
+      10,
+      20,
+      50
+    ],
+    "hybrid_component_k": 100,
+    "rrf_k": 60,
+    "seed": 20260802,
+    "top_k": 10
+  },
+  "dataset": {
+    "corpus_count": 5183,
+    "name": "SciFact",
+    "payload_redistributed": false,
+    "provenance": "../DATASET_PROVENANCE.json",
+    "query_count": 300,
+    "split": "test"
+  },
+  "date": "2026-08-02",
+  "decision": {
+    "dominated_depths": {
+      "20": 10
+    },
+    "efficient_point_estimate_depth": 10,
+    "enable_reranking_by_default": false,
+    "highest_quality_point_estimate_depth": 50,
+    "stable_latency_claim_approved": false
+  },
+  "models": {
+    "dense": {
+      "license": "Apache-2.0",
+      "name": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "reranker": {
+      "license": "Apache-2.0",
+      "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8"
+    }
+  },
+  "package": {
+    "git_commit": "43c4ef33b212869c94ff8cd9bb1c8615b0084b24",
+    "import_origin": "installed-wheel-site-packages",
+    "source_tests_passed": 73,
+    "version": "0.3.0.dev0",
+    "wheel": "atlasrag-0.3.0.dev0-py3-none-any.whl",
+    "wheel_sha256": "43b09b21f813f99f4b8c78d43a358c18a667dbc477da06b4ad92b3a312f8c928"
+  },
+  "schema_version": "atlasrag.reranking-evidence-manifest.v1",
+  "source": {
+    "checker": {
+      "path": "../src/check_reranking_results.py",
+      "sha256": "be250c3e435466601a5d3dd431641b9c738cb64f083432db3e0f70d283ae7b09"
+    },
+    "runner": {
+      "path": "../src/run_reranking_benchmark.py",
+      "sha256": "f020839c7588db0f2231767e2f87098f3258053dfca000bac724540bf6315c66"
+    }
+  },
+  "status": "development-evidence-not-release"
+}

@@ -138,6 +138,8 @@ Equal reranker scores preserve candidate rank before falling back to chunk ID. `
 
 `CrossEncoderReranker` is an optional Sentence Transformers adapter. It is not enabled by default because cross-encoder quality gains must be measured against added latency for a frozen dataset and model revision.
 
+The first pinned experiment retained that default. Depth 10 was the efficient point-estimate configuration, depth 20 was dominated, and depth 50 had the strongest point estimates. However, every paired quality-delta interval included zero and one latency run was contaminated by severe host contention. The architectural consequence is fail-closed promotion: adding a capable reranker does not make it part of the default path without multi-task and controlled-latency evidence.
+
 ## Citation projection
 
 Every `RetrievalResult` exposes a `Citation` derived from its original chunk. The citation carries chunk and document identity, document-version and chunk hashes, source URI, exact half-open character span, chunking strategy, and immutable metadata. Reranking never reconstructs citations from text or external IDs; it preserves the original chunk object.

@@ -27,6 +27,7 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Model-independent reranking contract and authorization-safe candidate composition.
 - Optional cross-encoder adapter with configurable batching.
 - Immutable citations plus rerank traces preserving candidate-stage evidence.
+- Clean-wheel SciFact reranking experiment with exact A/B ranking reproduction, paired bootstrap analysis, raw timing samples, and an explicit no-promotion decision.
 
 ## Current architecture
 
@@ -59,11 +60,13 @@ The core runtime remains standard-library-only. Sentence Transformers is an opti
 
 Version 0.2.0 publishes a compact in-repository evidence surface and a checksummed full archive with raw rankings. The installed-package evaluation covers 300 SciFact queries and a deterministic 200-query ArguAna contrast slice. A/B runs reproduced every quality metric and raw top-10 ranking for BM25, exact dense, and RRF. Authorization/provenance smoke tests returned zero unauthorized results across nine checks.
 
-The benchmarked wheel is pinned by SHA-256. `benchmarks/SOURCE_EQUIVALENCE.json` verifies that the release runtime source tree is byte-identical to the evaluated runtime source. Timings remain single-host evidence and are not production SLOs. HNSW remains neutral-harness evidence, not an AtlasRAG capability.
+Current `main` adds a separate `0.3.0.dev0` SciFact reranking track. A/B runs reproduced quality and raw rankings exactly. Depth 10 increased MRR@10 by 0.0139 and nDCG@10 by 0.0068 while preserving Recall@10 and Success@10. Depth 20 was dominated by depth 10. Depth 50 had the highest point estimates, but every paired 95% bootstrap interval included zero. Run A latency was highly dispersed under host contention, so no stable cross-run latency claim is approved and reranking remains disabled by default.
+
+The evaluated wheels, source commits, data identities, model revisions, raw rankings, and checksums are pinned. Timings remain single-host observations and are not production SLOs. HNSW remains neutral-harness evidence, not an AtlasRAG capability.
 
 ## Next highest-value task
 
-Freeze and run the reranking experiment against a clean `0.3.0.dev0` wheel. Compare hybrid versus cross-encoder reranking across candidate depths, record candidate recall ceilings and added latency, and retain negative findings. Do not enable reranking by default unless measured gains justify it.
+Create the Day 6 evaluation and promotion gate: freeze a second task shape, define explicit no-regression thresholds for Recall@K, authorization, provenance, reproducibility, and controlled-host latency, and make default-path changes fail closed when evidence is inconclusive. Re-evaluate depth 10 first; keep depth 20 rejected unless new evidence reverses the dominated result.
 
 ## Deferred work
 
@@ -84,7 +87,7 @@ Freeze and run the reranking experiment against a clean `0.3.0.dev0` wheel. Comp
 - The tokenizer is a transparent Unicode word-token baseline, not a language-specific analyzer.
 - Exact dense retrieval is exhaustive and intended for correctness, not large-corpus latency.
 - Permission policy is conjunctive tenant/group metadata. It is not a general policy language or external authorization service.
-- The released `v0.2.0` evidence does not cover reranking; `main` reranking remains experimental until a pinned clean-wheel experiment is published.
+- Reranking has one pinned SciFact experiment only; all paired delta intervals include zero and timing did not reproduce stably across host conditions.
 - No production traffic, user count, scale, SLO, or deployment topology is claimed.
 
 ## Publication status
