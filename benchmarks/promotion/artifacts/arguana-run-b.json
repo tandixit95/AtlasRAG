@@ -1,0 +1,338 @@
+{
+  "artifacts": {
+    "rankings": "arguana-depth10-b.rankings.jsonl",
+    "rankings_sha256": "efb44f2c475ca57a961fa37908958656e33f0091b4442fbd8e1c5bc06237a7f0",
+    "summary_csv": "arguana-depth10-b.summary.csv",
+    "summary_csv_sha256": "3a6d1ccc321d697c98880bc2dbe726faf10cddda108db1ab5f8f64b975615ea1"
+  },
+  "configuration": {
+    "bm25_b": 0.75,
+    "bm25_k1": 1.5,
+    "candidate_depth": 10,
+    "device": "cuda",
+    "hybrid_component_k": 100,
+    "latency_sample": 25,
+    "reranker_batch_size": 64,
+    "rrf_k": 60,
+    "seed": 20260802,
+    "top_k": 10
+  },
+  "dataset": {
+    "corpus_count": 8674,
+    "corpus_sha256": "0627982cec4ee896df6dc98604ef6b499c83fd87a19eaaeb3f23b88bbef6cbce",
+    "identical_query_document_ids_excluded": true,
+    "name": "arguana",
+    "payload_redistributed": false,
+    "qrels_sha256": "0c47b481fa8b47fb9ca5e74bc8a017bdea14518c0e4a5d21345291180b3aca76",
+    "queries_sha256": "f8b7c903f95d9a2d291de3915a8fac25085e9db679f19f59fea4145bfd1df618",
+    "query_count": 200,
+    "query_ids_present_in_corpus": 183,
+    "selection_rule": "SHA256(atlasrag-arguana-contrast-20260731: + query_id), then query_id; take 200",
+    "split": "test"
+  },
+  "environment": {
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "dependencies": {
+      "atlasrag": "0.3.0.dev0",
+      "numpy": "2.5.1",
+      "sentence-transformers": "5.6.1",
+      "transformers": "5.14.1"
+    },
+    "logical_cpus": 16,
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "torch": "2.13.0+cu130"
+  },
+  "host_control": {
+    "exclusive_benchmark_lock": true,
+    "latency_load_ratio_samples": [
+      0.104339599609375,
+      0.11102294921875,
+      0.11102294921875,
+      0.11102294921875,
+      0.112152099609375,
+      0.112152099609375,
+      0.112152099609375,
+      0.113189697265625,
+      0.113189697265625,
+      0.113189697265625,
+      0.1141357421875,
+      0.1141357421875,
+      0.1141357421875,
+      0.115020751953125,
+      0.115020751953125,
+      0.115020751953125,
+      0.110809326171875,
+      0.110809326171875,
+      0.110809326171875,
+      0.10693359375,
+      0.10693359375,
+      0.10693359375,
+      0.1083984375,
+      0.1083984375,
+      0.104705810546875
+    ],
+    "max_load_ratio": 0.5,
+    "offline_model_loading": true,
+    "one_benchmark_process": true,
+    "passed": true,
+    "preflight_load_ratio_samples": [
+      0.058074951171875,
+      0.058074951171875,
+      0.058074951171875
+    ],
+    "scope": "controlled local benchmark process, not production isolation"
+  },
+  "latency_ms": {
+    "dispersion_acceptable": true,
+    "dispersion_rule": "reranker p95 <= 2x p50 and max <= 4x p50",
+    "hybrid_candidate_generation": {
+      "max_ms": 1119.8369219782762,
+      "mean_ms": 779.4132753601298,
+      "p50_ms": 780.1473819999956,
+      "p95_ms": 1023.0535552138462
+    },
+    "measured_end_to_end": {
+      "max_ms": 1178.6407729960047,
+      "mean_ms": 808.3388340449892,
+      "p50_ms": 771.3329600519501,
+      "p95_ms": 989.4359008059837
+    },
+    "reranker_only": {
+      "max_ms": 169.0081669948995,
+      "mean_ms": 105.45673959655687,
+      "p50_ms": 117.23517102655023,
+      "p95_ms": 167.28751682676372
+    },
+    "samples": [
+      {
+        "end_to_end_ms": 715.455800993368,
+        "hybrid_candidate_generation_ms": 624.575798981823,
+        "load_ratio_before_sample": 0.104339599609375,
+        "query_id": "test-international-gpdwhwcusa-con01a",
+        "reranker_only_ms": 129.42308199126273
+      },
+      {
+        "end_to_end_ms": 979.1888550389558,
+        "hybrid_candidate_generation_ms": 960.6454250169918,
+        "load_ratio_before_sample": 0.11102294921875,
+        "query_id": "test-economy-thhghwhwift-pro01a",
+        "reranker_only_ms": 67.21551303053275
+      },
+      {
+        "end_to_end_ms": 771.3329600519501,
+        "hybrid_candidate_generation_ms": 655.7475280133076,
+        "load_ratio_before_sample": 0.11102294921875,
+        "query_id": "test-economy-thsptr-pro01a",
+        "reranker_only_ms": 127.13586899917573
+      },
+      {
+        "end_to_end_ms": 682.6845429604873,
+        "hybrid_candidate_generation_ms": 607.2663110098802,
+        "load_ratio_before_sample": 0.11102294921875,
+        "query_id": "test-free-speech-debate-nshbbsbfb-pro04a",
+        "reranker_only_ms": 118.2474999804981
+      },
+      {
+        "end_to_end_ms": 884.7210030071437,
+        "hybrid_candidate_generation_ms": 858.7501809815876,
+        "load_ratio_before_sample": 0.112152099609375,
+        "query_id": "test-society-mmcpsgfhbf-con02a",
+        "reranker_only_ms": 62.10840499261394
+      },
+      {
+        "end_to_end_ms": 913.9879150316119,
+        "hybrid_candidate_generation_ms": 853.0069169937633,
+        "load_ratio_before_sample": 0.112152099609375,
+        "query_id": "test-philosophy-pphbclsbs-con02a",
+        "reranker_only_ms": 168.6409300309606
+      },
+      {
+        "end_to_end_ms": 886.033791990485,
+        "hybrid_candidate_generation_ms": 758.4283210453577,
+        "load_ratio_before_sample": 0.112152099609375,
+        "query_id": "test-science-ciidfaihwc-pro01a",
+        "reranker_only_ms": 117.96039197361097
+      },
+      {
+        "end_to_end_ms": 990.7088300096802,
+        "hybrid_candidate_generation_ms": 918.0750930099748,
+        "load_ratio_before_sample": 0.113189697265625,
+        "query_id": "test-philosophy-pppgshbsd-con04a",
+        "reranker_only_ms": 64.05473197810352
+      },
+      {
+        "end_to_end_ms": 851.2254219967872,
+        "hybrid_candidate_generation_ms": 687.5001339940354,
+        "load_ratio_before_sample": 0.113189697265625,
+        "query_id": "test-culture-mmctyshwbcp-pro04a",
+        "reranker_only_ms": 88.64471595734358
+      },
+      {
+        "end_to_end_ms": 776.1653189663775,
+        "hybrid_candidate_generation_ms": 817.4548899987713,
+        "load_ratio_before_sample": 0.113189697265625,
+        "query_id": "test-law-lghwpcctcc-pro03a",
+        "reranker_only_ms": 77.62540702242404
+      },
+      {
+        "end_to_end_ms": 766.7326389928348,
+        "hybrid_candidate_generation_ms": 856.9071170059033,
+        "load_ratio_before_sample": 0.1141357421875,
+        "query_id": "test-environment-ehwsnwu-con01a",
+        "reranker_only_ms": 106.44151497399434
+      },
+      {
+        "end_to_end_ms": 608.631236013025,
+        "hybrid_candidate_generation_ms": 828.2535139587708,
+        "load_ratio_before_sample": 0.1141357421875,
+        "query_id": "test-economy-bepahbtsnrt-con01a",
+        "reranker_only_ms": 38.17097097635269
+      },
+      {
+        "end_to_end_ms": 782.1295559988357,
+        "hybrid_candidate_generation_ms": 780.1473819999956,
+        "load_ratio_before_sample": 0.1141357421875,
+        "query_id": "test-law-ilppppghb-con02a",
+        "reranker_only_ms": 133.30797397065908
+      },
+      {
+        "end_to_end_ms": 728.7950409809127,
+        "hybrid_candidate_generation_ms": 831.9707770133391,
+        "load_ratio_before_sample": 0.115020751953125,
+        "query_id": "test-education-pshhghwpba0-con02a",
+        "reranker_only_ms": 61.069152026902884
+      },
+      {
+        "end_to_end_ms": 632.9519880237058,
+        "hybrid_candidate_generation_ms": 530.6062919553369,
+        "load_ratio_before_sample": 0.115020751953125,
+        "query_id": "test-law-lgplhbssbco-pro04a",
+        "reranker_only_ms": 137.7135079819709
+      },
+      {
+        "end_to_end_ms": 770.5317890504375,
+        "hybrid_candidate_generation_ms": 712.6632559811696,
+        "load_ratio_before_sample": 0.115020751953125,
+        "query_id": "test-economy-epegiahsc-con02a",
+        "reranker_only_ms": 161.8738640099764
+      },
+      {
+        "end_to_end_ms": 691.5621540392749,
+        "hybrid_candidate_generation_ms": 734.3514839885756,
+        "load_ratio_before_sample": 0.110809326171875,
+        "query_id": "test-international-eghrhbeusli-pro05a",
+        "reranker_only_ms": 56.69146397849545
+      },
+      {
+        "end_to_end_ms": 984.3441839911975,
+        "hybrid_candidate_generation_ms": 1119.8369219782762,
+        "load_ratio_before_sample": 0.110809326171875,
+        "query_id": "test-culture-mmctyshwbcp-con02a",
+        "reranker_only_ms": 169.0081669948995
+      },
+      {
+        "end_to_end_ms": 944.2915819818154,
+        "hybrid_candidate_generation_ms": 800.0163070391864,
+        "load_ratio_before_sample": 0.110809326171875,
+        "query_id": "test-international-aglhrilhb-pro02a",
+        "reranker_only_ms": 144.41991702187806
+      },
+      {
+        "end_to_end_ms": 701.8989050411619,
+        "hybrid_candidate_generation_ms": 591.5853090118617,
+        "load_ratio_before_sample": 0.10693359375,
+        "query_id": "test-environment-assgbatj-pro03a",
+        "reranker_only_ms": 66.21228001313284
+      },
+      {
+        "end_to_end_ms": 743.9069189713337,
+        "hybrid_candidate_generation_ms": 621.3963589980267,
+        "load_ratio_before_sample": 0.10693359375,
+        "query_id": "test-politics-cpegiepgh-pro04a",
+        "reranker_only_ms": 83.35377502953634
+      },
+      {
+        "end_to_end_ms": 886.2330879783258,
+        "hybrid_candidate_generation_ms": 1031.4199220156297,
+        "load_ratio_before_sample": 0.10693359375,
+        "query_id": "test-society-mmcpsgfhbf-pro04a",
+        "reranker_only_ms": 158.64558797329664
+      },
+      {
+        "end_to_end_ms": 567.6252139965072,
+        "hybrid_candidate_generation_ms": 568.2331050047651,
+        "load_ratio_before_sample": 0.1083984375,
+        "query_id": "test-science-eassgbatj-con01a",
+        "reranker_only_ms": 117.23517102655023
+      },
+      {
+        "end_to_end_ms": 1178.6407729960047,
+        "hybrid_candidate_generation_ms": 989.5880880067125,
+        "load_ratio_before_sample": 0.1083984375,
+        "query_id": "test-law-tlcplghwfne-pro01a",
+        "reranker_only_ms": 60.36778597626835
+      },
+      {
+        "end_to_end_ms": 768.6913430225104,
+        "hybrid_candidate_generation_ms": 746.9054510002024,
+        "load_ratio_before_sample": 0.104705810546875,
+        "query_id": "test-international-appghblsba-pro02a",
+        "reranker_only_ms": 120.85081200348213
+      }
+    ]
+  },
+  "limitations": [
+    "Controlled single-host component evidence; not a production service-level objective.",
+    "Whole BEIR documents are benchmark retrieval units, not the default chunking strategy.",
+    "The ArguAna task is a deterministic 200-query contrast slice, not a full official score.",
+    "The experiment evaluates one dense model and one cross-encoder revision.",
+    "No query text, corpus text, model weights, or embedding cache is redistributed."
+  ],
+  "models": {
+    "dense": {
+      "license": "Apache-2.0",
+      "name": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "reranker": {
+      "license": "Apache-2.0",
+      "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8"
+    }
+  },
+  "package": {
+    "git_commit": "43c4ef33b212869c94ff8cd9bb1c8615b0084b24",
+    "import_origin": "installed-wheel-site-packages",
+    "module_relative_path": "atlasrag/__init__.py",
+    "version": "0.3.0.dev0",
+    "wheel": "atlasrag-0.3.0.dev0-py3-none-any.whl",
+    "wheel_sha256": "43b09b21f813f99f4b8c78d43a358c18a667dbc477da06b4ad92b3a312f8c928"
+  },
+  "protocol_id": "reranked-depth10-default-promotion-20260802",
+  "quality": {
+    "cross_encoder_reranked": {
+      "mrr@10": 0.367906746031746,
+      "ndcg@10": 0.4797094975212963,
+      "recall@10": 0.845,
+      "success@10": 0.845
+    },
+    "hybrid_rrf": {
+      "mrr@10": 0.42884126984126986,
+      "ndcg@10": 0.5273500304015701,
+      "recall@10": 0.845,
+      "success@10": 0.845
+    }
+  },
+  "run_id": "arguana-depth10-b",
+  "schema_version": "atlasrag.promotion-benchmark.v1",
+  "setup_seconds": {
+    "dense_model_load": 0.38690055097686127,
+    "embedding_cache_load": 0.010454560979269445,
+    "index": 4.779220716969576,
+    "python_vector_conversion": 0.2690184329985641
+  },
+  "task_id": "arguana-contrast-200"
+}

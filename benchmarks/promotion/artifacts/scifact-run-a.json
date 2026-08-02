@@ -1,0 +1,338 @@
+{
+  "artifacts": {
+    "rankings": "scifact-depth10-a.rankings.jsonl",
+    "rankings_sha256": "2b689b58c1eb1af1f85e3ce0de9a6453ad692a7eb88f67b1c701bd45e1d5bc16",
+    "summary_csv": "scifact-depth10-a.summary.csv",
+    "summary_csv_sha256": "0f567229ee291ac0cd9fee7c988e98ab8dc9f1069907fe472ecc4a0ddd3af98b"
+  },
+  "configuration": {
+    "bm25_b": 0.75,
+    "bm25_k1": 1.5,
+    "candidate_depth": 10,
+    "device": "cuda",
+    "hybrid_component_k": 100,
+    "latency_sample": 25,
+    "reranker_batch_size": 64,
+    "rrf_k": 60,
+    "seed": 20260802,
+    "top_k": 10
+  },
+  "dataset": {
+    "corpus_count": 5183,
+    "corpus_sha256": "dec31c8182f3d744c7d2c09423756fd1d17cbef75808db13ba01cc0aab4d1ac6",
+    "identical_query_document_ids_excluded": false,
+    "name": "scifact",
+    "payload_redistributed": false,
+    "qrels_sha256": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c",
+    "queries_sha256": "8ff84a7c903f722981cd8d595c022660140c51867b27608a6d4910db86080313",
+    "query_count": 300,
+    "query_ids_present_in_corpus": 0,
+    "selection_rule": "full sorted positive-qrel test set",
+    "split": "test"
+  },
+  "environment": {
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "dependencies": {
+      "atlasrag": "0.3.0.dev0",
+      "numpy": "2.5.1",
+      "sentence-transformers": "5.6.1",
+      "transformers": "5.14.1"
+    },
+    "logical_cpus": 16,
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "torch": "2.13.0+cu130"
+  },
+  "host_control": {
+    "exclusive_benchmark_lock": true,
+    "latency_load_ratio_samples": [
+      0.080047607421875,
+      0.080047607421875,
+      0.080047607421875,
+      0.07861328125,
+      0.07861328125,
+      0.07861328125,
+      0.07861328125,
+      0.07861328125,
+      0.07861328125,
+      0.077301025390625,
+      0.077301025390625,
+      0.077301025390625,
+      0.077301025390625,
+      0.077301025390625,
+      0.077301025390625,
+      0.077301025390625,
+      0.077301025390625,
+      0.07611083984375,
+      0.07611083984375,
+      0.07611083984375,
+      0.07611083984375,
+      0.07611083984375,
+      0.07611083984375,
+      0.07611083984375,
+      0.07501220703125
+    ],
+    "max_load_ratio": 0.5,
+    "offline_model_loading": true,
+    "one_benchmark_process": true,
+    "passed": true,
+    "preflight_load_ratio_samples": [
+      0.07177734375,
+      0.07177734375,
+      0.07177734375
+    ],
+    "scope": "controlled local benchmark process, not production isolation"
+  },
+  "latency_ms": {
+    "dispersion_acceptable": true,
+    "dispersion_rule": "reranker p95 <= 2x p50 and max <= 4x p50",
+    "hybrid_candidate_generation": {
+      "max_ms": 450.02269302494824,
+      "mean_ms": 260.4571156017482,
+      "p50_ms": 248.35741595597938,
+      "p95_ms": 391.3429544190872
+    },
+    "measured_end_to_end": {
+      "max_ms": 534.7266260068864,
+      "mean_ms": 343.0246417899616,
+      "p50_ms": 330.2350379526615,
+      "p95_ms": 419.06080323969934
+    },
+    "reranker_only": {
+      "max_ms": 134.3394439900294,
+      "mean_ms": 92.84018323989585,
+      "p50_ms": 92.74110302794725,
+      "p95_ms": 131.75582139519972
+    },
+    "samples": [
+      {
+        "end_to_end_ms": 326.62509998772293,
+        "hybrid_candidate_generation_ms": 235.6928670196794,
+        "load_ratio_before_sample": 0.080047607421875,
+        "query_id": "213",
+        "reranker_only_ms": 76.0820290306583
+      },
+      {
+        "end_to_end_ms": 330.2350379526615,
+        "hybrid_candidate_generation_ms": 261.6239439812489,
+        "load_ratio_before_sample": 0.080047607421875,
+        "query_id": "715",
+        "reranker_only_ms": 91.56741795595735
+      },
+      {
+        "end_to_end_ms": 340.5209429911338,
+        "hybrid_candidate_generation_ms": 247.3743770387955,
+        "load_ratio_before_sample": 0.080047607421875,
+        "query_id": "1279",
+        "reranker_only_ms": 92.74110302794725
+      },
+      {
+        "end_to_end_ms": 374.9012749758549,
+        "hybrid_candidate_generation_ms": 258.75144003657624,
+        "load_ratio_before_sample": 0.07861328125,
+        "query_id": "1298",
+        "reranker_only_ms": 92.76604698970914
+      },
+      {
+        "end_to_end_ms": 357.03378496691585,
+        "hybrid_candidate_generation_ms": 421.08679201919585,
+        "load_ratio_before_sample": 0.07861328125,
+        "query_id": "179",
+        "reranker_only_ms": 113.41178300790489
+      },
+      {
+        "end_to_end_ms": 367.63882997911423,
+        "hybrid_candidate_generation_ms": 248.35741595597938,
+        "load_ratio_before_sample": 0.07861328125,
+        "query_id": "312",
+        "reranker_only_ms": 127.19041999662295
+      },
+      {
+        "end_to_end_ms": 427.0713770529255,
+        "hybrid_candidate_generation_ms": 269.8545880266465,
+        "load_ratio_before_sample": 0.07861328125,
+        "query_id": "1021",
+        "reranker_only_ms": 117.87584098055959
+      },
+      {
+        "end_to_end_ms": 291.42595699522644,
+        "hybrid_candidate_generation_ms": 229.6481619705446,
+        "load_ratio_before_sample": 0.07861328125,
+        "query_id": "237",
+        "reranker_only_ms": 115.32693501794711
+      },
+      {
+        "end_to_end_ms": 320.8445989876054,
+        "hybrid_candidate_generation_ms": 272.3676040186547,
+        "load_ratio_before_sample": 0.07861328125,
+        "query_id": "514",
+        "reranker_only_ms": 62.4541129800491
+      },
+      {
+        "end_to_end_ms": 268.3485829620622,
+        "hybrid_candidate_generation_ms": 222.2499159979634,
+        "load_ratio_before_sample": 0.077301025390625,
+        "query_id": "1262",
+        "reranker_only_ms": 37.27398801129311
+      },
+      {
+        "end_to_end_ms": 345.9908840013668,
+        "hybrid_candidate_generation_ms": 246.13507196772844,
+        "load_ratio_before_sample": 0.077301025390625,
+        "query_id": "133",
+        "reranker_only_ms": 61.81192898657173
+      },
+      {
+        "end_to_end_ms": 534.7266260068864,
+        "hybrid_candidate_generation_ms": 238.65442699752748,
+        "load_ratio_before_sample": 0.077301025390625,
+        "query_id": "185",
+        "reranker_only_ms": 92.87629200844094
+      },
+      {
+        "end_to_end_ms": 294.5326900226064,
+        "hybrid_candidate_generation_ms": 250.80659403465688,
+        "load_ratio_before_sample": 0.077301025390625,
+        "query_id": "785",
+        "reranker_only_ms": 123.97151201730594
+      },
+      {
+        "end_to_end_ms": 271.2938169715926,
+        "hybrid_candidate_generation_ms": 231.20323399780318,
+        "load_ratio_before_sample": 0.077301025390625,
+        "query_id": "1100",
+        "reranker_only_ms": 69.51444799778983
+      },
+      {
+        "end_to_end_ms": 308.9057250181213,
+        "hybrid_candidate_generation_ms": 250.7408109959215,
+        "load_ratio_before_sample": 0.077301025390625,
+        "query_id": "54",
+        "reranker_only_ms": 70.95575000857934
+      },
+      {
+        "end_to_end_ms": 328.4166989615187,
+        "hybrid_candidate_generation_ms": 234.53674401389435,
+        "load_ratio_before_sample": 0.077301025390625,
+        "query_id": "903",
+        "reranker_only_ms": 68.00980499247089
+      },
+      {
+        "end_to_end_ms": 384.874437993858,
+        "hybrid_candidate_generation_ms": 254.05116099864244,
+        "load_ratio_before_sample": 0.077301025390625,
+        "query_id": "1379",
+        "reranker_only_ms": 96.16561001166701
+      },
+      {
+        "end_to_end_ms": 321.9552209484391,
+        "hybrid_candidate_generation_ms": 216.8458069791086,
+        "load_ratio_before_sample": 0.07611083984375,
+        "query_id": "644",
+        "reranker_only_ms": 108.77056804019958
+      },
+      {
+        "end_to_end_ms": 382.9161470057443,
+        "hybrid_candidate_generation_ms": 264.92559496546164,
+        "load_ratio_before_sample": 0.07611083984375,
+        "query_id": "521",
+        "reranker_only_ms": 92.55930001381785
+      },
+      {
+        "end_to_end_ms": 336.67725697159767,
+        "hybrid_candidate_generation_ms": 242.8864110261202,
+        "load_ratio_before_sample": 0.07611083984375,
+        "query_id": "208",
+        "reranker_only_ms": 89.75523198023438
+      },
+      {
+        "end_to_end_ms": 387.01850798679516,
+        "hybrid_candidate_generation_ms": 450.02269302494824,
+        "load_ratio_before_sample": 0.07611083984375,
+        "query_id": "146",
+        "reranker_only_ms": 134.3394439900294
+      },
+      {
+        "end_to_end_ms": 377.9265920165926,
+        "hybrid_candidate_generation_ms": 253.6652100388892,
+        "load_ratio_before_sample": 0.07611083984375,
+        "query_id": "535",
+        "reranker_only_ms": 132.64455500757322
+      },
+      {
+        "end_to_end_ms": 297.8160990169272,
+        "hybrid_candidate_generation_ms": 231.19367100298405,
+        "load_ratio_before_sample": 0.07611083984375,
+        "query_id": "793",
+        "reranker_only_ms": 128.20088694570586
+      },
+      {
+        "end_to_end_ms": 297.71314398385584,
+        "hybrid_candidate_generation_ms": 223.50370895583183,
+        "load_ratio_before_sample": 0.07611083984375,
+        "query_id": "1137",
+        "reranker_only_ms": 65.35849103238434
+      },
+      {
+        "end_to_end_ms": 300.2067109919153,
+        "hybrid_candidate_generation_ms": 255.24964497890323,
+        "load_ratio_before_sample": 0.07501220703125,
+        "query_id": "431",
+        "reranker_only_ms": 59.38108096597716
+      }
+    ]
+  },
+  "limitations": [
+    "Controlled single-host component evidence; not a production service-level objective.",
+    "Whole BEIR documents are benchmark retrieval units, not the default chunking strategy.",
+    "The ArguAna task is a deterministic 200-query contrast slice, not a full official score.",
+    "The experiment evaluates one dense model and one cross-encoder revision.",
+    "No query text, corpus text, model weights, or embedding cache is redistributed."
+  ],
+  "models": {
+    "dense": {
+      "license": "Apache-2.0",
+      "name": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "reranker": {
+      "license": "Apache-2.0",
+      "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8"
+    }
+  },
+  "package": {
+    "git_commit": "43c4ef33b212869c94ff8cd9bb1c8615b0084b24",
+    "import_origin": "installed-wheel-site-packages",
+    "module_relative_path": "atlasrag/__init__.py",
+    "version": "0.3.0.dev0",
+    "wheel": "atlasrag-0.3.0.dev0-py3-none-any.whl",
+    "wheel_sha256": "43b09b21f813f99f4b8c78d43a358c18a667dbc477da06b4ad92b3a312f8c928"
+  },
+  "protocol_id": "reranked-depth10-default-promotion-20260802",
+  "quality": {
+    "cross_encoder_reranked": {
+      "mrr@10": 0.6588624338624338,
+      "ndcg@10": 0.6913510175597831,
+      "recall@10": 0.8212222222222223,
+      "success@10": 0.8366666666666667
+    },
+    "hybrid_rrf": {
+      "mrr@10": 0.6449272486772487,
+      "ndcg@10": 0.6845321035024354,
+      "recall@10": 0.8212222222222223,
+      "success@10": 0.8366666666666667
+    }
+  },
+  "run_id": "scifact-depth10-a",
+  "schema_version": "atlasrag.promotion-benchmark.v1",
+  "setup_seconds": {
+    "dense_model_load": 2.2996398440445773,
+    "embedding_cache_load": 0.06246428197482601,
+    "index": 11.497467644978315,
+    "python_vector_conversion": 1.1345961830229498
+  },
+  "task_id": "scifact-test-300"
+}

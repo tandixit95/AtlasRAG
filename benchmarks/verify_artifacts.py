@@ -123,7 +123,12 @@ subprocess.run(
     [sys.executable, str(ROOT / "reranking/verify_artifacts.py")],
     check=True,
 )
+subprocess.run(
+    [sys.executable, str(ROOT / "promotion/verify_artifacts.py")],
+    check=True,
+)
 print(
     "PASS: benchmark documentation, JSON, privacy, source-equivalence, "
-    f"regression gates, reranking development evidence, and {checksum_count} checksums"
+    "regression gates, reranking and promotion development evidence, "
+    f"and {checksum_count} checksums"
 )

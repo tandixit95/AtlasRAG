@@ -1,0 +1,23 @@
+{
+  "contracts": {
+    "authorization_leakage_count": 0,
+    "authorized_private_visible": true,
+    "citation_completeness": 1.0,
+    "deterministic_ranking_reproduction": true,
+    "excluded_chunk_leakage_count": 0,
+    "malformed_policy_fails_closed": true,
+    "unauthorized_candidate_scoring_count": 0
+  },
+  "package": {
+    "git_commit": "43c4ef33b212869c94ff8cd9bb1c8615b0084b24",
+    "import_origin": "installed-wheel-site-packages",
+    "module_relative_path": "atlasrag/__init__.py",
+    "version": "0.3.0.dev0",
+    "wheel": "atlasrag-0.3.0.dev0-py3-none-any.whl",
+    "wheel_sha256": "43b09b21f813f99f4b8c78d43a358c18a667dbc477da06b4ad92b3a312f8c928"
+  },
+  "payload_redistributed": false,
+  "protocol_id": "reranked-depth10-default-promotion-20260802",
+  "schema_version": "atlasrag.promotion-contract-evaluation.v1",
+  "scope": "fully synthetic installed-package authorization, exclusion, citation, and determinism contract evaluation"
+}

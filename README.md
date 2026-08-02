@@ -237,7 +237,7 @@ Every paired 95% bootstrap interval for the quality deltas includes zero. Depth 
 
 ### Frozen default-promotion protocol
 
-[`EVALUATION_STANDARD.md`](EVALUATION_STANDARD.md) and [`benchmarks/promotion/PROMOTION_GATES.json`](benchmarks/promotion/PROMOTION_GATES.json) define a fail-closed protocol for the depth-10 candidate. The gate file is frozen before the second-task outcomes: default promotion requires zero authorization leakage, complete citations, exact A/B ranking reproduction, no Recall@10 regression, statistically supported MRR@10 improvement on both SciFact and the deterministic ArguAna contrast slice, and repeatable controlled-host component latency.
+[`EVALUATION_STANDARD.md`](EVALUATION_STANDARD.md) and the [`promotion evidence package`](benchmarks/promotion/README.md) apply a fail-closed protocol frozen before the second-task outcomes. All 37 gates had complete evidence. The candidate was rejected: SciFact's MRR@10 delta remained inconclusive at `+0.0139` with a 95% interval of `[-0.0149, +0.0420]`; the ArguAna contrast slice regressed by `-0.0609` MRR@10 with an interval of `[-0.1067, -0.0142]`; and controlled reranker p95 exceeded the frozen 75 ms budget on both tasks. Hybrid RRF remains the default, and reranking remains opt-in.
 
 ## Reconstruction integrity
 

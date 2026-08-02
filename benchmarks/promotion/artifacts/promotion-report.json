@@ -1,0 +1,666 @@
+{
+  "candidate_promoted": false,
+  "contracts_sha256": "791034cb5d992820b0ff5cca89ee12dafe688c12be4202e0c401d71f19a1919a",
+  "decision": {
+    "check_count": 37,
+    "checks": [
+      {
+        "actual": 0,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "authorization_leakage_zero",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": null,
+        "threshold": 0
+      },
+      {
+        "actual": 0,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "unauthorized_candidate_scoring_zero",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": null,
+        "threshold": 0
+      },
+      {
+        "actual": 0,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "excluded_chunk_leakage_zero",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": null,
+        "threshold": 0
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "malformed_policy_fails_closed",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": null,
+        "threshold": true
+      },
+      {
+        "actual": 1.0,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "contract_citation_completeness",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": null,
+        "threshold": 1.0
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "contract_deterministic_rerun",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": null,
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "authorized_private_result_visible",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": null,
+        "threshold": true
+      },
+      {
+        "actual": 10,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "candidate_depth_frozen",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": 10
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "frozen_identity_equal",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "rankings_reproduce",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "quality_reproduces",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "summary_reproduces",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": true
+      },
+      {
+        "actual": false,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "public_payload_not_redistributed",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": false
+      },
+      {
+        "actual": 1.0,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "citation_completeness",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": 1.0
+      },
+      {
+        "actual": 0.0,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "recall_no_regression",
+        "operator": "ge",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": 0.0
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "controlled_host",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "latency_dispersion_acceptable",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": true
+      },
+      {
+        "actual": 134.92084799800068,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "reranker_p95_budget_ms",
+        "operator": "le",
+        "status": "fail",
+        "task_id": "scifact-test-300",
+        "threshold": 75.0
+      },
+      {
+        "actual": 1.0240219109052306,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "reranker_p95_cross_run_ratio",
+        "operator": "le",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": 1.25
+      },
+      {
+        "actual": 0.013935185185185184,
+        "detail": null,
+        "gate_class": "promotion",
+        "gate_id": "primary_metric_positive_mean",
+        "operator": "gt",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": 0.0
+      },
+      {
+        "actual": -0.014944444444444444,
+        "detail": null,
+        "gate_class": "promotion",
+        "gate_id": "primary_metric_interval_excludes_zero",
+        "operator": "gt",
+        "status": "fail",
+        "task_id": "scifact-test-300",
+        "threshold": 0.0
+      },
+      {
+        "actual": 0.006818914057347666,
+        "detail": null,
+        "gate_class": "promotion",
+        "gate_id": "secondary_metric_non_regression",
+        "operator": "ge",
+        "status": "pass",
+        "task_id": "scifact-test-300",
+        "threshold": 0.0
+      },
+      {
+        "actual": 10,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "candidate_depth_frozen",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": 10
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "frozen_identity_equal",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "rankings_reproduce",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "quality_reproduces",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "summary_reproduces",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": true
+      },
+      {
+        "actual": false,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "public_payload_not_redistributed",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": false
+      },
+      {
+        "actual": 1.0,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "citation_completeness",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": 1.0
+      },
+      {
+        "actual": 0.0,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "recall_no_regression",
+        "operator": "ge",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": 0.0
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "controlled_host",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": true
+      },
+      {
+        "actual": true,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "latency_dispersion_acceptable",
+        "operator": "eq",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": true
+      },
+      {
+        "actual": 167.94399960199368,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "reranker_p95_budget_ms",
+        "operator": "le",
+        "status": "fail",
+        "task_id": "arguana-contrast-200",
+        "threshold": 75.0
+      },
+      {
+        "actual": 1.003924278318446,
+        "detail": null,
+        "gate_class": "veto",
+        "gate_id": "reranker_p95_cross_run_ratio",
+        "operator": "le",
+        "status": "pass",
+        "task_id": "arguana-contrast-200",
+        "threshold": 1.25
+      },
+      {
+        "actual": -0.06093452380952382,
+        "detail": null,
+        "gate_class": "promotion",
+        "gate_id": "primary_metric_positive_mean",
+        "operator": "gt",
+        "status": "fail",
+        "task_id": "arguana-contrast-200",
+        "threshold": 0.0
+      },
+      {
+        "actual": -0.10669246031746032,
+        "detail": null,
+        "gate_class": "promotion",
+        "gate_id": "primary_metric_interval_excludes_zero",
+        "operator": "gt",
+        "status": "fail",
+        "task_id": "arguana-contrast-200",
+        "threshold": 0.0
+      },
+      {
+        "actual": -0.04764053288027384,
+        "detail": null,
+        "gate_class": "promotion",
+        "gate_id": "secondary_metric_non_regression",
+        "operator": "ge",
+        "status": "fail",
+        "task_id": "arguana-contrast-200",
+        "threshold": 0.0
+      }
+    ],
+    "disposition": "retain_default_rejected",
+    "enable_candidate_by_default": false,
+    "failed_count": 6,
+    "missing_count": 0,
+    "passed": false
+  },
+  "evaluation_complete": true,
+  "evidence": {
+    "contracts": {
+      "authorization_leakage_count": 0,
+      "authorized_private_visible": true,
+      "citation_completeness": 1.0,
+      "deterministic_ranking_reproduction": true,
+      "excluded_chunk_leakage_count": 0,
+      "malformed_policy_fails_closed": true,
+      "unauthorized_candidate_scoring_count": 0
+    },
+    "protocol_id": "reranked-depth10-default-promotion-20260802",
+    "schema_version": "atlasrag.promotion-normalized-evidence.v1",
+    "tasks": {
+      "arguana-contrast-200": {
+        "artifacts": {
+          "rankings_a_sha256": "efb44f2c475ca57a961fa37908958656e33f0091b4442fbd8e1c5bc06237a7f0",
+          "rankings_b_sha256": "efb44f2c475ca57a961fa37908958656e33f0091b4442fbd8e1c5bc06237a7f0",
+          "run_a_sha256": "53c62145aa13b667338cf517b02c5f5a2305407437d4ad28db1d395ba38552b9",
+          "run_b_sha256": "ce72f134f7fd59a99d4ebd55ec052c74b152eba4eb4596aeb5c8a2caba75801b",
+          "summary_a_sha256": "3a6d1ccc321d697c98880bc2dbe726faf10cddda108db1ab5f8f64b975615ea1",
+          "summary_b_sha256": "3a6d1ccc321d697c98880bc2dbe726faf10cddda108db1ab5f8f64b975615ea1"
+        },
+        "candidate_depth": 10,
+        "citations": {
+          "complete_count": 2000,
+          "completeness": 1.0,
+          "result_count": 2000
+        },
+        "identity": {
+          "configuration": {
+            "bm25_b": 0.75,
+            "bm25_k1": 1.5,
+            "candidate_depth": 10,
+            "device": "cuda",
+            "hybrid_component_k": 100,
+            "latency_sample": 25,
+            "reranker_batch_size": 64,
+            "rrf_k": 60,
+            "seed": 20260802,
+            "top_k": 10
+          },
+          "dataset": {
+            "corpus_count": 8674,
+            "corpus_sha256": "0627982cec4ee896df6dc98604ef6b499c83fd87a19eaaeb3f23b88bbef6cbce",
+            "identical_query_document_ids_excluded": true,
+            "name": "arguana",
+            "payload_redistributed": false,
+            "qrels_sha256": "0c47b481fa8b47fb9ca5e74bc8a017bdea14518c0e4a5d21345291180b3aca76",
+            "queries_sha256": "f8b7c903f95d9a2d291de3915a8fac25085e9db679f19f59fea4145bfd1df618",
+            "query_count": 200,
+            "query_ids_present_in_corpus": 183,
+            "selection_rule": "SHA256(atlasrag-arguana-contrast-20260731: + query_id), then query_id; take 200",
+            "split": "test"
+          },
+          "models": {
+            "dense": {
+              "license": "Apache-2.0",
+              "name": "sentence-transformers/all-MiniLM-L6-v2",
+              "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+            },
+            "reranker": {
+              "license": "Apache-2.0",
+              "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+              "revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8"
+            }
+          },
+          "package": {
+            "git_commit": "43c4ef33b212869c94ff8cd9bb1c8615b0084b24",
+            "import_origin": "installed-wheel-site-packages",
+            "module_relative_path": "atlasrag/__init__.py",
+            "version": "0.3.0.dev0",
+            "wheel": "atlasrag-0.3.0.dev0-py3-none-any.whl",
+            "wheel_sha256": "43b09b21f813f99f4b8c78d43a358c18a667dbc477da06b4ad92b3a312f8c928"
+          },
+          "protocol_id": "reranked-depth10-default-promotion-20260802"
+        },
+        "latency": {
+          "controlled_host": true,
+          "dispersion_acceptable": true,
+          "reranker_p95_max_ms": 167.94399960199368,
+          "reranker_p95_ms": [
+            167.94399960199368,
+            167.28751682676372
+          ],
+          "reranker_p95_ratio": 1.003924278318446,
+          "scope": "controlled local reranker-component budget, not a production SLO"
+        },
+        "privacy": {
+          "forbidden_text_keys_detected": false,
+          "payload_redistributed": false
+        },
+        "quality": {
+          "mrr@10": {
+            "bootstrap_95_percent_interval": [
+              -0.10669246031746032,
+              -0.014188492063492065
+            ],
+            "degraded_queries": 80,
+            "improved_queries": 45,
+            "interval_excludes_zero": true,
+            "mean_delta": -0.06093452380952382,
+            "unchanged_queries": 75
+          },
+          "ndcg@10": {
+            "bootstrap_95_percent_interval": [
+              -0.08310124121076941,
+              -0.012372070834722235
+            ],
+            "degraded_queries": 80,
+            "improved_queries": 45,
+            "interval_excludes_zero": true,
+            "mean_delta": -0.04764053288027384,
+            "unchanged_queries": 75
+          },
+          "recall@10": {
+            "bootstrap_95_percent_interval": [
+              0.0,
+              0.0
+            ],
+            "degraded_queries": 0,
+            "improved_queries": 0,
+            "interval_excludes_zero": false,
+            "mean_delta": 0.0,
+            "unchanged_queries": 200
+          },
+          "success@10": {
+            "bootstrap_95_percent_interval": [
+              0.0,
+              0.0
+            ],
+            "degraded_queries": 0,
+            "improved_queries": 0,
+            "interval_excludes_zero": false,
+            "mean_delta": 0.0,
+            "unchanged_queries": 200
+          }
+        },
+        "reproducibility": {
+          "identity_equal": true,
+          "quality_equal": true,
+          "rankings_byte_equal": true,
+          "summary_byte_equal": true
+        }
+      },
+      "scifact-test-300": {
+        "artifacts": {
+          "rankings_a_sha256": "2b689b58c1eb1af1f85e3ce0de9a6453ad692a7eb88f67b1c701bd45e1d5bc16",
+          "rankings_b_sha256": "2b689b58c1eb1af1f85e3ce0de9a6453ad692a7eb88f67b1c701bd45e1d5bc16",
+          "run_a_sha256": "591b692ca1754bed57dcf6c54aa874c4d03f713434cef22956c1f06ffcce132d",
+          "run_b_sha256": "37f948d0c9f608cf3dca81b5d7c48325e70e1e585b508c163ac3d7a385d47169",
+          "summary_a_sha256": "0f567229ee291ac0cd9fee7c988e98ab8dc9f1069907fe472ecc4a0ddd3af98b",
+          "summary_b_sha256": "0f567229ee291ac0cd9fee7c988e98ab8dc9f1069907fe472ecc4a0ddd3af98b"
+        },
+        "candidate_depth": 10,
+        "citations": {
+          "complete_count": 3000,
+          "completeness": 1.0,
+          "result_count": 3000
+        },
+        "identity": {
+          "configuration": {
+            "bm25_b": 0.75,
+            "bm25_k1": 1.5,
+            "candidate_depth": 10,
+            "device": "cuda",
+            "hybrid_component_k": 100,
+            "latency_sample": 25,
+            "reranker_batch_size": 64,
+            "rrf_k": 60,
+            "seed": 20260802,
+            "top_k": 10
+          },
+          "dataset": {
+            "corpus_count": 5183,
+            "corpus_sha256": "dec31c8182f3d744c7d2c09423756fd1d17cbef75808db13ba01cc0aab4d1ac6",
+            "identical_query_document_ids_excluded": false,
+            "name": "scifact",
+            "payload_redistributed": false,
+            "qrels_sha256": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c",
+            "queries_sha256": "8ff84a7c903f722981cd8d595c022660140c51867b27608a6d4910db86080313",
+            "query_count": 300,
+            "query_ids_present_in_corpus": 0,
+            "selection_rule": "full sorted positive-qrel test set",
+            "split": "test"
+          },
+          "models": {
+            "dense": {
+              "license": "Apache-2.0",
+              "name": "sentence-transformers/all-MiniLM-L6-v2",
+              "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+            },
+            "reranker": {
+              "license": "Apache-2.0",
+              "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+              "revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8"
+            }
+          },
+          "package": {
+            "git_commit": "43c4ef33b212869c94ff8cd9bb1c8615b0084b24",
+            "import_origin": "installed-wheel-site-packages",
+            "module_relative_path": "atlasrag/__init__.py",
+            "version": "0.3.0.dev0",
+            "wheel": "atlasrag-0.3.0.dev0-py3-none-any.whl",
+            "wheel_sha256": "43b09b21f813f99f4b8c78d43a358c18a667dbc477da06b4ad92b3a312f8c928"
+          },
+          "protocol_id": "reranked-depth10-default-promotion-20260802"
+        },
+        "latency": {
+          "controlled_host": true,
+          "dispersion_acceptable": true,
+          "reranker_p95_max_ms": 134.92084799800068,
+          "reranker_p95_ms": [
+            131.75582139519972,
+            134.92084799800068
+          ],
+          "reranker_p95_ratio": 1.0240219109052306,
+          "scope": "controlled local reranker-component budget, not a production SLO"
+        },
+        "privacy": {
+          "forbidden_text_keys_detected": false,
+          "payload_redistributed": false
+        },
+        "quality": {
+          "mrr@10": {
+            "bootstrap_95_percent_interval": [
+              -0.014944444444444444,
+              0.0420489417989418
+            ],
+            "degraded_queries": 40,
+            "improved_queries": 51,
+            "interval_excludes_zero": false,
+            "mean_delta": 0.013935185185185184,
+            "unchanged_queries": 209
+          },
+          "ndcg@10": {
+            "bootstrap_95_percent_interval": [
+              -0.014120733119248418,
+              0.027232218477973684
+            ],
+            "degraded_queries": 46,
+            "improved_queries": 52,
+            "interval_excludes_zero": false,
+            "mean_delta": 0.006818914057347666,
+            "unchanged_queries": 202
+          },
+          "recall@10": {
+            "bootstrap_95_percent_interval": [
+              0.0,
+              0.0
+            ],
+            "degraded_queries": 0,
+            "improved_queries": 0,
+            "interval_excludes_zero": false,
+            "mean_delta": 0.0,
+            "unchanged_queries": 300
+          },
+          "success@10": {
+            "bootstrap_95_percent_interval": [
+              0.0,
+              0.0
+            ],
+            "degraded_queries": 0,
+            "improved_queries": 0,
+            "interval_excludes_zero": false,
+            "mean_delta": 0.0,
+            "unchanged_queries": 300
+          }
+        },
+        "reproducibility": {
+          "identity_equal": true,
+          "quality_equal": true,
+          "rankings_byte_equal": true,
+          "summary_byte_equal": true
+        }
+      }
+    }
+  },
+  "failure_behavior": "Non-promoted candidates exit nonzero unless --allow-retain-default is used solely to publish the failed-closed evidence report.",
+  "gates_sha256": "ff186c5cd42839478d7b3e7f40377383cec2d7c472b5194eeeb4e70484c217c4",
+  "protocol_id": "reranked-depth10-default-promotion-20260802",
+  "schema_version": "atlasrag.promotion-gate-report.v1"
+}

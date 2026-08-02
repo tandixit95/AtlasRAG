@@ -1,0 +1,145 @@
+{
+  "artifacts": {
+    "arguana-rankings.jsonl.gz": {
+      "bytes": 234405,
+      "sha256": "32dab7b69e57cf98d9fc96dd09016cb26d2b6bcce17fff50fa1fb192ac143bc5"
+    },
+    "arguana-run-a.json": {
+      "bytes": 12224,
+      "sha256": "53c62145aa13b667338cf517b02c5f5a2305407437d4ad28db1d395ba38552b9"
+    },
+    "arguana-run-b.json": {
+      "bytes": 12194,
+      "sha256": "ce72f134f7fd59a99d4ebd55ec052c74b152eba4eb4596aeb5c8a2caba75801b"
+    },
+    "arguana-summary.csv": {
+      "bytes": 202,
+      "sha256": "3a6d1ccc321d697c98880bc2dbe726faf10cddda108db1ab5f8f64b975615ea1"
+    },
+    "contract-evaluation.json": {
+      "bytes": 953,
+      "sha256": "791034cb5d992820b0ff5cca89ee12dafe688c12be4202e0c401d71f19a1919a"
+    },
+    "promotion-report.json": {
+      "bytes": 20892,
+      "sha256": "d8ba322330477e0a2fc99ce03b6f5c0b2f96efcf4472e21e3a07a94287121f6c"
+    },
+    "scifact-rankings.jsonl.gz": {
+      "bytes": 335319,
+      "sha256": "1c9391cbc49e29bd6ffbe48cd63c22e840f9018f65a8c7784d3a39b913dd9bc9"
+    },
+    "scifact-run-a.json": {
+      "bytes": 11500,
+      "sha256": "591b692ca1754bed57dcf6c54aa874c4d03f713434cef22956c1f06ffcce132d"
+    },
+    "scifact-run-b.json": {
+      "bytes": 11569,
+      "sha256": "37f948d0c9f608cf3dca81b5d7c48325e70e1e585b508c163ac3d7a385d47169"
+    },
+    "scifact-summary.csv": {
+      "bytes": 254,
+      "sha256": "0f567229ee291ac0cd9fee7c988e98ab8dc9f1069907fe472ecc4a0ddd3af98b"
+    }
+  },
+  "baseline": {
+    "method": "hybrid_rrf",
+    "top_k": 10
+  },
+  "candidate": {
+    "candidate_depth": 10,
+    "enabled_by_default_after_evaluation": false,
+    "enabled_by_default_before_evaluation": false,
+    "method": "cross_encoder_reranked",
+    "top_k": 10
+  },
+  "date": "2026-08-02",
+  "decision": {
+    "candidate_promoted": false,
+    "check_count": 37,
+    "default_path": "hybrid_rrf",
+    "disposition": "retain_default_rejected",
+    "failed_count": 6,
+    "missing_count": 0
+  },
+  "models": {
+    "dense": {
+      "license": "Apache-2.0",
+      "name": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "reranker": {
+      "license": "Apache-2.0",
+      "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8"
+    }
+  },
+  "package": {
+    "git_commit": "43c4ef33b212869c94ff8cd9bb1c8615b0084b24",
+    "import_origin": "installed-wheel-site-packages",
+    "module_relative_path": "atlasrag/__init__.py",
+    "version": "0.3.0.dev0",
+    "wheel": "atlasrag-0.3.0.dev0-py3-none-any.whl",
+    "wheel_sha256": "43b09b21f813f99f4b8c78d43a358c18a667dbc477da06b4ad92b3a312f8c928"
+  },
+  "protocol": {
+    "frozen_before_second_task_outcomes": true,
+    "frozen_commit": "c59485d698c41797dc307b81fa8a4198f1113812",
+    "gates_path": "PROMOTION_GATES.json",
+    "gates_sha256": "ff186c5cd42839478d7b3e7f40377383cec2d7c472b5194eeeb4e70484c217c4"
+  },
+  "protocol_id": "reranked-depth10-default-promotion-20260802",
+  "publication_boundary": "No query text, corpus text, dataset payload, model weights, embedding cache, private path, production claim, or release tag is included.",
+  "schema_version": "atlasrag.promotion-evidence-manifest.v1",
+  "source": {
+    "checker": {
+      "path": "../src/check_promotion_gate.py",
+      "sha256": "54d3e227b8319a2af7505cc69b18a486e310e2e939bffd709179eea607b66f70"
+    },
+    "contract_evaluator": {
+      "path": "../src/run_promotion_contract_eval.py",
+      "sha256": "1dd9dd71cd311a54039a43987d3f1e1d9f8195c4cb67221974315ae3f6af74f9"
+    },
+    "decision_engine": {
+      "path": "../../src/atlasrag/evaluation/promotion.py",
+      "sha256": "843063c91110f9b1295a1ddcf02a1f5869cf4b67270190efaa95a2fbdf7622a1"
+    },
+    "runner": {
+      "path": "../src/run_promotion_benchmark.py",
+      "sha256": "e1aceaff3253cc4e4b83200aa6ca398951a0d887d04787d6e3438679259ee454"
+    }
+  },
+  "status": "development-evidence-not-release",
+  "tasks": {
+    "arguana-contrast-200": {
+      "corpus_count": 8674,
+      "dataset_hashes": {
+        "corpus_sha256": "0627982cec4ee896df6dc98604ef6b499c83fd87a19eaaeb3f23b88bbef6cbce",
+        "qrels_sha256": "0c47b481fa8b47fb9ca5e74bc8a017bdea14518c0e4a5d21345291180b3aca76",
+        "queries_sha256": "f8b7c903f95d9a2d291de3915a8fac25085e9db679f19f59fea4145bfd1df618"
+      },
+      "query_count": 200,
+      "rankings": {
+        "compressed_path": "artifacts/arguana-rankings.jsonl.gz",
+        "compressed_sha256": "32dab7b69e57cf98d9fc96dd09016cb26d2b6bcce17fff50fa1fb192ac143bc5",
+        "line_count": 200,
+        "uncompressed_sha256": "efb44f2c475ca57a961fa37908958656e33f0091b4442fbd8e1c5bc06237a7f0"
+      },
+      "selection_rule": "SHA256(atlasrag-arguana-contrast-20260731: + query_id), then query_id; take 200"
+    },
+    "scifact-test-300": {
+      "corpus_count": 5183,
+      "dataset_hashes": {
+        "corpus_sha256": "dec31c8182f3d744c7d2c09423756fd1d17cbef75808db13ba01cc0aab4d1ac6",
+        "qrels_sha256": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c",
+        "queries_sha256": "8ff84a7c903f722981cd8d595c022660140c51867b27608a6d4910db86080313"
+      },
+      "query_count": 300,
+      "rankings": {
+        "compressed_path": "artifacts/scifact-rankings.jsonl.gz",
+        "compressed_sha256": "1c9391cbc49e29bd6ffbe48cd63c22e840f9018f65a8c7784d3a39b913dd9bc9",
+        "line_count": 300,
+        "uncompressed_sha256": "2b689b58c1eb1af1f85e3ce0de9a6453ad692a7eb88f67b1c701bd45e1d5bc16"
+      }
+    }
+  }
+}
