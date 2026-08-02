@@ -12,6 +12,7 @@ All notable public changes to AtlasRAG are documented here.
 - Rerank traces preserving candidate-stage method, rank, score semantics, and hybrid contributions.
 - Regression coverage for candidate-depth behavior, exclusions, authorization boundaries, deterministic ties, score validation, and citation integrity.
 - Clean-wheel SciFact reranking evidence with exact A/B ranking reproduction, paired bootstrap intervals, raw ranking checksums, and host-contention diagnostics.
+- Normative default-path evaluation standard, frozen machine-readable promotion gates, a generalized installed-package benchmark runner, and a fail-closed promotion evaluator.
 
 ### Decisions
 

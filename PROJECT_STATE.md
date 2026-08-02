@@ -28,6 +28,8 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Optional cross-encoder adapter with configurable batching.
 - Immutable citations plus rerank traces preserving candidate-stage evidence.
 - Clean-wheel SciFact reranking experiment with exact A/B ranking reproduction, paired bootstrap analysis, raw timing samples, and an explicit no-promotion decision.
+- Default-path evaluation standard and machine-readable depth-10 promotion protocol frozen before the second-task outcomes.
+- Fail-closed promotion evaluator with explicit rejected, inconclusive, and promoted dispositions.
 
 ## Current architecture
 
@@ -66,7 +68,7 @@ The evaluated wheels, source commits, data identities, model revisions, raw rank
 
 ## Next highest-value task
 
-Create the Day 6 evaluation and promotion gate: freeze a second task shape, define explicit no-regression thresholds for Recall@K, authorization, provenance, reproducibility, and controlled-host latency, and make default-path changes fail closed when evidence is inconclusive. Re-evaluate depth 10 first; keep depth 20 rejected unless new evidence reverses the dominated result.
+Execute the frozen Day 6 depth-10 protocol on SciFact and the deterministic ArguAna contrast slice, compile controlled-host A/B evidence, and retain the current default unless every machine-readable promotion gate passes.
 
 ## Deferred work
 

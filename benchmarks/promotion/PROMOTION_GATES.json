@@ -1,0 +1,243 @@
+{
+  "schema_version": "atlasrag.promotion-gates.v1",
+  "protocol_id": "reranked-depth10-default-promotion-20260802",
+  "status": "frozen-before-second-task-outcomes",
+  "baseline": {
+    "id": "hybrid_rrf",
+    "top_k": 10
+  },
+  "candidate": {
+    "id": "cross_encoder_reranked",
+    "candidate_depth": 10,
+    "top_k": 10,
+    "default_enabled_before_evaluation": false
+  },
+  "required_task_shapes": [
+    "scifact-test-300",
+    "arguana-contrast-200"
+  ],
+  "statistics": {
+    "bootstrap_samples": 10000,
+    "confidence_level": 0.95,
+    "seed": 20260802,
+    "primary_metric": "mrr@10",
+    "secondary_metric": "ndcg@10",
+    "recall_metric": "recall@10"
+  },
+  "global_vetoes": [
+    {
+      "id": "authorization_leakage_zero",
+      "path": [
+        "contracts",
+        "authorization_leakage_count"
+      ],
+      "operator": "eq",
+      "threshold": 0
+    },
+    {
+      "id": "unauthorized_candidate_scoring_zero",
+      "path": [
+        "contracts",
+        "unauthorized_candidate_scoring_count"
+      ],
+      "operator": "eq",
+      "threshold": 0
+    },
+    {
+      "id": "excluded_chunk_leakage_zero",
+      "path": [
+        "contracts",
+        "excluded_chunk_leakage_count"
+      ],
+      "operator": "eq",
+      "threshold": 0
+    },
+    {
+      "id": "malformed_policy_fails_closed",
+      "path": [
+        "contracts",
+        "malformed_policy_fails_closed"
+      ],
+      "operator": "eq",
+      "threshold": true
+    },
+    {
+      "id": "contract_citation_completeness",
+      "path": [
+        "contracts",
+        "citation_completeness"
+      ],
+      "operator": "eq",
+      "threshold": 1.0
+    },
+    {
+      "id": "contract_deterministic_rerun",
+      "path": [
+        "contracts",
+        "deterministic_ranking_reproduction"
+      ],
+      "operator": "eq",
+      "threshold": true
+    },
+    {
+      "id": "authorized_private_result_visible",
+      "path": [
+        "contracts",
+        "authorized_private_visible"
+      ],
+      "operator": "eq",
+      "threshold": true
+    }
+  ],
+  "per_task_vetoes": [
+    {
+      "id": "candidate_depth_frozen",
+      "path": [
+        "candidate_depth"
+      ],
+      "operator": "eq",
+      "threshold": 10
+    },
+    {
+      "id": "frozen_identity_equal",
+      "path": [
+        "reproducibility",
+        "identity_equal"
+      ],
+      "operator": "eq",
+      "threshold": true
+    },
+    {
+      "id": "rankings_reproduce",
+      "path": [
+        "reproducibility",
+        "rankings_byte_equal"
+      ],
+      "operator": "eq",
+      "threshold": true
+    },
+    {
+      "id": "quality_reproduces",
+      "path": [
+        "reproducibility",
+        "quality_equal"
+      ],
+      "operator": "eq",
+      "threshold": true
+    },
+    {
+      "id": "summary_reproduces",
+      "path": [
+        "reproducibility",
+        "summary_byte_equal"
+      ],
+      "operator": "eq",
+      "threshold": true
+    },
+    {
+      "id": "public_payload_not_redistributed",
+      "path": [
+        "privacy",
+        "payload_redistributed"
+      ],
+      "operator": "eq",
+      "threshold": false
+    },
+    {
+      "id": "citation_completeness",
+      "path": [
+        "citations",
+        "completeness"
+      ],
+      "operator": "eq",
+      "threshold": 1.0
+    },
+    {
+      "id": "recall_no_regression",
+      "path": [
+        "quality",
+        "recall@10",
+        "mean_delta"
+      ],
+      "operator": "ge",
+      "threshold": 0.0
+    },
+    {
+      "id": "controlled_host",
+      "path": [
+        "latency",
+        "controlled_host"
+      ],
+      "operator": "eq",
+      "threshold": true
+    },
+    {
+      "id": "latency_dispersion_acceptable",
+      "path": [
+        "latency",
+        "dispersion_acceptable"
+      ],
+      "operator": "eq",
+      "threshold": true
+    },
+    {
+      "id": "reranker_p95_budget_ms",
+      "path": [
+        "latency",
+        "reranker_p95_max_ms"
+      ],
+      "operator": "le",
+      "threshold": 75.0
+    },
+    {
+      "id": "reranker_p95_cross_run_ratio",
+      "path": [
+        "latency",
+        "reranker_p95_ratio"
+      ],
+      "operator": "le",
+      "threshold": 1.25
+    }
+  ],
+  "per_task_promotion_gates": [
+    {
+      "id": "primary_metric_positive_mean",
+      "path": [
+        "quality",
+        "mrr@10",
+        "mean_delta"
+      ],
+      "operator": "gt",
+      "threshold": 0.0
+    },
+    {
+      "id": "primary_metric_interval_excludes_zero",
+      "path": [
+        "quality",
+        "mrr@10",
+        "bootstrap_95_percent_interval",
+        0
+      ],
+      "operator": "gt",
+      "threshold": 0.0
+    },
+    {
+      "id": "secondary_metric_non_regression",
+      "path": [
+        "quality",
+        "ndcg@10",
+        "mean_delta"
+      ],
+      "operator": "ge",
+      "threshold": 0.0
+    }
+  ],
+  "latency_scope": "controlled local reranker-component budget, not a production SLO",
+  "failure_semantics": {
+    "missing_evidence": "retain_default_inconclusive",
+    "promotion_gate_failure": "retain_default_inconclusive",
+    "veto_gate_failure": "retain_default_rejected",
+    "only_all_gates_pass": "promote"
+  },
+  "tuning_boundary": "Do not tune the candidate on either required frozen evaluation task after observing outcomes."
+}

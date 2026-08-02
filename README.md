@@ -18,7 +18,8 @@ The latest stable release is `v0.2.0`. Current `main` advances toward `0.3.0` wi
 - immutable source-span citations and rerank traces that preserve candidate-stage evidence;
 - explicit tenant and group permission metadata enforced by every retrieval path;
 - typed query and result contracts that preserve method, rank, score semantics, component contributions, and chunk provenance;
-- deterministic tie-breaking and regression tests for authorization leakage, malformed policies, edge cases, and reproducibility.
+- deterministic tie-breaking and regression tests for authorization leakage, malformed policies, edge cases, and reproducibility;
+- a frozen, fail-closed evaluation standard for deciding whether a candidate may replace the default retrieval path.
 
 AtlasRAG publishes a bounded, reproducible `v0.2.0` benchmark evidence package for BM25, exact dense retrieval, and RRF. Reranking on `main` is not enabled by default and earns a public result claim only through a separately pinned experiment. AtlasRAG does not claim distributed serving, production traffic, model training, generation quality, formal security certification, or ANN scale.
 
@@ -163,6 +164,7 @@ Raw BM25, cosine, RRF, and cross-encoder scores are not treated as mutually cali
 .
 |-- .github/workflows/ci.yml
 |-- ARCHITECTURE.md
+|-- EVALUATION_STANDARD.md
 |-- BENCHMARK_ADAPTER.md
 |-- CHANGELOG.md
 |-- PROJECT_STATE.md
@@ -172,6 +174,7 @@ Raw BM25, cosine, RRF, and cross-encoder scores are not treated as mutually cali
 |-- pyproject.toml
 |-- src/atlasrag/
 |   |-- embeddings/
+|   |-- evaluation/
 |   |-- ingestion/
 |   |-- models.py
 |   `-- retrieval/
@@ -231,6 +234,10 @@ Current `main` also publishes a separate [`0.3.0.dev0` reranking experiment](ben
 | Reranked depth 50 | 0.8272 | 0.6614 | 0.6943 | 0.8400 |
 
 Every paired 95% bootstrap interval for the quality deltas includes zero. Depth 20 is dominated by depth 10 in this experiment, and timing was not stable across both runs because one run overlapped heavy host contention. Reranking therefore remains opt-in and disabled by default.
+
+### Frozen default-promotion protocol
+
+[`EVALUATION_STANDARD.md`](EVALUATION_STANDARD.md) and [`benchmarks/promotion/PROMOTION_GATES.json`](benchmarks/promotion/PROMOTION_GATES.json) define a fail-closed protocol for the depth-10 candidate. The gate file is frozen before the second-task outcomes: default promotion requires zero authorization leakage, complete citations, exact A/B ranking reproduction, no Recall@10 regression, statistically supported MRR@10 improvement on both SciFact and the deterministic ArguAna contrast slice, and repeatable controlled-host component latency.
 
 ## Reconstruction integrity
 
