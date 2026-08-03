@@ -99,3 +99,10 @@ Perform a no-payload failure analysis of the ArguAna rank movements and profile 
 ## Publication status
 
 The canonical repository is public at `tandixit95/AtlasRAG`; `main` is the canonical branch. Version 0.2.0 is the first evidence-backed GitHub release. Current `main` is `0.3.0.dev0` and adds an unreleased reranking/citation boundary plus a rejected default-promotion evidence package. No `v0.3.0` release exists.
+
+## Scale-evidence reconstruction
+
+A deterministic synthetic evidence harness now exists under `benchmarks/scale/`. The
+first milestone validates generation, sharding, workloads, checksums, schemas, and
+claim controls at smoke scale. Large-scale retrieval serving remains unimplemented and
+unmeasured. The 100M configuration is a future target, not a result.

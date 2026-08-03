@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/tandixit95/AtlasRAG/benchmarks/scale/config.schema.json",
+  "title": "AtlasRAG synthetic scale evidence configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "execution_status", "seed", "document_count",
+    "shard_count", "tenant_count", "groups_per_tenant", "public_fraction",
+    "min_text_bytes", "max_text_bytes", "query_count", "update_fraction",
+    "materialize_corpus"
+  ],
+  "properties": {
+    "schema_version": {"const": "atlasrag-scale-evidence/v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "execution_status": {"enum": ["target_unexecuted", "measured_smoke", "measured_scale"]},
+    "seed": {"type": "string", "minLength": 1},
+    "document_count": {"type": "integer", "minimum": 1},
+    "shard_count": {"type": "integer", "minimum": 1},
+    "tenant_count": {"type": "integer", "minimum": 1},
+    "groups_per_tenant": {"type": "integer", "minimum": 1},
+    "public_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+    "min_text_bytes": {"type": "integer", "minimum": 1},
+    "max_text_bytes": {"type": "integer", "minimum": 1},
+    "query_count": {"type": "integer", "minimum": 1},
+    "update_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+    "materialize_corpus": {"type": "boolean"}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "atlasrag-scale-evidence/v1",
+  "run_id": "target-100m-unexecuted",
+  "execution_status": "target_unexecuted",
+  "seed": "atlasrag-scale-reconstruction-target",
+  "document_count": 100000000,
+  "shard_count": 128,
+  "tenant_count": 32,
+  "groups_per_tenant": 18,
+  "public_fraction": 0.2,
+  "min_text_bytes": 16384,
+  "max_text_bytes": 32768,
+  "query_count": 1000000,
+  "update_fraction": 0.042,
+  "materialize_corpus": false
+}
