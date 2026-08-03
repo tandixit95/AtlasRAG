@@ -239,6 +239,16 @@ Every paired 95% bootstrap interval for the quality deltas includes zero. Depth 
 
 [`EVALUATION_STANDARD.md`](EVALUATION_STANDARD.md) and the [`promotion evidence package`](benchmarks/promotion/README.md) apply a fail-closed protocol frozen before the second-task outcomes. All 37 gates had complete evidence. The candidate was rejected: SciFact's MRR@10 delta remained inconclusive at `+0.0139` with a 95% interval of `[-0.0149, +0.0420]`; the ArguAna contrast slice regressed by `-0.0609` MRR@10 with an interval of `[-0.1067, -0.0142]`; and controlled reranker p95 exceeded the frozen 75 ms budget on both tasks. Hybrid RRF remains the default, and reranking remains opt-in.
 
+
+## Scale-evidence reconstruction
+
+`benchmarks/scale/` rebuilds scale evidence from scratch with deterministic synthetic
+records, tenant/group policies, shard-level checksums, query/update workloads, exact
+two-run reproduction, and fail-closed claim validation. The committed smoke run is a
+bounded evidence-system test. A 100M-document configuration is included only as an
+explicitly **unexecuted target**; AtlasRAG makes no 100M-document, distributed-serving,
+or production-QPS claim.
+
 ## Reconstruction integrity
 
 The original local source is unavailable. This repository contains new reconstruction work committed on its real development timeline. It does not recreate old commits, backdate history, or label reconstructed code as the lost original implementation.

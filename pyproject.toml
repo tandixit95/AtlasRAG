@@ -44,7 +44,7 @@ where = ["src"]
 [tool.pytest.ini_options]
 addopts = "-q"
 pythonpath = ["src"]
-testpaths = ["tests"]
+testpaths = ["tests", "benchmarks/scale/tests"]
 
 [tool.ruff]
 target-version = "py311"

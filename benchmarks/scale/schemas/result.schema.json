@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/tandixit95/AtlasRAG/benchmarks/scale/result.schema.json",
+  "title": "AtlasRAG synthetic scale evidence bundle",
+  "type": "object",
+  "required": ["bundle_schema_version", "config", "config_sha256", "first_run", "second_run", "reproducibility", "claim_boundary"],
+  "properties": {
+    "bundle_schema_version": {"const": "atlasrag-scale-evidence-bundle/v1"},
+    "config_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reproducibility": {
+      "type": "object",
+      "required": ["comparison_schema_version", "exact_reproduction", "first_surface_sha256", "second_surface_sha256"],
+      "properties": {
+        "comparison_schema_version": {"const": "atlasrag-scale-reproducibility/v1"},
+        "exact_reproduction": {"const": true},
+        "first_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "second_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

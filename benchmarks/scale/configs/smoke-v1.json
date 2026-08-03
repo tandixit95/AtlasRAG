@@ -1,0 +1,16 @@
+{
+  "schema_version": "atlasrag-scale-evidence/v1",
+  "run_id": "scale-smoke-v1",
+  "execution_status": "measured_smoke",
+  "seed": "atlasrag-scale-reconstruction-2026-08-02",
+  "document_count": 5000,
+  "shard_count": 16,
+  "tenant_count": 32,
+  "groups_per_tenant": 8,
+  "public_fraction": 0.2,
+  "min_text_bytes": 320,
+  "max_text_bytes": 768,
+  "query_count": 1000,
+  "update_fraction": 0.02,
+  "materialize_corpus": false
+}

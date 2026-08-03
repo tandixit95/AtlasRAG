@@ -1,0 +1,82 @@
+{
+  "claim_boundary": "Checksums establish file identity only; they do not upgrade target configurations into measured results.",
+  "files": [
+    {
+      "bytes": 1117,
+      "path": "benchmarks/scale/CLAIM_LEDGER.md",
+      "sha256": "e4fbe194fedc95bec6988d22bba1c4f1a37b0df63ef9a25b98d621de65d9d3cd"
+    },
+    {
+      "bytes": 677,
+      "path": "benchmarks/scale/LIMITATIONS.md",
+      "sha256": "1156ca00a464092ba0055f98561d54c4023af83b37eea7e05ff409f516314114"
+    },
+    {
+      "bytes": 1859,
+      "path": "benchmarks/scale/METHODOLOGY.md",
+      "sha256": "b574b180f5d1b9985f8ee6996ef73c9b3cbb2d107bbfc2e6513c32814d55d315"
+    },
+    {
+      "bytes": 2094,
+      "path": "benchmarks/scale/README.md",
+      "sha256": "8fe2dd2dd2c893b584469b6807d6a59a367dfa83d044eb629d91589d6e991951"
+    },
+    {
+      "bytes": 6412,
+      "path": "benchmarks/scale/artifacts/smoke-v1.json",
+      "sha256": "4ecc44673585fc301d9d9f80c9e970199f1ce8faf2ddb541cac79e3d5c66a2ce"
+    },
+    {
+      "bytes": 429,
+      "path": "benchmarks/scale/configs/smoke-v1.json",
+      "sha256": "dd938177fff94b5888b58b35b6624bbcd257a3e6dfa7fa7927117ce2ccb7965f"
+    },
+    {
+      "bytes": 451,
+      "path": "benchmarks/scale/configs/target-100m-unexecuted.json",
+      "sha256": "b93885208f6d3a7c0acc7991a9d17308b00cb6c42437c8caf189a2924e3a4019"
+    },
+    {
+      "bytes": 1398,
+      "path": "benchmarks/scale/schemas/config.schema.json",
+      "sha256": "946397aa6c42415e6e46ef773b4e8c977a13d5c729d898733169b247e9d2620b"
+    },
+    {
+      "bytes": 1027,
+      "path": "benchmarks/scale/schemas/result.schema.json",
+      "sha256": "154a3378734ae464419fcd9b334f24580d308c2a76ad9b5703855cc86de17015"
+    },
+    {
+      "bytes": 63,
+      "path": "benchmarks/scale/src/__init__.py",
+      "sha256": "b59d9388b9b30af6303ba3934dea0a699bf400c21d40d60b09b30304c020dd7e"
+    },
+    {
+      "bytes": 2389,
+      "path": "benchmarks/scale/src/run_scale_evidence.py",
+      "sha256": "54a02c42be2cdbdc97c7b47135f9db2666af43f1b30f517b9322d9956c57faf5"
+    },
+    {
+      "bytes": 15276,
+      "path": "benchmarks/scale/src/scale_harness.py",
+      "sha256": "5f7181a2dd2c711102c7d305e6ef6ed83df1b759adc43795c53d595dfe43f5cb"
+    },
+    {
+      "bytes": 1483,
+      "path": "benchmarks/scale/src/verify_scale_evidence.py",
+      "sha256": "9690180d97b74df21529a0f8ec97b8c3e3bbc6284ca0e0788d0b0bf34f8ece8f"
+    },
+    {
+      "bytes": 2168,
+      "path": "benchmarks/scale/src/verify_scale_package.py",
+      "sha256": "9c81ff7c1d848780a872821134a759b6e0f7d8cf27dfedbc16116b3c184754b9"
+    },
+    {
+      "bytes": 3788,
+      "path": "benchmarks/scale/tests/test_scale_harness.py",
+      "sha256": "24c84b288e410acdd2388a6e71cf4d9a5e49b5739bfa793797ea98587eefcb83"
+    }
+  ],
+  "generated_from_commit": "WORKTREE_PRECOMMIT",
+  "schema_version": "atlasrag-scale-package-manifest/v1"
+}

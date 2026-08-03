@@ -48,3 +48,10 @@ All notable public changes to AtlasRAG are documented here.
 - Exact dense retrieval is a correctness reference, not a large-corpus serving claim.
 - Benchmark timings are single-host measurements and are not production SLOs.
 - HNSW results in the evidence archive belong to a neutral companion harness, not the AtlasRAG package.
+
+### Added - scale-evidence reconstruction
+
+- Deterministic synthetic corpus, permission, shard, query, and update generation.
+- Exact two-run reproducibility and fail-closed evidence validation.
+- Bounded smoke artifact plus an explicitly unexecuted 100M target configuration.
+- Claim ledger, methodology, limitations, schemas, tests, and CI verification.

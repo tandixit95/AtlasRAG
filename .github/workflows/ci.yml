@@ -49,6 +49,8 @@ jobs:
           python -m ruff format --check .
       - name: Verify benchmark evidence
         run: python benchmarks/verify_artifacts.py
+      - name: Verify scale-evidence smoke bundle
+        run: python -m benchmarks.scale.src.verify_scale_package
 
   package-smoke:
     name: Wheel and sdist smoke
