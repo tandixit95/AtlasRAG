@@ -77,6 +77,6 @@
       "sha256": "24c84b288e410acdd2388a6e71cf4d9a5e49b5739bfa793797ea98587eefcb83"
     }
   ],
-  "generated_from_commit": "WORKTREE_PRECOMMIT",
+  "generated_from_commit": "0c67535914c4df4f15ef98a57f85812fdbef8119",
   "schema_version": "atlasrag-scale-package-manifest/v1"
 }
