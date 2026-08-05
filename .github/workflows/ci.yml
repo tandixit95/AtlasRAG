@@ -42,7 +42,7 @@ jobs:
           print(atlasrag.__file__)
           PY
       - name: Test
-        run: python -m pytest
+        run: pytest
       - name: Lint and format
         run: |
           python -m ruff check .
