@@ -43,7 +43,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 addopts = "-q"
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 testpaths = ["tests", "benchmarks/scale/tests"]
 
 [tool.ruff]
