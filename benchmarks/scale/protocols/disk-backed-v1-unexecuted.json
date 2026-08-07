@@ -1,0 +1,270 @@
+{
+  "artifact_contract": {
+    "checksums": "sha256",
+    "raw_payload_policy": "no_third_party_or_private_corpus_text_in_public_artifacts",
+    "reproduction": {
+      "environment_and_timing_may_differ": true,
+      "quality_summaries_must_match": true,
+      "ranking_hashes_must_match": true,
+      "same_config_runs": 2
+    },
+    "required_outputs": [
+      "environment.json",
+      "build.json",
+      "query_summary.json",
+      "query_samples.csv",
+      "quality.json",
+      "authorization.json",
+      "updates.json",
+      "manifest.json",
+      "SHA256SUMS"
+    ]
+  },
+  "authorization": {
+    "excluded_chunk_tolerance": 0,
+    "filter_stage": "before_scoring_and_ranking",
+    "groups_per_tenant": 8,
+    "malformed_policy_behavior": "fail_closed",
+    "model": "conjunctive_tenant_and_group",
+    "public_fraction": 0.2,
+    "required_cases": [
+      "public_visible",
+      "authorized_tenant_group_visible",
+      "wrong_tenant_hidden",
+      "wrong_group_hidden",
+      "malformed_policy_rejected",
+      "excluded_chunk_hidden",
+      "unauthorized_bm25_non_influence"
+    ],
+    "tenant_count": 32,
+    "unauthorized_influence_tolerance": 0,
+    "unauthorized_result_tolerance": 0
+  },
+  "cache_conditions": {
+    "cold_cache": {
+      "application_state": "fresh_worker_process_and_fresh_index_handle",
+      "os_page_cache": "reset_method_must_be_recorded_or_condition_is_inconclusive",
+      "warmup_queries": 0
+    },
+    "warm_cache": {
+      "application_state": "same_worker_and_index_handle",
+      "os_page_cache": "natural_after_declared_warmup",
+      "warmup_queries": 200
+    }
+  },
+  "claim_boundary": "This file freezes measurement design only. It is not evidence that any disk-backed retrieval workload, scale target, latency, throughput, update, or authorization result has executed.",
+  "corpus": {
+    "chunking": {
+      "chunk_size_chars": 512,
+      "overlap_chars": 64,
+      "required_chunk_fields": [
+        "chunk_id",
+        "document_id",
+        "document_content_sha256",
+        "source_uri",
+        "content_sha256",
+        "start_char",
+        "end_char",
+        "ordinal",
+        "strategy_id",
+        "metadata"
+      ],
+      "strategy_id": "fixed-character-v1:size=512:overlap=64"
+    },
+    "document_schema": [
+      "document_id",
+      "source_uri",
+      "text",
+      "content_sha256",
+      "tenant_id",
+      "groups",
+      "shard_id"
+    ],
+    "document_size_distribution": {
+      "kind": "deterministic_uniform_integer_bytes",
+      "max_text_bytes": 2048,
+      "min_text_bytes": 512
+    },
+    "future_100m_status": "evaluation_only_unexecuted",
+    "generator_contract": "benchmarks.scale.src.scale_harness",
+    "generator_seed": "atlasrag-disk-backed-retrieval-v1",
+    "identity": {
+      "chunk_identity": "atlasrag-chunk-v1 UUID5 over document identity, strategy, span, and chunk digest",
+      "document_identity": "deterministic logical source identity plus SHA-256 content version",
+      "duplicate_identity_policy": "fail_closed"
+    },
+    "scale_ladder_documents": [
+      100000,
+      1000000,
+      5000000,
+      10000000
+    ],
+    "shards_by_scale": {
+      "100000": 16,
+      "1000000": 32,
+      "10000000": 128,
+      "5000000": 64
+    },
+    "source_kind": "deterministic_synthetic"
+  },
+  "decision_semantics": {
+    "claim_rule": "only measured and validated scale-specific results may be stated; target values remain targets",
+    "fail": "any complete veto or numeric gate is violated",
+    "inconclusive": "any required evidence is missing, cache reset is undeclared for cold-cache claims, or a run is contaminated",
+    "pass": "all integrity, authorization, provenance, quality, reproducibility, error, timeout, and resume gates pass"
+  },
+  "environment_disclosure": {
+    "forbidden_fields": [
+      "storage_serial_number",
+      "credentials",
+      "tokens",
+      "private_paths"
+    ],
+    "required_fields": [
+      "atlasrag_commit",
+      "package_version",
+      "wheel_sha256",
+      "python_version",
+      "operating_system",
+      "kernel",
+      "cpu_model",
+      "physical_cores",
+      "logical_cores",
+      "ram_bytes",
+      "storage_model",
+      "storage_medium",
+      "filesystem",
+      "free_disk_bytes_before",
+      "free_disk_bytes_after",
+      "dense_encoder_name",
+      "dense_encoder_revision",
+      "dependency_lock_sha256"
+    ]
+  },
+  "execution_status": "protocol_unexecuted",
+  "measurements": {
+    "build": [
+      "generated_document_count",
+      "generated_chunk_count",
+      "index_record_count",
+      "physical_index_bytes",
+      "corpus_generation_seconds",
+      "index_build_seconds",
+      "checkpoint_count",
+      "resume_seconds"
+    ],
+    "quality": [
+      "bm25_expected_document_recall_at_10",
+      "dense_recall_at_10_vs_exact_reference",
+      "hybrid_expected_document_recall_at_10",
+      "authorization_leakage_count",
+      "excluded_chunk_leakage_count",
+      "unauthorized_influence_failures",
+      "citation_completeness"
+    ],
+    "query": [
+      "query_count",
+      "concurrency",
+      "cache_condition",
+      "latency_samples_ms",
+      "latency_p50_ms",
+      "latency_p95_ms",
+      "latency_p99_ms",
+      "sustained_qps",
+      "error_count",
+      "timeout_count"
+    ],
+    "updates": [
+      "events_replayed",
+      "inserts_applied",
+      "updates_applied",
+      "deletes_applied",
+      "replay_errors",
+      "post_replay_index_record_count",
+      "post_replay_index_sha256",
+      "resume_equivalence"
+    ]
+  },
+  "protocol_id": "disk-backed-retrieval-v1",
+  "quality_gates": {
+    "authorization_leakage_count_max": 0,
+    "bm25_expected_document_recall_at_10_min": 1.0,
+    "citation_completeness_min": 1.0,
+    "dense_recall_at_10_vs_exact_reference_min": 0.99,
+    "excluded_chunk_leakage_count_max": 0,
+    "hybrid_expected_document_recall_at_10_min": 0.99,
+    "malformed_policy_fail_closed_required": true,
+    "performance_threshold_policy": "latency_and_qps_are_report_only_in_v1; no production SLO or promotion threshold is implied",
+    "query_error_count_max": 0,
+    "query_timeout_count_max": 0,
+    "reproducible_ranking_hashes_required": true,
+    "resume_equivalence_required": true,
+    "unauthorized_influence_failures_max": 0
+  },
+  "query_workload": {
+    "class_distribution": {
+      "authorization_negative": 0.15,
+      "malformed_policy_probe": 0.05,
+      "positive_exact_lookup": 0.8
+    },
+    "concurrency_levels": [
+      1,
+      4,
+      16
+    ],
+    "measurement_query_count_per_concurrency": 2000,
+    "query_order": "deterministically_shuffled_by_protocol_seed",
+    "seed_namespace": "disk-query-v1",
+    "timeout_seconds": 10.0,
+    "warmup_query_count_per_concurrency": 200
+  },
+  "retrieval": {
+    "bm25": {
+      "implementation": "atlasrag.retrieval.BM25Retriever",
+      "parameters": {
+        "b": 0.75,
+        "k1": 1.5
+      }
+    },
+    "dense": {
+      "disk_index_implementation": "must_be_named_and_frozen_before_first_measured_run",
+      "encoder_license": "Apache-2.0",
+      "encoder_name": "sentence-transformers/all-MiniLM-L6-v2",
+      "encoder_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "reference": "atlasrag.retrieval.ExactDenseRetriever"
+    },
+    "fusion": {
+      "candidate_k": 100,
+      "method": "reciprocal_rank_fusion",
+      "rrf_k": 60
+    },
+    "top_k": 10
+  },
+  "scale_execution_policy": {
+    "100000": "may_execute_locally_after_protocol_and_smoke_validation",
+    "1000000": "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval_if_materially_disruptive_or_paid",
+    "10000000": "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval",
+    "100000000": "not_in_v1_scale_ladder; evaluate_only_after_10m_evidence",
+    "5000000": "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval"
+  },
+  "schema_version": "atlasrag-disk-benchmark-protocol/v1",
+  "update_workload": {
+    "event_distribution": {
+      "delete": 0.02,
+      "insert": 0.02,
+      "read": 0.9,
+      "update": 0.06
+    },
+    "replay_order": "deterministic",
+    "required_behaviors": [
+      "incremental_add",
+      "content_update",
+      "delete",
+      "restart_resume",
+      "idempotent_replay"
+    ],
+    "resume_checkpoint_interval_events": 1000,
+    "seed_namespace": "disk-update-v1",
+    "update_identity": "deterministic event_id plus document_id plus monotonically increasing version"
+  }
+}

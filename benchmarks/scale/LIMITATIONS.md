@@ -10,3 +10,4 @@
 - Diagnostic elapsed time is host-dependent and is not an allowed performance claim.
 - No raw large corpus should be committed; later measured runs require external,
   checksummed artifact storage and a complete environment manifest.
+- The frozen disk-backed benchmark protocol is unexecuted; it defines future measurement gates but provides no disk-backed latency, throughput, quality, update, or authorization-at-scale result.

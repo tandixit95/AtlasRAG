@@ -37,3 +37,16 @@ Elapsed generation time is stored only to diagnose gross regressions. It is not 
 throughput benchmark, retrieval latency, production SLO, or cross-host comparison.
 A future serving benchmark requires isolated warm-up, steady-state windows,
 concurrency control, percentile latency, error accounting, and declared hardware.
+
+## Disk-backed protocol freeze
+
+Before any 100K-or-larger retrieval result, `protocols/disk-backed-v1-unexecuted.json`
+must pass the fail-closed protocol validator. The protocol freezes the scale ladder,
+synthetic corpus/chunk contract, authorization stage, query/update distributions, cache
+conditions, environment disclosure, build/query/update/quality measurements, raw
+artifact contract, and decision semantics. The dense disk-index implementation itself
+must be named and version-pinned before the first measured run.
+
+Performance values are report-only in protocol v1. A valid measurement requires raw
+P50/P95/P99 samples and sustained QPS, but those values are not production SLOs and
+are not compared against an invented threshold.

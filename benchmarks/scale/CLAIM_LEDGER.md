@@ -7,6 +7,7 @@
 | S3 | The smoke claim-bearing surface reproduced exactly across two executions | Reproducibility digests in the bundle | Independent or cross-host replication |
 | S4 | The harness fails closed when an unexecuted target is presented as measured evidence | Unit tests and validator | Proof that all future reporting is error-free |
 | T1 | A 100M-document configuration exists as an unexecuted target | `configs/target-100m-unexecuted.json` | 100M documents generated/indexed/queried |
+| P1 | A frozen unexecuted disk-backed benchmark protocol exists | Protocol JSON, validator, and tests | Any claim that disk-backed retrieval, 100K+, latency, QPS, updates, or authorization-at-scale has executed |
 
 ## Audit rule
 
