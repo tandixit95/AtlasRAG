@@ -7,9 +7,9 @@
       "sha256": "aa4f479716dc1bce02c995493ee86f469935bc74754702954d06b19aa2492880"
     },
     {
-      "bytes": 7071,
+      "bytes": 7031,
       "path": "benchmarks/scale/DISK_BENCHMARK_SPEC.md",
-      "sha256": "5929d65fb39af72ec2bf394f6722bf6c4c1fbee2c1777d14f44a7cda49ce1948"
+      "sha256": "e058260b1141cf3678288eba9c400848ea4ac2362d49cac0532c436a85fde1ea"
     },
     {
       "bytes": 872,
@@ -47,9 +47,9 @@
       "sha256": "b93885208f6d3a7c0acc7991a9d17308b00cb6c42437c8caf189a2924e3a4019"
     },
     {
-      "bytes": 8450,
+      "bytes": 8417,
       "path": "benchmarks/scale/protocols/disk-backed-v1-unexecuted.json",
-      "sha256": "2bb22a7db3c28b003c2f7614c33c3d679cfbb1ebc10b976cea921aaa45ddecd5"
+      "sha256": "0a1ee04ccfc5aadd4dc912a2de4ae136939781724647ef283df419d75b62c20a"
     },
     {
       "bytes": 1398,
@@ -82,9 +82,9 @@
       "sha256": "5f7181a2dd2c711102c7d305e6ef6ed83df1b759adc43795c53d595dfe43f5cb"
     },
     {
-      "bytes": 10465,
+      "bytes": 10641,
       "path": "benchmarks/scale/src/verify_disk_benchmark_protocol.py",
-      "sha256": "68081eea8725584aeb49207cf4201a4aa0e257e9e60962727b40bb0b9c30e2ec"
+      "sha256": "fdb6f5e67370770e0db410aa0902503d6e5f61ffc5fc7bfff16deab4c62acc63"
     },
     {
       "bytes": 1483,
@@ -97,9 +97,9 @@
       "sha256": "8029352bb34268e962e4b8204c4d49f08c2b3a015881911e4e907cea7a25dffd"
     },
     {
-      "bytes": 2639,
+      "bytes": 3091,
       "path": "benchmarks/scale/tests/test_disk_benchmark_protocol.py",
-      "sha256": "e6edfc0299f9eeb253db8e24bdf50200173cd08079043ae1f364311207c8f2c3"
+      "sha256": "472d20bad5894a908d13f30063454735d7e9954f13abe6fdda6570e494b69c76"
     },
     {
       "bytes": 3788,

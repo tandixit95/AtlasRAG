@@ -77,6 +77,19 @@ def test_protocol_query_distribution_must_sum_to_one() -> None:
         validate_protocol(protocol)
 
 
+def test_protocol_requires_unconditional_approval_for_1m_and_larger() -> None:
+    protocol = _protocol()
+    protocol["scale_execution_policy"]["1000000"] = (
+        "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval_"
+        "if_materially_disruptive_or_paid"
+    )
+
+    with pytest.raises(
+        ValueError, match="1M execution must require an estimate and explicit approval"
+    ):
+        validate_protocol(protocol)
+
+
 def test_protocol_mutation_fixture_does_not_modify_source() -> None:
     original = _protocol()
     mutated = copy.deepcopy(original)

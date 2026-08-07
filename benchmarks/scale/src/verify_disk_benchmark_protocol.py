@@ -276,14 +276,17 @@ def validate_protocol(protocol: dict[str, Any]) -> None:
     )
 
     scale_policy = protocol["scale_execution_policy"]
-    _require(
-        "approval" in scale_policy["5000000"],
-        "5M execution must require explicit approval",
+    required_large_scale_policy = (
+        "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval"
     )
-    _require(
-        "approval" in scale_policy["10000000"],
-        "10M execution must require explicit approval",
-    )
+    for scale in ("1000000", "5000000", "10000000"):
+        _require(
+            scale_policy[scale] == required_large_scale_policy,
+            (
+                f"{int(scale) // 1_000_000}M execution must require an estimate "
+                "and explicit approval"
+            ),
+        )
     _require(
         "not_in_v1_scale_ladder" in scale_policy["100000000"],
         "100M must remain outside protocol v1 execution",

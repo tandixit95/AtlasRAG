@@ -94,8 +94,7 @@ Two equivalent runs are required. Ranking hashes and quality summaries must matc
 ## Scale policy
 
 - 100K may run locally only after the protocol validator, smoke evidence, and implementation-specific tests pass.
-- 1M requires a pre-run runtime/disk/RAM/GPU/cost estimate and explicit approval when it would materially disrupt the machine or incur paid cost.
-- 5M and 10M require the same estimate and explicit approval.
+- 1M, 5M, and 10M each require a pre-run runtime/disk/RAM/GPU/cost estimate **and explicit approval before execution**, regardless of whether the run is local or paid.
 - 100M is not executable under this protocol.
 
 Target values never become measurements through prose.

@@ -242,7 +242,7 @@
   },
   "scale_execution_policy": {
     "100000": "may_execute_locally_after_protocol_and_smoke_validation",
-    "1000000": "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval_if_materially_disruptive_or_paid",
+    "1000000": "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval",
     "10000000": "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval",
     "100000000": "not_in_v1_scale_ladder; evaluate_only_after_10m_evidence",
     "5000000": "requires_pre_run_runtime_disk_ram_gpu_cost_estimate_and_explicit_approval"
