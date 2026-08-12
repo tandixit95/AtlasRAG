@@ -44,7 +44,7 @@ where = ["src"]
 [tool.pytest.ini_options]
 addopts = "-q"
 pythonpath = ["src", "."]
-testpaths = ["tests", "benchmarks/scale/tests"]
+testpaths = ["tests", "benchmarks/scale/tests", "benchmarks/analysis/arguana_rank_movements/tests"]
 
 [tool.ruff]
 target-version = "py311"

@@ -59,7 +59,7 @@
     },
     {
       "bytes": 4009,
-      "path": "../../../tests/test_arguana_rank_movement_analysis.py",
+      "path": "tests/test_arguana_rank_movement_analysis.py",
       "sha256": "6d508892e07caf87f7d651abd8579e9cc57fe7d206213312e4592a0005e578be"
     }
   ],
