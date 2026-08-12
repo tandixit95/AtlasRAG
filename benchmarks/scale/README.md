@@ -37,6 +37,23 @@ To materialize a measured corpus, set `materialize_corpus` to `true` in a measur
 configuration and pass `--materialized-dir`. Large corpora and third-party data must
 not be committed.
 
+## Frozen disk-backed benchmark protocol
+
+`DISK_BENCHMARK_SPEC.md` and `protocols/disk-backed-v1-unexecuted.json` freeze the
+next measurement design before disk-backed results exist. The protocol covers corpus
+and chunk identity, tenant/group authorization, query/update distributions, cold/warm
+cache semantics, hardware disclosure, P50/P95/P99 latency, sustained QPS, quality and
+leakage gates, raw artifacts, checksums, and pass/fail/inconclusive semantics.
+
+Validate it with:
+
+```bash
+python -m benchmarks.scale.src.verify_disk_benchmark_protocol
+```
+
+The protocol is intentionally `protocol_unexecuted`; it supports no retrieval-scale or
+performance claim by itself.
+
 ## Next milestones
 
 1. Add a disk-backed shard/index adapter with bounded local measurements.

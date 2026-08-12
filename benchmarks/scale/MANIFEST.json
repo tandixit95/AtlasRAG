@@ -1,25 +1,35 @@
 {
-  "claim_boundary": "Checksums establish file identity only; they do not upgrade target configurations into measured results.",
+  "claim_boundary": "Checksums establish file identity only; unexecuted protocols and target configurations are not measured results.",
   "files": [
     {
-      "bytes": 1117,
+      "bytes": 1331,
       "path": "benchmarks/scale/CLAIM_LEDGER.md",
-      "sha256": "e4fbe194fedc95bec6988d22bba1c4f1a37b0df63ef9a25b98d621de65d9d3cd"
+      "sha256": "aa4f479716dc1bce02c995493ee86f469935bc74754702954d06b19aa2492880"
     },
     {
-      "bytes": 677,
+      "bytes": 7031,
+      "path": "benchmarks/scale/DISK_BENCHMARK_SPEC.md",
+      "sha256": "e058260b1141cf3678288eba9c400848ea4ac2362d49cac0532c436a85fde1ea"
+    },
+    {
+      "bytes": 872,
       "path": "benchmarks/scale/LIMITATIONS.md",
-      "sha256": "1156ca00a464092ba0055f98561d54c4023af83b37eea7e05ff409f516314114"
+      "sha256": "2046d0d3e825d78f8ebf457de090478876e84ee6e7ece22d4e18465cec1e4476"
     },
     {
-      "bytes": 1859,
+      "bytes": 2600,
       "path": "benchmarks/scale/METHODOLOGY.md",
-      "sha256": "b574b180f5d1b9985f8ee6996ef73c9b3cbb2d107bbfc2e6513c32814d55d315"
+      "sha256": "bfa1673e6cddcee33d50aa97f96b1e9bb94bc644b9ddb35b0a78f0e92a92a80d"
     },
     {
-      "bytes": 2094,
+      "bytes": 2767,
       "path": "benchmarks/scale/README.md",
-      "sha256": "8fe2dd2dd2c893b584469b6807d6a59a367dfa83d044eb629d91589d6e991951"
+      "sha256": "3e16431b923d501717ccfb3942143171513508dc98359185700ac367f571bb0d"
+    },
+    {
+      "bytes": 55,
+      "path": "benchmarks/scale/__init__.py",
+      "sha256": "35ac2c3c42a7410cbe5ac5c66a778bcb8c6bcf1b7a1737bb2bfa98b86dcbbca7"
     },
     {
       "bytes": 6412,
@@ -37,9 +47,19 @@
       "sha256": "b93885208f6d3a7c0acc7991a9d17308b00cb6c42437c8caf189a2924e3a4019"
     },
     {
+      "bytes": 8417,
+      "path": "benchmarks/scale/protocols/disk-backed-v1-unexecuted.json",
+      "sha256": "0a1ee04ccfc5aadd4dc912a2de4ae136939781724647ef283df419d75b62c20a"
+    },
+    {
       "bytes": 1398,
       "path": "benchmarks/scale/schemas/config.schema.json",
       "sha256": "946397aa6c42415e6e46ef773b4e8c977a13d5c729d898733169b247e9d2620b"
+    },
+    {
+      "bytes": 1647,
+      "path": "benchmarks/scale/schemas/disk-benchmark-protocol.schema.json",
+      "sha256": "cdf10e8258a4178b132c124c88bc161a5820fff004ab8209ec3dd7bb42fafe67"
     },
     {
       "bytes": 1027,
@@ -62,14 +82,24 @@
       "sha256": "5f7181a2dd2c711102c7d305e6ef6ed83df1b759adc43795c53d595dfe43f5cb"
     },
     {
+      "bytes": 10641,
+      "path": "benchmarks/scale/src/verify_disk_benchmark_protocol.py",
+      "sha256": "fdb6f5e67370770e0db410aa0902503d6e5f61ffc5fc7bfff16deab4c62acc63"
+    },
+    {
       "bytes": 1483,
       "path": "benchmarks/scale/src/verify_scale_evidence.py",
       "sha256": "9690180d97b74df21529a0f8ec97b8c3e3bbc6284ca0e0788d0b0bf34f8ece8f"
     },
     {
-      "bytes": 2168,
+      "bytes": 2587,
       "path": "benchmarks/scale/src/verify_scale_package.py",
-      "sha256": "9c81ff7c1d848780a872821134a759b6e0f7d8cf27dfedbc16116b3c184754b9"
+      "sha256": "8029352bb34268e962e4b8204c4d49f08c2b3a015881911e4e907cea7a25dffd"
+    },
+    {
+      "bytes": 3091,
+      "path": "benchmarks/scale/tests/test_disk_benchmark_protocol.py",
+      "sha256": "472d20bad5894a908d13f30063454735d7e9954f13abe6fdda6570e494b69c76"
     },
     {
       "bytes": 3788,
@@ -77,6 +107,6 @@
       "sha256": "24c84b288e410acdd2388a6e71cf4d9a5e49b5739bfa793797ea98587eefcb83"
     }
   ],
-  "generated_from_commit": "0c67535914c4df4f15ef98a57f85812fdbef8119",
+  "generated_from_commit": "32c9bb4ac3dc501982744190e88529c59a1eff17",
   "schema_version": "atlasrag-scale-package-manifest/v1"
 }

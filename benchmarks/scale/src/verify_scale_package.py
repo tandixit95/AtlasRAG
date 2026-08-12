@@ -8,6 +8,7 @@ from hashlib import sha256
 from pathlib import Path
 
 from benchmarks.scale.src.scale_harness import ScaleConfig
+from benchmarks.scale.src.verify_disk_benchmark_protocol import load_and_validate
 from benchmarks.scale.src.verify_scale_evidence import main as verify_bundle_main
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -37,6 +38,12 @@ def main() -> int:
                 f"actual={actual}"
             )
 
+    disk_protocol = load_and_validate(
+        SCALE_ROOT / "protocols" / "disk-backed-v1-unexecuted.json"
+    )
+    if disk_protocol["execution_status"] != "protocol_unexecuted":
+        errors.append("disk benchmark protocol must remain protocol_unexecuted")
+
     target = ScaleConfig.from_path(
         SCALE_ROOT / "configs" / "target-100m-unexecuted.json"
     )
@@ -65,6 +72,7 @@ def main() -> int:
                 "files_verified": len(manifest["files"]),
                 "status": "PASS",
                 "target_100m_status": target.execution_status,
+                "disk_protocol_status": disk_protocol["execution_status"],
             },
             sort_keys=True,
         )

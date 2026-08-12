@@ -1,0 +1,77 @@
+{
+  "$id": "https://github.com/tandixit95/AtlasRAG/benchmarks/scale/disk-benchmark-protocol.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_contract": {
+      "type": "object"
+    },
+    "authorization": {
+      "type": "object"
+    },
+    "cache_conditions": {
+      "type": "object"
+    },
+    "claim_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "corpus": {
+      "type": "object"
+    },
+    "decision_semantics": {
+      "type": "object"
+    },
+    "environment_disclosure": {
+      "type": "object"
+    },
+    "execution_status": {
+      "const": "protocol_unexecuted"
+    },
+    "measurements": {
+      "type": "object"
+    },
+    "protocol_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "quality_gates": {
+      "type": "object"
+    },
+    "query_workload": {
+      "type": "object"
+    },
+    "retrieval": {
+      "type": "object"
+    },
+    "scale_execution_policy": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "atlasrag-disk-benchmark-protocol/v1"
+    },
+    "update_workload": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "protocol_id",
+    "execution_status",
+    "claim_boundary",
+    "corpus",
+    "authorization",
+    "retrieval",
+    "query_workload",
+    "update_workload",
+    "cache_conditions",
+    "environment_disclosure",
+    "measurements",
+    "quality_gates",
+    "artifact_contract",
+    "decision_semantics",
+    "scale_execution_policy"
+  ],
+  "title": "AtlasRAG disk-backed retrieval benchmark protocol",
+  "type": "object"
+}
