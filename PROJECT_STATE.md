@@ -32,6 +32,7 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Fail-closed promotion evaluator with explicit rejected, inconclusive, and promoted dispositions.
 - Completed controlled A/B promotion evaluation across SciFact and the deterministic ArguAna contrast slice, with exact ranking reproduction, complete citations, and zero authorization leakage.
 - Rejected depth-10 default promotion: ArguAna ordering quality regressed with paired intervals below zero, and controlled reranker p95 exceeded the frozen component budget on both tasks.
+- No-payload ArguAna rank-movement analysis proving the frozen candidate set and Recall@10 were unchanged while relevant documents moved down on 80 queries versus up on 45.
 
 ## Current architecture
 
@@ -70,9 +71,16 @@ The Day 6 protocol then evaluated depth 10 on SciFact and the deterministic Argu
 
 The evaluated wheels, source commits, data identities, model revisions, raw rankings, and checksums are pinned. Timings remain single-host controlled observations and are not production SLOs. HNSW remains neutral-harness evidence, not an AtlasRAG capability.
 
+A separate no-payload analysis now classifies the ArguAna rank movements. The top-10
+candidate set and Recall@10 were preserved for all 200 queries. Relevant documents
+regressed on 80 queries, improved on 45, stayed unchanged on 44, and were absent from
+both lists on 31. Across the 169 queries with a relevant candidate, mean rank delta
+was `+0.5799` positions, where positive means worse. This is descriptive evidence,
+not a causal linguistic diagnosis and not tuning data.
+
 ## Next highest-value task
 
-Perform a no-payload failure analysis of the ArguAna rank movements and profile the reranker component on a separate development task. Any revised candidate must be tuned outside the frozen final sets, then locked under a new protocol before SciFact or ArguAna is re-evaluated. Do not add retrieval infrastructure merely to offset a failed promotion result.
+Profile the reranker component on a separate development task and define a development-only candidate protocol that does not inspect or tune on the frozen SciFact or ArguAna final sets. Any revised candidate must be selected on separate development evidence, then locked under a new freeze-before-outcomes protocol before final re-evaluation. Do not add retrieval infrastructure merely to offset a failed promotion result.
 
 ## Deferred work
 

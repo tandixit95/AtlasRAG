@@ -127,8 +127,15 @@ subprocess.run(
     [sys.executable, str(ROOT / "promotion/verify_artifacts.py")],
     check=True,
 )
+subprocess.run(
+    [
+        sys.executable,
+        str(ROOT / "analysis/arguana_rank_movements/verify_artifacts.py"),
+    ],
+    check=True,
+)
 print(
     "PASS: benchmark documentation, JSON, privacy, source-equivalence, "
-    "regression gates, reranking and promotion development evidence, "
-    f"and {checksum_count} checksums"
+    "regression gates, reranking, promotion, and no-payload rank analysis, "
+    f"plus {checksum_count} checksums"
 )
