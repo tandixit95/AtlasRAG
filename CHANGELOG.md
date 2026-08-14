@@ -14,6 +14,7 @@ All notable public changes to AtlasRAG are documented here.
 - Clean-wheel SciFact reranking evidence with exact A/B ranking reproduction, paired bootstrap intervals, raw ranking checksums, and host-contention diagnostics.
 - Normative default-path evaluation standard, frozen machine-readable promotion gates, a generalized installed-package benchmark runner, and a fail-closed promotion evaluator.
 - Controlled installed-wheel SciFact and ArguAna depth-10 A/B evidence with exact ranking reproduction, complete citation checks, safety-contract evaluation, and machine-readable gate reporting.
+- No-payload ArguAna rank-movement analysis with exact source hashing, deterministic regeneration, candidate-set invariants, regression/improvement counts, score-margin diagnostics, limitations, and claim ledger.
 
 ### Decisions
 

@@ -1,0 +1,79 @@
+{
+  "analysis_id": "arguana-depth10-rank-movements-v1",
+  "claim_boundary": "No-payload descriptive analysis of frozen rank evidence; not tuning evidence, a causal explanation, or a full official ArguAna score.",
+  "expected": {
+    "candidate_set_preserved_queries": 200,
+    "classification_counts": {
+      "both_absent": 31,
+      "improved": 45,
+      "lost": 0,
+      "regressed": 80,
+      "rescued": 0,
+      "unchanged": 44
+    },
+    "mean_rank_delta": 0.579881656805,
+    "mrr_mean_delta": -0.06093452381,
+    "ndcg_mean_delta": -0.04764053288,
+    "recall_mean_delta": 0.0
+  },
+  "files": [
+    {
+      "bytes": 1661,
+      "path": "README.md",
+      "sha256": "0ef16f0a7bbb76b344458bfe07268db3cc90373be94c64ca5a7897bfd983acf3"
+    },
+    {
+      "bytes": 1929,
+      "path": "METHODOLOGY.md",
+      "sha256": "b2bf1429bf1c4b62d0f6e5b341f3b9614d4b0b1898e4bb75baeace342ced62c1"
+    },
+    {
+      "bytes": 1694,
+      "path": "RESULTS.md",
+      "sha256": "27de7f1ef414b98b95751e4c12917699d304d44841a523dc00b6754904f5ad0c"
+    },
+    {
+      "bytes": 828,
+      "path": "LIMITATIONS.md",
+      "sha256": "b0eb37b8f631a34c0d8f983942a0e476c07397785b5fcceaea621451691261f1"
+    },
+    {
+      "bytes": 1292,
+      "path": "CLAIM_LEDGER.md",
+      "sha256": "e3339ab1ecb9b1bf9c65353fcd52fe0006e305e9dae640101109e32c94646510"
+    },
+    {
+      "bytes": 19479,
+      "path": "artifacts/analysis.json",
+      "sha256": "ee390d546604f68f983b5ada98acf3217366c8e6f6e9869e111f92bb286e3586"
+    },
+    {
+      "bytes": 5284,
+      "path": "verify_artifacts.py",
+      "sha256": "9c8a200468a558679129aed9851e032598bfd08c604ae53104e2ed2e47f0f7ac"
+    },
+    {
+      "bytes": 14026,
+      "path": "../../src/analyze_promotion_rank_movements.py",
+      "sha256": "6c736ad5e9310ccf64f02904950651a8ae716ff90c529ebd94328c2cfceb466b"
+    },
+    {
+      "bytes": 4009,
+      "path": "tests/test_arguana_rank_movement_analysis.py",
+      "sha256": "6d508892e07caf87f7d651abd8579e9cc57fe7d206213312e4592a0005e578be"
+    }
+  ],
+  "limitations": [
+    "deterministic 200-query contrast slice",
+    "no query or corpus payload",
+    "descriptive rather than causal",
+    "frozen final slice cannot be used for tuning"
+  ],
+  "schema_version": "atlasrag.arguana-rank-analysis-manifest.v1",
+  "source": {
+    "path": "../../promotion/artifacts/arguana-rankings.jsonl.gz",
+    "payload_redistributed": false,
+    "query_count": 200,
+    "sha256": "32dab7b69e57cf98d9fc96dd09016cb26d2b6bcce17fff50fa1fb192ac143bc5"
+  }
+}

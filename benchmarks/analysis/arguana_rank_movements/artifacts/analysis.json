@@ -1,0 +1,635 @@
+{
+  "classification_counts": {
+    "both_absent": 31,
+    "improved": 45,
+    "lost": 0,
+    "regressed": 80,
+    "rescued": 0,
+    "unchanged": 44
+  },
+  "interpretation": {
+    "candidate_pool_changed": false,
+    "candidate_recall_changed": false,
+    "ordering_regression_is_primary_observation": true,
+    "supported_observation": "The frozen depth-10 reranker preserved the candidate set and recall, but moved relevant documents down more often than up on this slice."
+  },
+  "limitations": [
+    "This is a deterministic 200-query ArguAna contrast slice, not a full official score.",
+    "The analysis uses IDs, ranks, hashes, scores, and judged relevance only; no query or corpus text is included.",
+    "Rank movement is diagnostic evidence and does not establish a causal linguistic failure mode.",
+    "The frozen final slice must not be used to tune a replacement reranker.",
+    "A revised candidate requires development-task tuning and a new frozen protocol before final re-evaluation."
+  ],
+  "metric_movements": {
+    "mrr@10": {
+      "degraded_queries": 80,
+      "improved_queries": 45,
+      "mean_delta": -0.06093452381,
+      "sum_delta": -12.186904761905,
+      "unchanged_queries": 75
+    },
+    "ndcg@10": {
+      "degraded_queries": 80,
+      "improved_queries": 45,
+      "mean_delta": -0.04764053288,
+      "sum_delta": -9.528106576055,
+      "unchanged_queries": 75
+    },
+    "recall@10": {
+      "degraded_queries": 0,
+      "improved_queries": 0,
+      "mean_delta": 0.0,
+      "sum_delta": 0.0,
+      "unchanged_queries": 200
+    },
+    "success@10": {
+      "degraded_queries": 0,
+      "improved_queries": 0,
+      "mean_delta": 0.0,
+      "sum_delta": 0.0,
+      "unchanged_queries": 200
+    }
+  },
+  "query_ids_by_class": {
+    "both_absent": [
+      "test-digital-freedoms-eifdfaihs-con02a",
+      "test-digital-freedoms-eifdfaihs-con03a",
+      "test-economy-epegiahsc-con04a",
+      "test-economy-thhghwhwift-con02a",
+      "test-environment-aeghhgwpe-con03a",
+      "test-environment-ehwsnwu-con01a",
+      "test-environment-ehwsnwu-con02a",
+      "test-environment-opecewiahw-con04a",
+      "test-free-speech-debate-nshbbsbfb-pro04a",
+      "test-international-aglhrilhb-con03a",
+      "test-international-bldimehbn-con02a",
+      "test-international-eghrhbeusli-con05a",
+      "test-international-epglghbni-con02a",
+      "test-international-glilpdwhsn-pro01a",
+      "test-international-gmehwasr-con02a",
+      "test-international-iighbopcc-con01a",
+      "test-international-miasimyhw-con02a",
+      "test-law-hrilpgwhwr-pro01a",
+      "test-law-lghwpcctcc-pro01a",
+      "test-law-lgplhbssbco-con03a",
+      "test-law-tlcplghwfne-con02a",
+      "test-philosophy-apessghwba-con05a",
+      "test-philosophy-elhbrd-con01a",
+      "test-philosophy-pphbclsbs-con05a",
+      "test-politics-cdfsaphgiap-pro03a",
+      "test-politics-gvhwhnerse-con02a",
+      "test-science-ascidfakhba-con03a",
+      "test-science-ciidfaihwc-con03a",
+      "test-science-eassgbatj-con01a",
+      "test-science-eassgbatj-pro05a",
+      "test-society-epsihbdns-con01a"
+    ],
+    "improved": [
+      "test-culture-mmciahbans-con03a",
+      "test-digital-freedoms-aihwbasmn-con04a",
+      "test-digital-freedoms-eifpgdff-pro02a",
+      "test-economy-bepahbtsnrt-pro03a",
+      "test-economy-egppphbcb-con01a",
+      "test-economy-eptpghdtre-con01a",
+      "test-education-egtuscpih-con04a",
+      "test-education-pshhghwpba0-con02a",
+      "test-education-pshhghwpba0-pro02a",
+      "test-education-usuprmhbu-pro02a",
+      "test-environment-ehwsnwu-pro02a",
+      "test-free-speech-debate-fchbjaj-pro01a",
+      "test-free-speech-debate-ldhwprhs-pro02a",
+      "test-free-speech-debate-nshbbsbfb-con03a",
+      "test-free-speech-debate-radhbsshr-pro02a",
+      "test-free-speech-debate-yfsdfkhbwu-pro03a",
+      "test-health-ahiahbgbsp-con03a",
+      "test-health-hpehwadvoee-pro02a",
+      "test-health-ppelfhwbpba-con01a",
+      "test-international-aegmeppghw-pro03a",
+      "test-international-aghwrem-con01a",
+      "test-international-amehbuaisji-con02a",
+      "test-international-atiahblit-pro01a",
+      "test-international-bmaggiahbl-con03a",
+      "test-international-epdlhfcefp-con02a",
+      "test-international-epvhwhranet-con02a",
+      "test-international-gpdwhwcusa-con01a",
+      "test-international-gpdwhwcusa-pro02a",
+      "test-law-cppshbcjsfm-con01a",
+      "test-law-hrpepthwuto-con01a",
+      "test-law-lgplhbssbco-pro04a",
+      "test-law-rmelhrilhbiw-con02a",
+      "test-philosophy-apessghwba-con03a",
+      "test-philosophy-ippelhbcp-pro03a",
+      "test-philosophy-npegiepp-con01a",
+      "test-philosophy-pphbclsbs-con02a",
+      "test-politics-cpecfiepg-pro03a",
+      "test-politics-eppghwgpi-con04a",
+      "test-politics-ghbgussbsbt-pro02a",
+      "test-politics-lghwdecm-con02a",
+      "test-politics-oepghbrnsl-pro02a",
+      "test-science-ascidfakhba-pro04a",
+      "test-science-ciidfaihwc-pro04a",
+      "test-society-epiasghbf-con01a",
+      "test-society-ghbgqeaaems-pro02a"
+    ],
+    "lost": [],
+    "regressed": [
+      "test-culture-tlhrilsfhwr-pro04a",
+      "test-digital-freedoms-dfiphbgs-pro02a",
+      "test-digital-freedoms-eifpgdff-con03a",
+      "test-digital-freedoms-piidfiphwu-pro03a",
+      "test-economy-beghwbh-pro02a",
+      "test-economy-bepahbtsnrt-con01a",
+      "test-economy-bepighbdb-con02a",
+      "test-economy-epiasghbf-con03a",
+      "test-economy-thsptr-con02a",
+      "test-economy-thsptr-pro01a",
+      "test-education-egtuscpih-con01a",
+      "test-education-pstrgsehwt-pro04a",
+      "test-education-tuhwastua-pro01a",
+      "test-education-udfakusma-con02a",
+      "test-education-ufsdfkhbwu-pro03a",
+      "test-environment-aiahwagit-pro03a",
+      "test-environment-assgbatj-pro03a",
+      "test-free-speech-debate-ldhwprhs-con03a",
+      "test-free-speech-debate-radhbsshr-con01a",
+      "test-free-speech-debate-radhbsshr-pro01a",
+      "test-health-dhghhbampt-con01a",
+      "test-health-dhghwapgd-pro05a",
+      "test-health-hgwhwbjfs-con02a",
+      "test-health-hpehwadvoee-pro05a",
+      "test-international-aglhrilhb-pro02a",
+      "test-international-amehbuaisji-con01a",
+      "test-international-amehbuaisji-pro02a",
+      "test-international-ehbfe-con02a",
+      "test-international-ehbfe-pro03a",
+      "test-international-glilpdwhsn-con01a",
+      "test-international-glilpdwhsn-pro03a",
+      "test-international-gpdwhwcusa-pro03a",
+      "test-international-siacphbnt-pro04a",
+      "test-law-cpilhbishioe-con02a",
+      "test-law-cplglghwbhwd-con01a",
+      "test-law-cplgpshwdp-con04a",
+      "test-law-cplgpshwdp-pro03a",
+      "test-law-cplgpshwdp-pro04a",
+      "test-law-cppshbcjsfm-con03a",
+      "test-law-ilppppghb-con02a",
+      "test-law-phwmfri-pro01a",
+      "test-law-phwmfri-pro03a",
+      "test-law-tahglcphsld-con02a",
+      "test-law-thgglcplgphw-pro03a",
+      "test-law-tlcplghwfne-pro01a",
+      "test-philosophy-apessghwba-con04a",
+      "test-philosophy-apessghwba-pro03a",
+      "test-philosophy-apessghwba-pro04a",
+      "test-philosophy-elkosmj-con06a",
+      "test-philosophy-eppphwlrtjs-con02a",
+      "test-philosophy-npegiepp-pro01a",
+      "test-philosophy-pppgshbsd-con04a",
+      "test-philosophy-pppthbtcb-pro02a",
+      "test-politics-dhwem-pro03a",
+      "test-politics-glghssi-pro03a",
+      "test-politics-gvhbhlsbr-con03a",
+      "test-politics-mtpghwaacb-pro03a",
+      "test-politics-nlpdwhbusbuc-pro03a",
+      "test-politics-oapdhwinkp-pro02a",
+      "test-politics-oapdhwinkp-pro03a",
+      "test-politics-oeplhbuwhmi-pro01a",
+      "test-politics-oglilpdwhsn-con04a",
+      "test-politics-pgsimhwoia-con02a",
+      "test-religion-cmrsgfhbr-pro01a",
+      "test-religion-grcrgshwbr-con02a",
+      "test-religion-yercfrggms-pro05a",
+      "test-science-ciidfaihwc-pro01a",
+      "test-science-cpisydfphwj-pro03a",
+      "test-science-dssghsdmd-con03a",
+      "test-science-eassgbatj-con02a",
+      "test-science-sghwbdgmo-pro02a",
+      "test-society-asfhwapg-pro01a",
+      "test-society-cpisydfphwj-pro02a",
+      "test-society-epiasghbf-con03a",
+      "test-society-epsihbdns-pro01a",
+      "test-society-ghbgqeaaems-pro01a",
+      "test-society-mmcpsgfhbf-con02a",
+      "test-society-mmcpsgfhbf-pro04a",
+      "test-society-simhbrasnba-pro02a",
+      "test-sport-otshwbe2uuyt-con03a"
+    ],
+    "rescued": [],
+    "unchanged": [
+      "test-culture-ascidfakhba-con02a",
+      "test-culture-cgeeghwmeo-con03a",
+      "test-culture-cgeeghwmeo-pro04a",
+      "test-culture-mmctyshwbcp-con02a",
+      "test-culture-mmctyshwbcp-pro03a",
+      "test-culture-mmctyshwbcp-pro04a",
+      "test-culture-tlhrilsfhwr-pro02a",
+      "test-digital-freedoms-efsappgdfp-pro03a",
+      "test-digital-freedoms-eifdfaihs-pro01a",
+      "test-digital-freedoms-eifpgdff-pro03a",
+      "test-economy-egiahbwaka-con02a",
+      "test-economy-egppphbcb-con03a",
+      "test-economy-epegiahsc-con02a",
+      "test-economy-thhghwhwift-con01a",
+      "test-economy-thhghwhwift-pro01a",
+      "test-environment-opecewiahw-con01a",
+      "test-free-speech-debate-magghbcrg-pro02a",
+      "test-international-appghblsba-pro02a",
+      "test-international-atiahblit-con04a",
+      "test-international-bmaggiahbl-con01a",
+      "test-international-eghrhbeusli-con01a",
+      "test-international-eghrhbeusli-pro04a",
+      "test-international-eghrhbeusli-pro05a",
+      "test-international-epdlhfcefp-pro04a",
+      "test-international-epvhwhranet-con04a",
+      "test-international-gpdwhwcusa-con04a",
+      "test-international-gpsmhbsosb-pro03a",
+      "test-law-cpilhbishioe-pro04a",
+      "test-law-cplglghwbhwd-con03a",
+      "test-law-lghwpcctcc-pro03a",
+      "test-law-lgplhbssbco-pro01a",
+      "test-law-sdfclhrppph-pro04a",
+      "test-politics-cpegiepgh-con01a",
+      "test-politics-cpegiepgh-con02a",
+      "test-politics-cpegiepgh-pro04a",
+      "test-politics-oglilpdwhsn-con02a",
+      "test-politics-ypppdghwid-con02a",
+      "test-politics-ypppdghwid-con05a",
+      "test-religion-frghbbgi-pro01a",
+      "test-religion-msgfhwbamec-pro02a",
+      "test-religion-msgfhwbamec-pro03a",
+      "test-society-cpisydfphwj-con01a",
+      "test-society-simhbrasnba-pro01a",
+      "test-sport-ybfgsohbhog-pro03a"
+    ]
+  },
+  "rank_movements": {
+    "baseline_rank_counts": {
+      "1": 52,
+      "10": 4,
+      "2": 33,
+      "3": 16,
+      "4": 18,
+      "5": 12,
+      "6": 9,
+      "7": 6,
+      "8": 12,
+      "9": 7,
+      "absent": 31
+    },
+    "by_baseline_rank": {
+      "1": {
+        "improved": 0,
+        "mean_rank_delta": 1.346153846154,
+        "query_count": 52,
+        "regressed": 28,
+        "unchanged": 24
+      },
+      "10": {
+        "improved": 3,
+        "mean_rank_delta": -3.75,
+        "query_count": 4,
+        "regressed": 0,
+        "unchanged": 1
+      },
+      "2": {
+        "improved": 7,
+        "mean_rank_delta": 1.939393939394,
+        "query_count": 33,
+        "regressed": 20,
+        "unchanged": 6
+      },
+      "3": {
+        "improved": 3,
+        "mean_rank_delta": 1.5625,
+        "query_count": 16,
+        "regressed": 9,
+        "unchanged": 4
+      },
+      "4": {
+        "improved": 10,
+        "mean_rank_delta": 0.055555555556,
+        "query_count": 18,
+        "regressed": 6,
+        "unchanged": 2
+      },
+      "5": {
+        "improved": 4,
+        "mean_rank_delta": 0.5,
+        "query_count": 12,
+        "regressed": 7,
+        "unchanged": 1
+      },
+      "6": {
+        "improved": 5,
+        "mean_rank_delta": -1.111111111111,
+        "query_count": 9,
+        "regressed": 3,
+        "unchanged": 1
+      },
+      "7": {
+        "improved": 3,
+        "mean_rank_delta": -1.333333333333,
+        "query_count": 6,
+        "regressed": 2,
+        "unchanged": 1
+      },
+      "8": {
+        "improved": 6,
+        "mean_rank_delta": -1.75,
+        "query_count": 12,
+        "regressed": 3,
+        "unchanged": 3
+      },
+      "9": {
+        "improved": 4,
+        "mean_rank_delta": -2.0,
+        "query_count": 7,
+        "regressed": 2,
+        "unchanged": 1
+      },
+      "absent": {
+        "both_absent": 31,
+        "query_count": 31,
+        "rescued": 0
+      }
+    },
+    "candidate_rank_counts": {
+      "1": 39,
+      "10": 12,
+      "2": 26,
+      "3": 27,
+      "4": 13,
+      "5": 14,
+      "6": 12,
+      "7": 10,
+      "8": 9,
+      "9": 7,
+      "absent": 31
+    },
+    "delta_distribution": {
+      "-1": 16,
+      "-2": 10,
+      "-3": 5,
+      "-4": 5,
+      "-5": 5,
+      "-6": 1,
+      "-7": 1,
+      "-8": 1,
+      "-9": 1,
+      "0": 44,
+      "1": 23,
+      "2": 25,
+      "3": 9,
+      "4": 8,
+      "5": 5,
+      "6": 4,
+      "7": 5,
+      "8": 1
+    },
+    "maximum_rank_delta": 8,
+    "mean_rank_delta": 0.579881656805,
+    "median_rank_delta": 0.0,
+    "minimum_rank_delta": -9,
+    "queries_with_relevant_candidate": 169
+  },
+  "reranker_score_diagnostics": {
+    "improved": {
+      "query_count": 45,
+      "relevant_reranker_score": {
+        "maximum": 3.768413066864,
+        "mean": -0.383363339388,
+        "median": -0.124637022614,
+        "minimum": -7.164007663727
+      },
+      "relevant_score_margin_to_top": {
+        "maximum": 8.06830149889,
+        "mean": 1.210893654906,
+        "median": 0.706820368767,
+        "minimum": 0.0
+      }
+    },
+    "regressed": {
+      "query_count": 80,
+      "relevant_reranker_score": {
+        "maximum": 3.270433425903,
+        "mean": -1.067266186653,
+        "median": -1.134596347809,
+        "minimum": -6.187741279602
+      },
+      "relevant_score_margin_to_top": {
+        "maximum": 9.253041744232,
+        "mean": 2.539022353059,
+        "median": 2.124304255471,
+        "minimum": 0.061138153076
+      }
+    },
+    "unchanged": {
+      "query_count": 44,
+      "relevant_reranker_score": {
+        "maximum": 4.711165428162,
+        "mean": 0.043138332665,
+        "median": 0.343632087111,
+        "minimum": -9.055854797363
+      },
+      "relevant_score_margin_to_top": {
+        "maximum": 8.733422279358,
+        "mean": 1.060336822898,
+        "median": 0.0,
+        "minimum": 0.0
+      }
+    }
+  },
+  "schema_version": "atlasrag.arguana-rank-movement-analysis.v1",
+  "severe_regressions": [
+    {
+      "baseline_rank": 1,
+      "candidate_rank": 9,
+      "classification": "regressed",
+      "mrr_delta": -0.888888888889,
+      "ndcg_delta": -0.698970004336,
+      "query_id": "test-free-speech-debate-radhbsshr-pro01a",
+      "rank_delta": 8
+    },
+    {
+      "baseline_rank": 2,
+      "candidate_rank": 9,
+      "classification": "regressed",
+      "mrr_delta": -0.388888888889,
+      "ndcg_delta": -0.329899757907,
+      "query_id": "test-culture-tlhrilsfhwr-pro04a",
+      "rank_delta": 7
+    },
+    {
+      "baseline_rank": 2,
+      "candidate_rank": 9,
+      "classification": "regressed",
+      "mrr_delta": -0.388888888889,
+      "ndcg_delta": -0.329899757907,
+      "query_id": "test-health-hgwhwbjfs-con02a",
+      "rank_delta": 7
+    },
+    {
+      "baseline_rank": 3,
+      "candidate_rank": 10,
+      "classification": "regressed",
+      "mrr_delta": -0.233333333333,
+      "ndcg_delta": -0.210935173682,
+      "query_id": "test-society-cpisydfphwj-pro02a",
+      "rank_delta": 7
+    },
+    {
+      "baseline_rank": 1,
+      "candidate_rank": 8,
+      "classification": "regressed",
+      "mrr_delta": -0.875,
+      "ndcg_delta": -0.684535123214,
+      "query_id": "test-society-ghbgqeaaems-pro01a",
+      "rank_delta": 7
+    },
+    {
+      "baseline_rank": 3,
+      "candidate_rank": 10,
+      "classification": "regressed",
+      "mrr_delta": -0.233333333333,
+      "ndcg_delta": -0.210935173682,
+      "query_id": "test-society-simhbrasnba-pro02a",
+      "rank_delta": 7
+    },
+    {
+      "baseline_rank": 2,
+      "candidate_rank": 8,
+      "classification": "regressed",
+      "mrr_delta": -0.375,
+      "ndcg_delta": -0.315464876786,
+      "query_id": "test-free-speech-debate-ldhwprhs-con03a",
+      "rank_delta": 6
+    },
+    {
+      "baseline_rank": 4,
+      "candidate_rank": 10,
+      "classification": "regressed",
+      "mrr_delta": -0.15,
+      "ndcg_delta": -0.141611731756,
+      "query_id": "test-politics-dhwem-pro03a",
+      "rank_delta": 6
+    },
+    {
+      "baseline_rank": 2,
+      "candidate_rank": 8,
+      "classification": "regressed",
+      "mrr_delta": -0.375,
+      "ndcg_delta": -0.315464876786,
+      "query_id": "test-politics-glghssi-pro03a",
+      "rank_delta": 6
+    },
+    {
+      "baseline_rank": 4,
+      "candidate_rank": 10,
+      "classification": "regressed",
+      "mrr_delta": -0.15,
+      "ndcg_delta": -0.141611731756,
+      "query_id": "test-religion-cmrsgfhbr-pro01a",
+      "rank_delta": 6
+    }
+  ],
+  "source": {
+    "candidate_set_preserved_queries": 200,
+    "path": "benchmarks/promotion/artifacts/arguana-rankings.jsonl.gz",
+    "payload_text_keys_present": false,
+    "query_count": 200,
+    "sha256": "32dab7b69e57cf98d9fc96dd09016cb26d2b6bcce17fff50fa1fb192ac143bc5",
+    "top_k": 10
+  },
+  "strongest_improvements": [
+    {
+      "baseline_rank": 10,
+      "candidate_rank": 1,
+      "classification": "improved",
+      "mrr_delta": 0.9,
+      "ndcg_delta": 0.710935173682,
+      "query_id": "test-economy-eptpghdtre-con01a",
+      "rank_delta": -9
+    },
+    {
+      "baseline_rank": 9,
+      "candidate_rank": 1,
+      "classification": "improved",
+      "mrr_delta": 0.888888888889,
+      "ndcg_delta": 0.698970004336,
+      "query_id": "test-education-pshhghwpba0-pro02a",
+      "rank_delta": -8
+    },
+    {
+      "baseline_rank": 8,
+      "candidate_rank": 1,
+      "classification": "improved",
+      "mrr_delta": 0.875,
+      "ndcg_delta": 0.684535123214,
+      "query_id": "test-economy-egppphbcb-con01a",
+      "rank_delta": -7
+    },
+    {
+      "baseline_rank": 7,
+      "candidate_rank": 1,
+      "classification": "improved",
+      "mrr_delta": 0.857142857143,
+      "ndcg_delta": 0.666666666667,
+      "query_id": "test-international-amehbuaisji-con02a",
+      "rank_delta": -6
+    },
+    {
+      "baseline_rank": 6,
+      "candidate_rank": 1,
+      "classification": "improved",
+      "mrr_delta": 0.833333333333,
+      "ndcg_delta": 0.643792812892,
+      "query_id": "test-economy-bepahbtsnrt-pro03a",
+      "rank_delta": -5
+    },
+    {
+      "baseline_rank": 9,
+      "candidate_rank": 4,
+      "classification": "improved",
+      "mrr_delta": 0.138888888889,
+      "ndcg_delta": 0.129646562409,
+      "query_id": "test-law-hrpepthwuto-con01a",
+      "rank_delta": -5
+    },
+    {
+      "baseline_rank": 8,
+      "candidate_rank": 3,
+      "classification": "improved",
+      "mrr_delta": 0.208333333333,
+      "ndcg_delta": 0.184535123214,
+      "query_id": "test-politics-cpecfiepg-pro03a",
+      "rank_delta": -5
+    },
+    {
+      "baseline_rank": 7,
+      "candidate_rank": 2,
+      "classification": "improved",
+      "mrr_delta": 0.357142857143,
+      "ndcg_delta": 0.297596420238,
+      "query_id": "test-politics-ghbgussbsbt-pro02a",
+      "rank_delta": -5
+    },
+    {
+      "baseline_rank": 10,
+      "candidate_rank": 5,
+      "classification": "improved",
+      "mrr_delta": 0.1,
+      "ndcg_delta": 0.097787980917,
+      "query_id": "test-science-ascidfakhba-pro04a",
+      "rank_delta": -5
+    },
+    {
+      "baseline_rank": 8,
+      "candidate_rank": 4,
+      "classification": "improved",
+      "mrr_delta": 0.125,
+      "ndcg_delta": 0.115211681288,
+      "query_id": "test-environment-ehwsnwu-pro02a",
+      "rank_delta": -4
+    }
+  ]
+}

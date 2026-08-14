@@ -239,6 +239,15 @@ Every paired 95% bootstrap interval for the quality deltas includes zero. Depth 
 
 [`EVALUATION_STANDARD.md`](EVALUATION_STANDARD.md) and the [`promotion evidence package`](benchmarks/promotion/README.md) apply a fail-closed protocol frozen before the second-task outcomes. All 37 gates had complete evidence. The candidate was rejected: SciFact's MRR@10 delta remained inconclusive at `+0.0139` with a 95% interval of `[-0.0149, +0.0420]`; the ArguAna contrast slice regressed by `-0.0609` MRR@10 with an interval of `[-0.1067, -0.0142]`; and controlled reranker p95 exceeded the frozen 75 ms budget on both tasks. Hybrid RRF remains the default, and reranking remains opt-in.
 
+### No-payload ArguAna rank analysis
+
+The [`rank-movement analysis`](benchmarks/analysis/arguana_rank_movements/README.md)
+uses only frozen IDs, ranks, scores, hashes, and judged relevance. Candidate sets and
+Recall@10 were unchanged on all 200 queries, but relevant documents moved down on 80
+queries versus up on 45; 44 stayed at the same rank and 31 were absent from both
+lists. This supports an ordering-regression diagnosis without redistributing ArguAna
+payload text or treating the frozen final slice as tuning data.
+
 
 ## Scale-evidence reconstruction
 
