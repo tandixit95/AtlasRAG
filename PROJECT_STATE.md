@@ -33,6 +33,7 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Completed controlled A/B promotion evaluation across SciFact and the deterministic ArguAna contrast slice, with exact ranking reproduction, complete citations, and zero authorization leakage.
 - Rejected depth-10 default promotion: ArguAna ordering quality regressed with paired intervals below zero, and controlled reranker p95 exceeded the frozen component budget on both tasks.
 - No-payload ArguAna rank-movement analysis proving the frozen candidate set and Recall@10 were unchanged while relevant documents moved down on 80 queries versus up on 45.
+- Development-only reranker candidate protocol v1 defining synthetic-only profiling inputs, pinned model identity, host controls, candidate gates, and a fail-closed boundary against tuning on frozen SciFact or ArguAna final data.
 
 ## Current architecture
 
@@ -80,7 +81,7 @@ not a causal linguistic diagnosis and not tuning data.
 
 ## Next highest-value task
 
-Profile the reranker component on a separate development task and define a development-only candidate protocol that does not inspect or tune on the frozen SciFact or ArguAna final sets. Any revised candidate must be selected on separate development evidence, then locked under a new freeze-before-outcomes protocol before final re-evaluation. Do not add retrieval infrastructure merely to offset a failed promotion result.
+Implement the profiler for `benchmarks/development/reranker_candidate_v1/PROTOCOL.json`: generate only the declared synthetic inputs, load the pinned local reranker snapshot offline, record raw reranker-only timing and determinism evidence across the protocol matrix, and fail closed on host-control violations. Any revised candidate must be selected only from this separate development evidence, then locked under a new freeze-before-outcomes protocol before final re-evaluation. Do not inspect or tune on the frozen SciFact or ArguAna final sets, and do not add retrieval infrastructure merely to offset a failed promotion result.
 
 ## Deferred work
 

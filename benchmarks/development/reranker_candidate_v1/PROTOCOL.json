@@ -1,0 +1,50 @@
+{
+  "schema_version": "atlasrag.reranker-development-protocol.v1",
+  "status": "development_only_unexecuted",
+  "purpose": "select at most one reranker configuration using synthetic development evidence before any new final evaluation freeze",
+  "final_evaluation_data_prohibited": true,
+  "prohibited_dataset_names": ["scifact", "arguana"],
+  "input_source": {
+    "type": "deterministic_synthetic_templates",
+    "seed": 20260817,
+    "query_count": 32,
+    "document_template_version": "synthetic-retrieval-component-v1",
+    "payload_from_final_evaluation_sets": false
+  },
+  "reranker": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8",
+    "license": "Apache-2.0",
+    "offline_local_snapshot_required": true
+  },
+  "matrix": {
+    "candidate_depths": [10, 20, 50],
+    "batch_sizes": [16, 32, 64],
+    "warmup_iterations": 5,
+    "measured_iterations": 30
+  },
+  "host_controls": {
+    "exclusive_benchmark_lock_required": true,
+    "single_profiler_process": true,
+    "network_disabled_for_model_load": true,
+    "accelerator_synchronization_required_when_available": true,
+    "raw_timing_samples_required": true,
+    "environment_metadata_required": true
+  },
+  "candidate_gates": {
+    "finite_scores_required": true,
+    "score_count_match_required": true,
+    "repeat_order_determinism_required": true,
+    "batch_size_p95_over_best_same_depth_max_ratio": 1.1,
+    "peak_accelerator_memory_mib_max": 6144,
+    "default_candidate_depth": 10,
+    "maximum_nominated_candidates": 1
+  },
+  "claim_boundary": {
+    "production_latency_claim_allowed": false,
+    "throughput_claim_allowed": false,
+    "quality_claim_allowed": false,
+    "default_promotion_allowed": false,
+    "final_evaluation_required_after_candidate_freeze": true
+  }
+}
