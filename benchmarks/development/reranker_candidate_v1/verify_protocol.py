@@ -1,4 +1,4 @@
-"""Fail-closed validation for the reranker development-only protocol."""
+"""Fail-closed validation for the frozen reranker development protocol."""
 
 from __future__ import annotations
 
@@ -7,110 +7,113 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 PROTOCOL = ROOT / "PROTOCOL.json"
-EXPECTED_RERANKER = "cross-encoder/ms-marco-MiniLM-L6-v2"
-EXPECTED_REVISION = "c5ee24cb16019beea0893ab7796b1df96625c6b8"
+
+EXPECTED_INPUT_SOURCE = {
+    "type": "deterministic_synthetic_templates",
+    "seed": 20260817,
+    "query_count": 32,
+    "document_template_version": "synthetic-retrieval-component-v1",
+    "payload_from_final_evaluation_sets": False,
+}
+EXPECTED_RERANKER = {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "c5ee24cb16019beea0893ab7796b1df96625c6b8",
+    "license": "Apache-2.0",
+    "offline_local_snapshot_required": True,
+}
+EXPECTED_MATRIX = {
+    "candidate_depths": [10, 20, 50],
+    "batch_sizes": [16, 32, 64],
+    "warmup_iterations": 5,
+    "measured_iterations": 30,
+}
+EXPECTED_HOST_CONTROLS = {
+    "exclusive_benchmark_lock_required": True,
+    "single_profiler_process": True,
+    "network_disabled_for_model_load": True,
+    "accelerator_synchronization_required_when_available": True,
+    "raw_timing_samples_required": True,
+    "environment_metadata_required": True,
+}
+EXPECTED_CANDIDATE_GATES = {
+    "finite_scores_required": True,
+    "score_count_match_required": True,
+    "repeat_order_determinism_required": True,
+    "batch_size_p95_over_best_same_depth_max_ratio": 1.1,
+    "peak_accelerator_memory_mib_max": 6144,
+    "default_candidate_depth": 10,
+    "maximum_nominated_candidates": 1,
+}
+EXPECTED_CLAIM_BOUNDARY = {
+    "production_latency_claim_allowed": False,
+    "throughput_claim_allowed": False,
+    "quality_claim_allowed": False,
+    "default_promotion_allowed": False,
+    "final_evaluation_required_after_candidate_freeze": True,
+}
 FROZEN_FINAL_DATASETS = {"scifact", "arguana"}
 
 
+def _require_exact_object(
+    protocol: dict[str, object],
+    key: str,
+    expected: dict[str, object],
+    errors: list[str],
+) -> None:
+    value = protocol.get(key)
+    if not isinstance(value, dict):
+        errors.append(f"{key} must be an object")
+    elif value != expected:
+        errors.append(f"{key} differs from the frozen v1 definition")
+
+
 def validate(protocol: dict[str, object]) -> list[str]:
+    """Return every violation of the exact frozen development protocol."""
+
     errors: list[str] = []
+    expected_top_level = {
+        "schema_version",
+        "status",
+        "purpose",
+        "final_evaluation_data_prohibited",
+        "prohibited_dataset_names",
+        "input_source",
+        "reranker",
+        "matrix",
+        "host_controls",
+        "candidate_gates",
+        "claim_boundary",
+    }
+    if set(protocol) != expected_top_level:
+        errors.append("top-level fields differ from the frozen v1 definition")
     if protocol.get("schema_version") != "atlasrag.reranker-development-protocol.v1":
         errors.append("schema_version mismatch")
     if protocol.get("status") != "development_only_unexecuted":
         errors.append("protocol must remain explicitly unexecuted before profiling")
+    if protocol.get("purpose") != (
+        "select at most one reranker configuration using synthetic development "
+        "evidence before any new final evaluation freeze"
+    ):
+        errors.append("purpose differs from the frozen v1 definition")
     if protocol.get("final_evaluation_data_prohibited") is not True:
         errors.append("final evaluation data must be prohibited")
-    prohibited = {
-        str(v).casefold() for v in protocol.get("prohibited_dataset_names", [])
-    }  # type: ignore[arg-type]
-    if not FROZEN_FINAL_DATASETS.issubset(prohibited):
-        errors.append("frozen final datasets must remain explicitly prohibited")
-    source = protocol.get("input_source")
-    if not isinstance(source, dict):
-        errors.append("input_source must be an object")
+
+    prohibited = protocol.get("prohibited_dataset_names")
+    if not isinstance(prohibited, list):
+        errors.append("prohibited_dataset_names must be a list")
     else:
-        if source.get("type") != "deterministic_synthetic_templates":
-            errors.append(
-                "development inputs must be deterministic synthetic templates"
-            )
-        if source.get("payload_from_final_evaluation_sets") is not False:
-            errors.append("final evaluation payload use must be false")
-        if int(source.get("query_count", 0)) <= 0:
-            errors.append("query_count must be positive")
-    reranker = protocol.get("reranker")
-    if not isinstance(reranker, dict):
-        errors.append("reranker must be an object")
-    else:
-        if reranker.get("name") != EXPECTED_RERANKER:
-            errors.append("reranker identity mismatch")
-        if reranker.get("revision") != EXPECTED_REVISION:
-            errors.append("reranker revision mismatch")
-        if reranker.get("offline_local_snapshot_required") is not True:
-            errors.append("offline local snapshot must be required")
-    matrix = protocol.get("matrix")
-    if not isinstance(matrix, dict):
-        errors.append("matrix must be an object")
-    else:
-        if matrix.get("candidate_depths") != [10, 20, 50]:
-            errors.append("candidate depths must remain [10, 20, 50]")
-        batches = matrix.get("batch_sizes")
-        if (
-            not isinstance(batches, list)
-            or not batches
-            or any(int(x) <= 0 for x in batches)
-        ):
-            errors.append("batch sizes must be positive")
-        if int(matrix.get("warmup_iterations", 0)) < 1:
-            errors.append("at least one warmup iteration is required")
-        if int(matrix.get("measured_iterations", 0)) < 10:
-            errors.append("at least ten measured iterations are required")
-    controls = protocol.get("host_controls")
-    required = [
-        "exclusive_benchmark_lock_required",
-        "single_profiler_process",
-        "network_disabled_for_model_load",
-        "accelerator_synchronization_required_when_available",
-        "raw_timing_samples_required",
-        "environment_metadata_required",
-    ]
-    if not isinstance(controls, dict) or any(
-        controls.get(k) is not True for k in required
-    ):
-        errors.append("all host controls must fail closed")
-    gates = protocol.get("candidate_gates")
-    if not isinstance(gates, dict):
-        errors.append("candidate_gates must be an object")
-    else:
-        for k in [
-            "finite_scores_required",
-            "score_count_match_required",
-            "repeat_order_determinism_required",
-        ]:
-            if gates.get(k) is not True:
-                errors.append(f"{k} must be required")
-        if float(gates.get("batch_size_p95_over_best_same_depth_max_ratio", 99)) > 1.10:
-            errors.append("batch-size p95 selection tolerance may not exceed 1.10")
-        if int(gates.get("maximum_nominated_candidates", 0)) != 1:
-            errors.append("at most one candidate may be nominated")
-    boundary = protocol.get("claim_boundary")
-    if not isinstance(boundary, dict):
-        errors.append("claim_boundary must be an object")
-    else:
-        for k in [
-            "production_latency_claim_allowed",
-            "throughput_claim_allowed",
-            "quality_claim_allowed",
-            "default_promotion_allowed",
-        ]:
-            if boundary.get(k) is not False:
-                errors.append(
-                    "development protocol may not authorize public performance "
-                    "or promotion claims"
-                )
-        if boundary.get("final_evaluation_required_after_candidate_freeze") is not True:
-            errors.append(
-                "a new final evaluation must be required after candidate freeze"
-            )
+        normalized = [str(value).casefold() for value in prohibited]
+        if normalized != ["scifact", "arguana"]:
+            errors.append("frozen final dataset prohibition must remain exact")
+        if not FROZEN_FINAL_DATASETS.issubset(normalized):
+            errors.append("frozen final datasets must remain explicitly prohibited")
+
+    _require_exact_object(protocol, "input_source", EXPECTED_INPUT_SOURCE, errors)
+    _require_exact_object(protocol, "reranker", EXPECTED_RERANKER, errors)
+    _require_exact_object(protocol, "matrix", EXPECTED_MATRIX, errors)
+    _require_exact_object(protocol, "host_controls", EXPECTED_HOST_CONTROLS, errors)
+    _require_exact_object(protocol, "candidate_gates", EXPECTED_CANDIDATE_GATES, errors)
+    _require_exact_object(protocol, "claim_boundary", EXPECTED_CLAIM_BOUNDARY, errors)
     return errors
 
 
@@ -121,8 +124,8 @@ def main() -> int:
             print(f"FAIL: {error}")
         return 1
     print(
-        "PASS: reranker development protocol is isolated from frozen final "
-        "evaluation data"
+        "PASS: reranker development protocol exactly matches the frozen v1 "
+        "synthetic-only definition"
     )
     return 0
 

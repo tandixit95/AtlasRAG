@@ -10,6 +10,8 @@ A candidate may be nominated only if score count and finiteness checks pass, rep
 
 This protocol is not a benchmark result, release artifact, production latency claim, throughput claim, quality claim, or default-path promotion package. After candidate selection, a new evaluation namespace must freeze the candidate and gates before any final evaluation data is examined.
 
-## Next implementation boundary
+## Profiler
 
-Implement a profiler that consumes `PROTOCOL.json`, generates only the declared synthetic inputs, loads the pinned local snapshot offline, records raw reranker-only timings for the full matrix, and fails closed on protocol or determinism violations. Then run it on an uncontended host and nominate at most one candidate for a separately frozen evaluation.
+`profile_reranker.py` consumes the exact frozen protocol, generates only the declared synthetic workload, requires the pinned local model snapshot, forces Hugging Face model loading into offline/local-only mode, takes an exclusive single-profiler lock, synchronizes CUDA timing when available, records every raw timing sample and environment metadata, and fails closed on score-count, finiteness, repeated-order, or accelerator-memory violations. The default depth remains 10; the profiler may nominate at most one batch configuration at that depth.
+
+The real model-backed profiler has not been executed by this repository change. It requires the optional `reranking` dependencies and an uncontended host. A successful synthetic profile would still be development evidence only; a separately frozen final evaluation is required before any promotion decision.

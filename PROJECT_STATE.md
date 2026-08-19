@@ -34,6 +34,7 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Rejected depth-10 default promotion: ArguAna ordering quality regressed with paired intervals below zero, and controlled reranker p95 exceeded the frozen component budget on both tasks.
 - No-payload ArguAna rank-movement analysis proving the frozen candidate set and Recall@10 were unchanged while relevant documents moved down on 80 queries versus up on 45.
 - Development-only reranker candidate protocol v1 defining synthetic-only profiling inputs, pinned model identity, host controls, candidate gates, and a fail-closed boundary against tuning on frozen SciFact or ArguAna final data.
+- Synthetic-only reranker profiler implementation with offline local-model loading, exclusive host lock, deterministic workload generation, raw timing capture, score/order gates, and default-CI coverage; real model profiling remains unexecuted.
 
 ## Current architecture
 
@@ -81,7 +82,7 @@ not a causal linguistic diagnosis and not tuning data.
 
 ## Next highest-value task
 
-Implement the profiler for `benchmarks/development/reranker_candidate_v1/PROTOCOL.json`: generate only the declared synthetic inputs, load the pinned local reranker snapshot offline, record raw reranker-only timing and determinism evidence across the protocol matrix, and fail closed on host-control violations. Any revised candidate must be selected only from this separate development evidence, then locked under a new freeze-before-outcomes protocol before final re-evaluation. Do not inspect or tune on the frozen SciFact or ArguAna final sets, and do not add retrieval infrastructure merely to offset a failed promotion result.
+Execute `benchmarks/development/reranker_candidate_v1/profile_reranker.py` only in an isolated environment with the optional `reranking` dependencies and an uncontended host. Preserve the exact frozen synthetic protocol, nominate at most one default-depth batch configuration from development evidence, then lock that candidate under a new freeze-before-outcomes protocol before any final re-evaluation. Do not inspect or tune on the frozen SciFact or ArguAna final sets, and do not add retrieval infrastructure merely to offset a failed promotion result.
 
 ## Deferred work
 
