@@ -15,3 +15,5 @@ This protocol is not a benchmark result, release artifact, production latency cl
 `profile_reranker.py` consumes the exact frozen protocol, generates only the declared synthetic workload, requires the pinned local model snapshot, forces Hugging Face model loading into offline/local-only mode, takes an exclusive single-profiler lock, synchronizes CUDA timing when available, records every raw timing sample and environment metadata, and fails closed on score-count, finiteness, repeated-order, or accelerator-memory violations. The default depth remains 10; the profiler may nominate at most one batch configuration at that depth.
 
 The real model-backed profiler has not been executed by this repository change. It requires the optional `reranking` dependencies and an uncontended host. A successful synthetic profile would still be development evidence only; a separately frozen final evaluation is required before any promotion decision.
+
+A design-focused technical note is available in [`TECHNICAL_NOTE.md`](TECHNICAL_NOTE.md). It documents the freeze-before-outcomes boundary and the fail-closed execution controls without adding any model-backed profiling claim.
