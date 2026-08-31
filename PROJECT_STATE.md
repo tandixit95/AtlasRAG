@@ -36,7 +36,7 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Development-only reranker candidate protocol v1 defining synthetic-only profiling inputs, pinned model identity, host controls, candidate gates, and a fail-closed boundary against tuning on frozen SciFact or ArguAna final data.
 - Synthetic-only reranker profiler implementation with offline local-model loading, exclusive host lock, deterministic workload generation, raw timing capture, score/order gates, and default-CI coverage.
 - Executed the frozen synthetic reranker profile on an uncontended RTX 4060; all nine configurations were deterministic and depth 10 / batch 32 was nominated mechanically under the frozen 1.10x same-depth p95 rule.
-- Final-evaluation v2 protocol and gates frozen before outcomes for exactly depth 10 / batch 32; final SciFact/ArguAna re-evaluation remains unexecuted.
+- Final-evaluation v2 protocol and gates were committed before outcomes for exactly depth 10 / batch 32, then executed without post-outcome tuning. A/B rankings reproduced exactly, safety/citation contracts passed, and the machine disposition was `retain_default_rejected`: both task shapes exceeded the frozen 75 ms component p95 budget, SciFact remained statistically inconclusive, and ArguAna retained a clear ranking-quality regression.
 
 ## Current architecture
 
@@ -84,7 +84,7 @@ not a causal linguistic diagnosis and not tuning data.
 
 ## Next highest-value task
 
-After the final-evaluation v2 freeze commit is remotely verified, execute exactly the frozen depth-10 / batch-32 candidate on the predeclared SciFact test-300 and deterministic ArguAna contrast-200 task shapes using the existing A/B reproduction, safety, quality, and latency gates. Do not tune, replace, or reselect the candidate after observing outcomes. Close the reranker milestone regardless of pass/reject/inconclusive disposition, then rotate the flagship to the Coding-Agent Reliability and Evaluation Lab.
+The reranker candidate-selection milestone is closed. Hybrid RRF remains the default and no further tuning on the frozen SciFact or ArguAna final sets is permitted. Keep AtlasRAG in maintenance/evidence mode unless a new externally motivated retrieval capability has its own independently frozen development and evaluation protocol. Portfolio-level flagship work can now rotate to the Coding-Agent Reliability and Evaluation Lab rather than extending this reranker experiment merely to create activity.
 
 ## Deferred work
 

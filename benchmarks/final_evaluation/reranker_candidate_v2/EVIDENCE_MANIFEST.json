@@ -1,0 +1,36 @@
+{
+  "candidate": {
+    "candidate_depth": 10,
+    "promoted": false,
+    "reranker_batch_size": 32
+  },
+  "decision": {
+    "candidate_promoted": false,
+    "check_count": 39,
+    "disposition": "retain_default_rejected",
+    "failed_count": 6,
+    "missing_count": 0
+  },
+  "development_profile_sha256": "312072db352d7ef8029a40f74142338e0437f6957888528df47acc3eca13a22b",
+  "final_report_sha256": "05731e19d307720011c7bf590f161034d2ba19c71939de321cc88e35516ae1e5",
+  "freeze_commit": "9e1604ff3082afb272acdd9fd9edf0a7d41428c8",
+  "gates_sha256": "ec0e1690483f8a307f475076551fc5ba901077b32f7f11f37f757781bbd05a7d",
+  "protocol_id": "reranked-depth10-batch32-final-evaluation-20260831",
+  "protocol_sha256": "343451a3354145f11fa194ac6257f399cfa92e22ea438d482ea8ac7caab3278c",
+  "publication_boundary": "No query text, corpus text, dataset payload, model weights, embedding cache, private path, production claim, or release tag is included.",
+  "raw_final_evaluation_artifacts_published": false,
+  "schema_version": "atlasrag.reranker-final-evaluation-evidence.v2",
+  "status": "complete_retain_default_rejected",
+  "tasks": {
+    "arguana-contrast-200": {
+      "query_count": 200,
+      "rankings_sha256": "efb44f2c475ca57a961fa37908958656e33f0091b4442fbd8e1c5bc06237a7f0",
+      "summary_sha256": "3a6d1ccc321d697c98880bc2dbe726faf10cddda108db1ab5f8f64b975615ea1"
+    },
+    "scifact-test-300": {
+      "query_count": 300,
+      "rankings_sha256": "2b689b58c1eb1af1f85e3ce0de9a6453ad692a7eb88f67b1c701bd45e1d5bc16",
+      "summary_sha256": "0f567229ee291ac0cd9fee7c988e98ab8dc9f1069907fe472ecc4a0ddd3af98b"
+    }
+  }
+}

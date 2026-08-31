@@ -20,6 +20,10 @@ The final evaluation reuses the established `scifact-test-300` and deterministic
 
 The candidate may not be tuned, replaced, or reselected after any final outcome is observed. Hybrid RRF remains the default unless every frozen promotion gate passes.
 
-The protocol is currently `frozen_unexecuted`. No final SciFact or ArguAna outcome is established by this freeze artifact.
+`PROTOCOL.json` intentionally remains the immutable pre-outcome `frozen_unexecuted` artifact; its status is not rewritten after observing results. The executed outcome is recorded separately below.
 
-Run `python benchmarks/final_evaluation/reranker_candidate_v2/verify_protocol.py` before any final evaluation execution.
+Run `python benchmarks/final_evaluation/reranker_candidate_v2/verify_protocol.py` to verify that the historical freeze artifact and gates remain unchanged.
+
+## Final outcome
+
+The frozen protocol has now been executed without changing `PROTOCOL.json` or `GATES.json` after outcomes. The machine decision is `retain_default_rejected`; batch-32 is not promoted and hybrid RRF remains the default. See [`RESULTS_V2.md`](RESULTS_V2.md), [`FINAL_REPORT.json`](FINAL_REPORT.json), and [`EVIDENCE_MANIFEST.json`](EVIDENCE_MANIFEST.json). Raw dataset-derived A/B rankings remain outside this public evidence package.
