@@ -71,7 +71,7 @@ The protocol permits at most one nominated configuration, and only at the frozen
 
 The run as a whole must first satisfy the frozen host controls. Within an admitted run, a batch size remains eligible only if its score-shape, determinism, and memory checks pass. Its p95 must also remain within `1.10x` of the best passing batch size at the same depth. The profiler may then nominate no more than one batch configuration.
 
-A nomination is still not a promotion. It only identifies the single candidate that may advance to a **new freeze-before-outcomes final evaluation**.
+The executed synthetic profile nominated depth 10 / batch 32 under the precommitted selection rule. A nomination is still not a promotion. It only identifies the single candidate that may advance to the **new freeze-before-outcomes final evaluation** under `benchmarks/final_evaluation/reranker_candidate_v2/`.
 
 ## Reproducible verification available today
 

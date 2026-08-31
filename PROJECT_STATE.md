@@ -34,7 +34,9 @@ Build AtlasRAG into a permission-aware, evaluation-driven retrieval system whose
 - Rejected depth-10 default promotion: ArguAna ordering quality regressed with paired intervals below zero, and controlled reranker p95 exceeded the frozen component budget on both tasks.
 - No-payload ArguAna rank-movement analysis proving the frozen candidate set and Recall@10 were unchanged while relevant documents moved down on 80 queries versus up on 45.
 - Development-only reranker candidate protocol v1 defining synthetic-only profiling inputs, pinned model identity, host controls, candidate gates, and a fail-closed boundary against tuning on frozen SciFact or ArguAna final data.
-- Synthetic-only reranker profiler implementation with offline local-model loading, exclusive host lock, deterministic workload generation, raw timing capture, score/order gates, and default-CI coverage; real model profiling remains unexecuted.
+- Synthetic-only reranker profiler implementation with offline local-model loading, exclusive host lock, deterministic workload generation, raw timing capture, score/order gates, and default-CI coverage.
+- Executed the frozen synthetic reranker profile on an uncontended RTX 4060; all nine configurations were deterministic and depth 10 / batch 32 was nominated mechanically under the frozen 1.10x same-depth p95 rule.
+- Final-evaluation v2 protocol and gates frozen before outcomes for exactly depth 10 / batch 32; final SciFact/ArguAna re-evaluation remains unexecuted.
 
 ## Current architecture
 
@@ -82,7 +84,7 @@ not a causal linguistic diagnosis and not tuning data.
 
 ## Next highest-value task
 
-Execute `benchmarks/development/reranker_candidate_v1/profile_reranker.py` only in an isolated environment with the optional `reranking` dependencies and an uncontended host. Preserve the exact frozen synthetic protocol, nominate at most one default-depth batch configuration from development evidence, then lock that candidate under a new freeze-before-outcomes protocol before any final re-evaluation. Do not inspect or tune on the frozen SciFact or ArguAna final sets, and do not add retrieval infrastructure merely to offset a failed promotion result.
+After the final-evaluation v2 freeze commit is remotely verified, execute exactly the frozen depth-10 / batch-32 candidate on the predeclared SciFact test-300 and deterministic ArguAna contrast-200 task shapes using the existing A/B reproduction, safety, quality, and latency gates. Do not tune, replace, or reselect the candidate after observing outcomes. Close the reranker milestone regardless of pass/reject/inconclusive disposition, then rotate the flagship to the Coding-Agent Reliability and Evaluation Lab.
 
 ## Deferred work
 
