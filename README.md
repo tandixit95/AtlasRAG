@@ -22,11 +22,12 @@ Python 3.11 or newer. From this repository checkout:
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e '.[dev]'
-python examples/permission_boundary.py
+python -m atlasrag.demo
 python -m pytest tests/test_reviewer_demo.py
 ```
 
-The demo indexes one public document and two protected documents. An anonymous
+The module is included in the wheel and source distribution, so it also runs outside
+the repository checkout. The demo indexes one public document and two protected documents. An anonymous
 caller sees only the public document. A tenant-A operations caller sees the
 public and tenant-A documents; a tenant-A caller in the wrong group sees only the
 public document. No model, API key, network service, or private dataset is used.
